@@ -32,7 +32,7 @@
             --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
             --border-radius: 16px;
             
-            /* IMPROVEMENT #2: Fluid Section Padding */
+            /* Fluid Section Padding */
             --section-padding: clamp(60px, 8vw, 110px);
         }
 
@@ -115,18 +115,10 @@
         .brand-tagline { font-family: var(--font-mono); font-size: 0.65rem; color: var(--color-accent-teal); text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.9; }
 
         .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-item { position: relative; font-weight: 500; cursor: pointer; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-item { font-weight: 500; cursor: pointer; font-size: 0.9rem; transition: color 0.2s; }
         .nav-item:hover { color: var(--color-accent-teal); }
-        .nav-dropdown {
-            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
-            background: var(--color-bg-card-solid); border: 1px solid var(--color-border);
-            border-radius: 12px; padding: 1rem; min-width: 200px; display: none;
-            box-shadow: var(--shadow-card); backdrop-filter: blur(20px); z-index: 1001;
-        }
-        .nav-dropdown a { display: block; padding: 0.75rem; font-size: 0.85rem; border-radius: 6px; color: var(--color-text-secondary); }
-        .nav-dropdown a:hover { color: var(--color-text-primary); background: rgba(255,255,255,0.05); }
-        .nav-item:hover .nav-dropdown { display: block; animation: slideDown 0.2s forwards; }
-        @keyframes slideDown { from { transform: translateX(-50%) translateY(10px); opacity: 0; } to { transform: translateX(-50%) translateY(0); opacity: 1; } }
+        
+        /* REMOVED DROPDOWN STYLES AS REQUESTED */
         
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
         .hamburger span { width: 24px; height: 2px; background: var(--color-text-primary); transition: var(--transition-fast); border-radius: 2px; }
@@ -158,7 +150,6 @@
             pointer-events: none;
         }
         
-        /* IMPROVEMENT #2: Fluid Section Padding Applied Here */
         section {
             padding: var(--section-padding) 0; 
             opacity: 0; transform: translateY(20px);
@@ -186,19 +177,17 @@
         .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
         .trust-bar { color: var(--color-text-secondary); font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.8; margin-bottom: 3.5rem; }
         
-        /* IMPROVEMENT #1: Reduced Padding & Clean Frame */
         .hero-visual {
             max-width: 900px; margin: 0 auto; background: var(--color-bg-card);
             backdrop-filter: blur(16px); border-radius: 20px; border: 1px solid var(--color-border);
-            padding: 4px; /* Reduced from 1rem */
+            padding: 4px; 
             position: relative; overflow: hidden;
             box-shadow: var(--shadow-card), 0 0 60px rgba(0,0,0,0.5);
         }
         
         .comparison-container {
             position: relative; width: 100%; aspect-ratio: 16 / 9;
-            border-radius: 16px; /* Matches inner content */
-            overflow: hidden; background: #111; cursor: col-resize;
+            border-radius: 16px; overflow: hidden; background: #111; cursor: col-resize;
         }
         .comp-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .comp-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -248,11 +237,9 @@
         .services h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .services p.subheadline { text-align: center; margin-bottom: 3rem; font-size: 1.1rem; }
 
-        /* IMPROVEMENT #4, #5, #6: Fluid Height, Width, Stack Depth & Alignment */
         .image-deck-container {
             position: relative;
             width: 100%;
-            /* Fluid Height Desktop */
             height: clamp(240px, 40vw, 480px); 
             margin-bottom: 3rem;
             perspective: 1000px;
@@ -260,7 +247,7 @@
             justify-content: center;
             cursor: pointer; 
             z-index: 1;
-            max-width: 900px; /* Unified Width */
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -270,7 +257,6 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            /* Fluid Width */
             max-width: clamp(300px, 45%, 520px); 
             aspect-ratio: 4/5;
             border-radius: 12px;
@@ -288,7 +274,6 @@
             font-family: var(--font-mono); font-size: 0.8rem; color: #fff; text-align: center; pointer-events: none;
         }
 
-        /* IMPROVEMENT #5: Refined Stack Depth */
         .deck-item.state-0 { z-index: 3; transform: translateX(-50%) scale(1); opacity: 1; border-color: var(--color-accent-teal); }
         .deck-item.state-1 { z-index: 2; transform: translateX(-32%) scale(0.92) rotate(3deg); opacity: 0.6; filter: brightness(0.7); }
         .deck-item.state-2 { z-index: 1; transform: translateX(-14%) scale(0.84) rotate(6deg); opacity: 0.3; filter: brightness(0.5); }
@@ -311,11 +296,10 @@
         .rail-btn.active { background: var(--color-accent-teal); color: var(--color-bg-deep); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3); }
         .rail-divider { width: 1px; height: 24px; background: var(--color-border); margin: 0 0.5rem; flex-shrink: 0; }
 
-        /* IMPROVEMENT #6: Unified Context Card Width */
         .context-card {
             background: var(--color-bg-card); backdrop-filter: blur(12px); border: 1px solid var(--color-border);
             border-radius: var(--border-radius); padding: 2.5rem;
-            max-width: 900px; /* Unified Width */
+            max-width: 900px;
             margin: 0 auto; transition: all 0.3s ease; opacity: 1; transform: translateY(0);
         }
         .context-card.fade-out { opacity: 0; transform: translateY(10px); }
@@ -323,7 +307,6 @@
         .card-title-group h3 { font-size: 1.75rem; color: var(--color-text-primary); margin-bottom: 0.25rem; }
         .card-sub { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 300; }
         
-        /* IMPROVEMENT #7: Mobile Grid Collapse */
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
         .card-section h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; font-family: var(--font-heading); display: flex; align-items: center; gap: 0.5rem; }
         .label-challenge { color: var(--color-accent-violet); }
@@ -442,8 +425,6 @@
             .hero h1 { font-size: 2.4rem; }
             .sticky-mobile-cta { display: block !important; }
             
-            /* IMPROVEMENT #2: Fluid Padding applies automatically via variable */
-            
             .hero { padding: 120px 0 60px; }
             .hero h1 { margin-bottom: 1rem; }
             .hero p.subheadline { margin-bottom: 1.5rem; font-size: 1rem; }
@@ -457,20 +438,25 @@
             .services h2 { margin-bottom: 0.5rem; }
             .services p.subheadline { margin-bottom: 1.5rem; }
             
-            /* IMPROVEMENT #4: Fluid Height Mobile */
+            /* FIX #2: Mobile Services Spacing */
             .image-deck-container { 
                 height: clamp(220px, 65vw, 320px); 
-                margin-bottom: 0.5rem; 
+                margin-bottom: 2rem; /* Increased from 0.5rem to create space */
             }
             .deck-item { max-width: 80%; top: 10px; }
             
-            .nav-rail-container { margin-bottom: 1rem; padding-bottom: 0.5rem; }
+            .nav-rail-container { 
+                margin-bottom: 2rem; /* Increased spacing */
+                padding-bottom: 1rem; 
+            }
             .rail-btn { padding: 8px 16px; font-size: 0.8rem; }
             
-            .context-card { padding: 1.5rem; margin-top: 0; }
+            .context-card { 
+                padding: 1.5rem; 
+                margin-top: 1rem; /* Ensure separation from rail */
+            }
             .card-header { margin-bottom: 1rem; }
             
-            /* IMPROVEMENT #7: Mobile Grid Collapse */
             .card-grid { 
                 grid-template-columns: 1fr; 
                 gap: 1rem; margin-bottom: 1rem; 
@@ -511,7 +497,6 @@
             .brand-tagline { font-size: 0.55rem; }
             .brand-logo-img { height: 40px; }
             
-            /* Mobile Label Adjustments */
             .slider-labels-row { top: 10px; padding: 0 10px; }
             .slider-label { font-size: 0.65rem; padding: 4px 8px; }
         }
@@ -536,7 +521,8 @@
             </a>
             
             <nav class="nav-links">
-                <div class="nav-item">Solutions ▾<div class="nav-dropdown"><a href="#services">By Category</a><a href="#services">By Region</a><a href="#services">By Business Size</a></div></div>
+                <!-- FIX #1: Direct Link instead of Dropdown -->
+                <a href="#services" class="nav-item">Solutions</a>
                 <a href="#how-it-works" class="nav-item">How It Works</a>
                 <a href="#results" class="nav-item">Results</a>
                 <a href="#pricing" class="nav-item">Pricing</a>
@@ -573,16 +559,11 @@
             </div>
             <div class="trust-bar">✓ 3x Faster Than Traditional Shoots • ✓ Studio-Grade QA • ✓ GDPR-Compliant</div>
             
-            <!-- UPDATED HERO VISUAL STRUCTURE -->
             <div class="hero-visual">
-                
-                <!-- Floating Labels Inside the Frame -->
                 <div class="slider-labels-row">
                     <div class="slider-label label-right">AZ Calibrated</div>
                     <div class="slider-label label-left">Generic</div>
                 </div>
-
-                <!-- The Slider -->
                 <div class="comparison-container" id="comparisonSlider">
                     <div class="comp-img img-before">
                         <img src="images/hero-before.png" alt="Generic AI Output">
@@ -646,11 +627,8 @@
             <p class="subheadline">Traditional shoots cost $5k–$10k per day. Our AI Studio delivers studio-grade, culturally-calibrated assets for a fraction of the cost—with no long-term lock-ins.</p>
             
             <div class="pricing-path-container">
-                <!-- Path 1: Start Small -->
                 <div class="path-column">
                     <div class="path-title">🧪 Start Small & Specific</div>
-                    
-                    <!-- Option A: Audit -->
                     <div class="price-card-small">
                         <h3>Free Cultural Strategy Audit</h3>
                         <ul>
@@ -659,8 +637,6 @@
                         </ul>
                         <button class="btn btn-primary" style="width:100%" onclick="openDemoForm('audit', 'Start Your Free Cultural Audit')">Book Free Audit →</button>
                     </div>
-
-                    <!-- Option B: Catalog Pro -->
                     <div class="price-card-small" style="border-color: var(--color-accent-orange);">
                         <h3 style="color: var(--color-accent-orange);">🟠 Catalog Pro Update ($2,500)</h3>
                         <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 1rem; font-style: italic;">One-Time Project</p>
@@ -672,8 +648,6 @@
                         <button class="btn btn-catalog" style="width:100%" onclick="selectPlan('Catalog Pro')">Start Catalog Pro</button>
                     </div>
                 </div>
-
-                <!-- Path 2: Scale -->
                 <div class="path-column">
                     <div class="path-title">🚀 Ready To Scale? (Monthly)</div>
                     <div style="background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 1.5rem;">
@@ -687,7 +661,6 @@
                 </div>
             </div>
 
-            <!-- Monthly Plans Grid -->
             <div id="pricing-plans" class="plans-grid">
                 <div class="plan-card">
                     <div class="plan-name">🟢 Launch Pad</div>
@@ -740,7 +713,7 @@
         </div>
     </section>
 
-    <!-- Quality & Trust - NO ICONS -->
+    <!-- Quality & Trust -->
     <section class="quality" id="about">
         <div class="container">
             <h2>Why Fashion and Lifestyle Brands Trust Our AI Workflow</h2>
@@ -812,7 +785,6 @@
                     <span class="footer-brand-tagline">Next-Gen AI Creative Studio</span>
                 </div>
             </div>
-            
             <div class="footer-bottom">© 2026 AZ Designs • 🔒 GDPR Compliant • ✦ Studio-Grade QA • 🌍 Culturally Calibrated</div>
         </div>
     </footer>
@@ -855,7 +827,7 @@
             setTimeout(() => toast.classList.remove('show'), 4000);
         }
 
-        // Slider Logic - IMPROVEMENT #8: Window Listeners for Smooth Dragging
+        // Slider Logic
         const sliderContainer = document.getElementById('comparisonSlider');
         const afterImage = document.getElementById('afterImage');
         const sliderHandle = document.getElementById('sliderHandle');
@@ -869,50 +841,33 @@
             sliderHandle.style.left = `${percentage}%`;
         }
 
-        // Start Dragging
         sliderContainer.addEventListener('mousedown', () => isDragging = true);
         sliderContainer.addEventListener('touchstart', () => isDragging = true);
-
-        // Stop Dragging
         window.addEventListener('mouseup', () => isDragging = false);
         window.addEventListener('touchend', () => isDragging = false);
+        window.addEventListener('mousemove', (e) => { if (!isDragging) return; updateSlider(e.clientX); });
+        window.addEventListener('touchmove', (e) => { if (!isDragging) return; updateSlider(e.touches[0].clientX); });
 
-        // Move Slider (Attached to Window for smoother experience)
-        window.addEventListener('mousemove', (e) => { 
-            if (!isDragging) return; 
-            updateSlider(e.clientX); 
-        });
-        window.addEventListener('touchmove', (e) => { 
-            if (!isDragging) return; 
-            updateSlider(e.touches[0].clientX); 
-        });
-
-        // Form Submit with Toast Integration
+        // Form Submit
         const form = document.getElementById('auditForm');
         const submitBtn = document.getElementById('submitBtn');
         if(form) {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                
-                // Basic Validation
                 const email = form.querySelector('input[type="email"]').value;
                 if(!email.includes('@') || !email.includes('.')) {
                     showToast('Please enter a valid email address.', true);
                     return;
                 }
-
                 submitBtn.innerText = "Processing...";
                 submitBtn.disabled = true;
                 submitBtn.style.opacity = "0.7";
-
-                // Simulate API Call
                 setTimeout(() => {
                     showToast('Audit Request Sent Successfully! We will contact you within 24h.');
                     form.reset();
                     submitBtn.innerText = "Sent ✓";
                     submitBtn.style.background = "#00b895";
                     submitBtn.style.color = "#fff";
-                    
                     setTimeout(() => { 
                         submitBtn.innerText = "Get My Free Audit →"; 
                         submitBtn.disabled = false;
@@ -959,19 +914,14 @@
 
         // --- SERVICES LOGIC ---
         const servicesData = [
-            // APPAREL
             { id: 'western', title: 'Western Casual', sub: 'Denim • Streetwear • Activewear • Loungewear', challenge: 'Speed-to-market.', solution: 'Rapid variant generation.', cultural: 'Optional localization layer.', badgeType: 'medium', formHeadline: 'Get a Free Casual Wear Demo' },
             { id: 'modest', title: 'Modest Fashion', sub: 'Abayas • Hijabs • Kaftans • Tunics', challenge: 'Cultural alignment.', solution: 'Region-calibrated styling.', cultural: 'Pre-built variant packs for GCC/SEA.', badgeType: 'critical', formHeadline: 'Get a Free Modest Fashion Demo' },
             { id: 'ethnic', title: 'Ethnic Traditional', sub: 'Sarees • Lehengas • Kurtas • Sherwanis', challenge: 'Authentic representation.', solution: 'Heritage draping & textures.', cultural: 'Validates patterns per region.', badgeType: 'high', formHeadline: 'Get a Free Ethnic Fashion Demo' },
             { id: 'intimate', title: 'Intimate Wear', sub: 'Lingerie • Shapewear • Sleepwear • Swimwear', challenge: 'Discretion & norms.', solution: 'AI lookbooks, discreet styling.', cultural: 'Pre-validates against ad policies.', badgeType: 'critical', formHeadline: 'Get a Free Intimate Wear Demo' },
             { id: 'kids', title: 'Kids & Teen Fashion', sub: 'Kids\' Ethnic • Party Outfits • School Wear • Teen Casual', challenge: 'Safety & trust.', solution: 'Family lifestyle scenes.', cultural: 'Age-appropriate guidelines.', badgeType: 'medium', formHeadline: 'Get a Free Kids Fashion Demo' },
-            
-            // LIFESTYLE
             { id: 'luxury', title: 'Luxury Accessories', sub: 'Timepieces • Fine Jewelry • Designer Bags • Eyewear', challenge: 'Craftsmanship storytelling.', solution: 'Macro texture shots.', cultural: 'Gold motifs for GCC, Minimalism for EU.', badgeType: 'high', formHeadline: 'Get a Free Luxury Asset Demo' },
             { id: 'beauty', title: 'Beauty & Cosmetics', sub: 'Makeup • Skincare • Luxury Fragrance • Haircare', challenge: 'Skin tone diversity.', solution: 'Hyper-realistic application.', cultural: 'Undertone-accurate rendering.', badgeType: 'high', formHeadline: 'Get a Free Beauty Campaign Demo' },
             { id: 'tech', title: 'Global Lifestyle & Tech', sub: 'Smart Home Tech • Lifestyle Gadgets • EV Accessories • Wellness', challenge: 'Local living standards.', solution: 'Context-aware scenes.', cultural: 'Compact setups for Asia, Family for GCC.', badgeType: 'high', formHeadline: 'Get a Free Tech Lifestyle Demo' },
-            
-            // BUSINESS
             { id: 'b2b', title: 'B2B / Agencies', sub: 'White-Label Solutions • Bulk Orders • Export Services • API Integration', challenge: 'Scalability.', solution: 'Bulk catalog generation.', cultural: 'Client-defined presets.', badgeType: 'medium', formHeadline: 'Get a Free B2B Workflow Demo' },
             { id: 'custom', title: 'Custom Solutions', sub: 'Bespoke Projects • Multi-Category Brands • Campaign Innovation • Enterprise', challenge: 'Unique needs.', solution: 'Dedicated creative director.', cultural: 'Co-created rules.', badgeType: 'bespoke', formHeadline: 'Book a Custom Strategy Session' }
         ];
@@ -990,27 +940,23 @@
         function renderNavRail() {
             navRailEl.innerHTML = '';
             let currentGroup = '';
-            
             servicesData.forEach((cat, index) => {
                 let group = '';
                 if (['western', 'modest', 'ethnic', 'intimate', 'kids'].includes(cat.id)) group = 'apparel';
                 else if (['luxury', 'beauty', 'tech'].includes(cat.id)) group = 'lifestyle';
                 else group = 'business';
-
                 if (currentGroup && currentGroup !== group) {
                     const divider = document.createElement('div');
                     divider.className = 'rail-divider';
                     navRailEl.appendChild(divider);
                 }
                 currentGroup = group;
-
                 const btn = document.createElement('button');
                 btn.className = `rail-btn ${cat.id === activeCategoryId ? 'active' : ''}`;
                 btn.innerText = cat.title;
                 btn.onclick = () => setActiveCategory(cat.id);
                 navRailEl.appendChild(btn);
             });
-            
             const activeBtn = navRailEl.querySelector('.active');
             if(activeBtn) activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
@@ -1018,17 +964,13 @@
         function renderImageDeck() {
             imageDeckContainer.innerHTML = '';
             const cat = servicesData.find(c => c.id === activeCategoryId);
-            
-            // Special handling for Custom/Bespoke category (Single Image)
             if (cat.id === 'custom') {
                 const item = document.createElement('div');
                 item.className = 'deck-item state-0';
                 item.innerHTML = `<img src="images/custom-bespoke.png" alt="${cat.title}" class="deck-img-placeholder"><div class="deck-overlay">Exclusive Preview</div>`;
                 imageDeckContainer.appendChild(item);
             } else {
-                // Standard 3-image stack logic
                 let placeholders = [];
-                
                 if (cat.id === 'western') placeholders = ['images/western-casual-1.png', 'images/western-casual-2.png', 'images/western-casual-3.png'];
                 else if (cat.id === 'modest') placeholders = ['images/modest-fashion-1.png', 'images/modest-fashion-2.png', 'images/modest-fashion-3.png'];
                 else if (cat.id === 'ethnic') placeholders = ['images/ethnic-traditional-1.png', 'images/ethnic-traditional-2.png', 'images/ethnic-traditional-3.png'];
@@ -1038,8 +980,6 @@
                 else if (cat.id === 'beauty') placeholders = ['images/beauty-cosmetics-1.png', 'images/beauty-cosmetics-2.png', 'images/beauty-cosmetics-3.png'];
                 else if (cat.id === 'tech') placeholders = ['images/lifestyle-tech-1.png', 'images/lifestyle-tech-2.png', 'images/lifestyle-tech-3.png'];
                 else if (cat.id === 'b2b') placeholders = ['images/b2b-agencies-1.png', 'images/b2b-agencies-2.png', 'images/b2b-agencies-3.png'];
-                
-                // Fallback if a category is missing images (prevents errors)
                 if (placeholders.length === 0) placeholders = ['images/logo.png', 'images/logo.png', 'images/logo.png'];
 
                 placeholders.forEach((src, index) => {
@@ -1079,11 +1019,8 @@
             renderContextCard();
         }
 
-        // ADVANCED DECK CLICKING LOGIC
-        // Allows clicking anywhere on the container to advance the slide
         imageDeckContainer.addEventListener('click', () => {
             const cat = servicesData.find(c => c.id === activeCategoryId);
-            // Only advance if it's NOT the custom/single-image category
             if (cat.id !== 'custom') {
                 activeImageIndex = (activeImageIndex + 1) % 3;
                 renderImageDeck();
@@ -1115,7 +1052,6 @@
             else if (planName === 'Scale Engine') headline = "Activate Your Scale Engine";
             else if (planName === 'Global Dominance') headline = "Enterprise Inquiry: Global Dominance";
             else if (planName === 'Catalog Pro') headline = "Start Your Catalog Pro Update";
-            
             if(contactHeadline) contactHeadline.innerText = headline;
             const form = document.querySelector('.contact-form');
             form.style.boxShadow = "0 0 0 4px rgba(108, 92, 231, 0.3)";
