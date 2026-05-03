@@ -63,13 +63,66 @@
         .nav-item { font-weight: 500; cursor: pointer; font-size: 0.9rem; transition: color 0.2s; position: relative; }
         .nav-item:hover { color: var(--color-accent-teal); }
         
-        /* Mega Menu */
-        .mega-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); width: 90vw; max-width: 1100px; background: var(--color-bg-card-solid); border: 1px solid var(--color-border); border-radius: 12px; padding: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; box-shadow: var(--shadow-card); backdrop-filter: blur(20px); opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1001; }
+        /* CARD GRID MEGA MENU */
+        .mega-menu { 
+            position: absolute; 
+            top: 100%; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(10px); 
+            width: 90vw; 
+            max-width: 900px; 
+            background: var(--color-bg-card-solid); 
+            border: 1px solid var(--color-border); 
+            border-radius: 16px; 
+            padding: 1.5rem; 
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 1rem; 
+            box-shadow: var(--shadow-card); 
+            backdrop-filter: blur(20px); 
+            opacity: 0; 
+            visibility: hidden; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            z-index: 1001; 
+        }
         .nav-item:hover .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-        .mega-column h4 { font-family: var(--font-heading); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-accent-teal); margin-bottom: 1.2rem; font-weight: 600; }
-        .mega-link { display: block; padding: 0.6rem 0; font-size: 0.95rem; color: var(--color-text-secondary); transition: all 0.2s ease; border-bottom: 1px solid rgba(255,255,255,0.03); }
-        .mega-link:last-child { border-bottom: none; }
-        .mega-link:hover { color: var(--color-text-primary); padding-left: 5px; }
+        
+        .mega-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem 0.5rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .mega-card:hover {
+            background: rgba(0, 212, 170, 0.1);
+            border-color: var(--color-accent-teal);
+            transform: translateY(-4px);
+        }
+        .mega-card svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--color-text-secondary);
+            stroke-width: 1.5;
+            fill: none;
+            margin-bottom: 0.75rem;
+            transition: stroke 0.3s ease;
+        }
+        .mega-card:hover svg { stroke: var(--color-accent-teal); }
+        .mega-card-title {
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            text-align: center;
+            line-height: 1.2;
+        }
 
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
         .hamburger span { width: 24px; height: 2px; background: var(--color-text-primary); transition: var(--transition-fast); border-radius: 2px; }
@@ -403,6 +456,11 @@
             .slider-label { font-size: 0.65rem; padding: 4px 8px; }
             .hero-tabs-pill { padding: 4px; }
             .tab-btn { padding: 8px 16px; font-size: 0.85rem; }
+            
+            /* Mobile Mega Menu Override */
+            .mega-menu { 
+                display: none; /* Hide grid on mobile, use hamburger links instead */
+            }
         }
     </style>
 </head>
@@ -427,26 +485,51 @@
             <nav class="nav-links">
                 <div class="nav-item">
                     Solutions ▾
+                    <!-- CARD GRID MEGA MENU -->
                     <div class="mega-menu">
-                        <div class="mega-column">
-                            <h4>Apparel</h4>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('western')">Western Casual</a>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('modest')">Modest Fashion</a>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('ethnic')">Ethnic Traditional</a>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('intimate')">Intimate Wear</a>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('kids')">Kids & Teen</a>
-                        </div>
-                        <div class="mega-column">
-                            <h4>Lifestyle</h4>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('luxury')">Luxury Accessories</a>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('beauty')">Beauty & Cosmetics</a>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('tech')">Global Tech</a>
-                        </div>
-                        <div class="mega-column">
-                            <h4>Business</h4>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('b2b')">B2B / Agencies</a>
-                            <a href="#services" class="mega-link" onclick="setActiveCategory('custom')">Custom Solutions</a>
-                        </div>
+                        <!-- Row 1 -->
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('western')">
+                            <svg viewBox="0 0 24 24"><path d="M20.38 3.4a1.6 1.6 0 0 0-1.6-1.6H5.22a1.6 1.6 0 0 0-1.6 1.6v1.6h16.76V3.4zM3.62 7h16.76v13.6a1.6 1.6 0 0 1-1.6 1.6H5.22a1.6 1.6 0 0 1-1.6-1.6V7z"/></svg>
+                            <span class="mega-card-title">Western Casual</span>
+                        </a>
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('modest')">
+                            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg>
+                            <span class="mega-card-title">Modest Fashion</span>
+                        </a>
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('ethnic')">
+                            <svg viewBox="0 0 24 24"><path d="M12 2l-2 4h4l-2-4z"/><path d="M12 6v16"/><path d="M8 10h8"/><path d="M7 22h10"/></svg>
+                            <span class="mega-card-title">Ethnic Traditional</span>
+                        </a>
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('intimate')">
+                            <svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg>
+                            <span class="mega-card-title">Intimate Wear</span>
+                        </a>
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('kids')">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg>
+                            <span class="mega-card-title">Kids & Teen</span>
+                        </a>
+
+                        <!-- Row 2 -->
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('luxury')">
+                            <svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/></svg>
+                            <span class="mega-card-title">Luxury Accessories</span>
+                        </a>
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('beauty')">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                            <span class="mega-card-title">Beauty & Cosmetics</span>
+                        </a>
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('tech')">
+                            <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                            <span class="mega-card-title">Global Tech</span>
+                        </a>
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('b2b')">
+                            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            <span class="mega-card-title">B2B / Agencies</span>
+                        </a>
+                        <a href="#services" class="mega-card" onclick="setActiveCategory('custom')">
+                            <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                            <span class="mega-card-title">Custom Solutions</span>
+                        </a>
                     </div>
                 </div>
                 
