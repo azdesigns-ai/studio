@@ -381,7 +381,7 @@
         </div>
         <div class="container header-inner">
             <a href="#" class="brand-wrapper">
-                <img src="images/logo.png" alt="AZ Designs Logo" class="brand-logo-img">
+                <img src="images/logo.webp" alt="AZ Designs Logo" class="brand-logo-img">
                 <div class="brand-text">
                     <span class="brand-name">AZ DESIGNS</span>
                     <span class="brand-tagline">Next-Gen AI Creative Studio</span>
@@ -457,10 +457,10 @@
                 </div>
                 <div class="comparison-container" id="comparisonSlider">
                     <div class="comp-img img-before">
-                        <img src="images/hero-before.png" alt="Generic AI Output" id="heroBeforeImg">
+                        <img src="images/hero-before.webp" alt="Generic AI Output" id="heroBeforeImg">
                     </div>
                     <div class="comp-img img-after" id="afterImage">
-                        <img src="images/hero-after.png" alt="AZ Cultural AI" id="heroAfterImg">
+                        <img src="images/hero-after.webp" alt="AZ Cultural AI" id="heroAfterImg">
                     </div>
                     <div class="slider-handle" id="sliderHandle"></div>
                 </div>
@@ -712,7 +712,7 @@
     <footer>
         <div class="container footer-inner">
             <div class="footer-brand-wrapper">
-                <img src="images/logo.png" alt="AZ Designs Logo" class="footer-logo-img">
+                <img src="images/logo.webp" alt="AZ Designs Logo" class="footer-logo-img">
                 <div class="footer-brand-text">
                     <span class="footer-brand-name">AZ DESIGNS</span>
                     <span class="footer-brand-tagline">Next-Gen AI Creative Studio</span>
@@ -847,11 +847,11 @@
             setTimeout(() => {
                 // Swap Sources
                 if (category === 'fashion') {
-                    beforeImg.src = 'images/hero-before.png';
-                    afterImg.src = 'images/hero-after.png';
+                    beforeImg.src = 'images/hero-before.webp';
+                    afterImg.src = 'images/hero-after.webp';
                 } else {
-                    beforeImg.src = 'images/lifestyle-hero-before.png';
-                    afterImg.src = 'images/lifestyle-hero-after.png';
+                    beforeImg.src = 'images/lifestyle-hero-before.webp';
+                    afterImg.src = 'images/lifestyle-hero-after.webp';
                 }
                 
                 // Fade In
@@ -930,10 +930,10 @@
             };
             
             const prefix = prefixMap[categoryId];
-            if (!prefix) return 'images/logo.png';
+            if (!prefix) return 'images/logo.webp';
 
-            if (categoryId === 'custom') return `images/${prefix}.png`;
-            return `images/${prefix}-${index + 1}.png`;
+            if (categoryId === 'custom') return `images/${prefix}.webp`;
+            return `images/${prefix}-${index + 1}.webp`;
         }
 
         // UPDATED CAROUSEL FUNCTION WITH CROSS-FADE
