@@ -28,9 +28,9 @@
             --font-body: 'Inter', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
             --transition-fast: 0.2s ease;
-            --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 1s cubic-bezier(0.4, 0, 0.2, 1); /* 1 Second Transition */
             --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
-            --border-radius: 16px; /* Unified Border Radius */
+            --border-radius: 16px;
             --section-padding: clamp(60px, 8vw, 110px);
         }
 
@@ -93,14 +93,14 @@
         .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
         .trust-bar { color: var(--color-text-secondary); font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.8; margin-bottom: 2rem; }
         
-        /* Hero Visual - Consistent Frame */
+        /* Hero Visual */
         .hero-visual { 
             max-width: 900px; 
             margin: 0 auto; 
             background: var(--color-bg-card);
             backdrop-filter: blur(16px); 
             border-radius: var(--border-radius); 
-            border: 1px solid var(--color-border); /* Consistent 1px border */
+            border: 1px solid var(--color-border);
             padding: 0; 
             position: relative; 
             overflow: hidden;
@@ -117,7 +117,7 @@
             cursor: col-resize;
         }
         .comp-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .comp-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s ease; }
+        .comp-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 1s ease-in-out; /* 1s Transition */ }
         .img-before { z-index: 1; }
         .img-after { z-index: 2; border-right: 2px solid var(--color-accent-teal); overflow: hidden; width: 50%; }
         
@@ -189,7 +189,7 @@
         .rail-btn.active { background: var(--color-accent-teal); color: var(--color-bg-deep); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3); }
         .rail-divider { width: 1px; height: 24px; background: var(--color-border); margin: 0 0.5rem; flex-shrink: 0; }
 
-        /* Carousel with Cross-Fade */
+        /* Carousel with 1s Cross-Fade */
         .carousel-container { position: relative; width: 100%; max-width: 900px; margin: 0 auto 3rem auto; border-radius: var(--border-radius); overflow: hidden; border: 1px solid var(--color-border); background: #111; box-shadow: var(--shadow-card); aspect-ratio: 4/5; }
         .carousel-slide { 
             width: 100%; 
@@ -197,14 +197,14 @@
             object-fit: cover; 
             display: block; 
             opacity: 1;
-            transition: opacity 0.4s ease-in-out; /* Smooth Cross-Fade */
+            transition: opacity 1s ease-in-out; /* 1s Transition */
         }
         .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: transparent; color: rgba(255, 255, 255, 0.7); border: none; width: auto; height: auto; border-radius: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.3s ease; font-size: 2rem; padding: 10px; outline: none; }
         .carousel-btn:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); transform: translateY(-50%) scale(1.1); }
         .carousel-prev { left: 15px; }
         .carousel-next { right: 15px; }
 
-        .context-card { background: var(--color-bg-card); backdrop-filter: blur(12px); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 2.5rem; max-width: 900px; margin: 0 auto; transition: all 0.3s ease; opacity: 1; transform: translateY(0); position: relative; z-index: 5; }
+        .context-card { background: var(--color-bg-card); backdrop-filter: blur(12px); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 2.5rem; max-width: 900px; margin: 0 auto; transition: all 1s ease; opacity: 1; transform: translateY(0); position: relative; z-index: 5; }
         .context-card.fade-out { opacity: 0; transform: translateY(10px); }
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
         .card-title-group h3 { font-size: 1.75rem; color: var(--color-text-primary); margin-bottom: 0.25rem; }
@@ -381,7 +381,7 @@
         </div>
         <div class="container header-inner">
             <a href="#" class="brand-wrapper">
-                <img src="images/logo.webp" alt="AZ Designs Logo" class="brand-logo-img">
+                <img src="images/logo.png" alt="AZ Designs Logo" class="brand-logo-img">
                 <div class="brand-text">
                     <span class="brand-name">AZ DESIGNS</span>
                     <span class="brand-tagline">Next-Gen AI Creative Studio</span>
@@ -457,10 +457,10 @@
                 </div>
                 <div class="comparison-container" id="comparisonSlider">
                     <div class="comp-img img-before">
-                        <img src="images/hero-before.webp" alt="Generic AI Output" id="heroBeforeImg">
+                        <img src="images/hero-before.png" alt="Generic AI Output" id="heroBeforeImg">
                     </div>
                     <div class="comp-img img-after" id="afterImage">
-                        <img src="images/hero-after.webp" alt="AZ Cultural AI" id="heroAfterImg">
+                        <img src="images/hero-after.png" alt="AZ Cultural AI" id="heroAfterImg">
                     </div>
                     <div class="slider-handle" id="sliderHandle"></div>
                 </div>
@@ -712,7 +712,7 @@
     <footer>
         <div class="container footer-inner">
             <div class="footer-brand-wrapper">
-                <img src="images/logo.webp" alt="AZ Designs Logo" class="footer-logo-img">
+                <img src="images/logo.png" alt="AZ Designs Logo" class="footer-logo-img">
                 <div class="footer-brand-text">
                     <span class="footer-brand-name">AZ DESIGNS</span>
                     <span class="footer-brand-tagline">Next-Gen AI Creative Studio</span>
@@ -829,7 +829,7 @@
 
         if(resultsSection) counterObserver.observe(resultsSection);
 
-        // --- HERO TAB SWITCHING LOGIC ---
+        // --- HERO TAB SWITCHING LOGIC (1s Transition) ---
         function switchHeroTab(category) {
             const beforeImg = document.getElementById('heroBeforeImg');
             const afterImg = document.getElementById('heroAfterImg');
@@ -840,18 +840,18 @@
             if(category === 'fashion') tabs[0].classList.add('active');
             else tabs[1].classList.add('active');
 
-            // Fade Out
+            // Fade Out (1s matches CSS)
             beforeImg.style.opacity = '0';
             afterImg.style.opacity = '0';
 
             setTimeout(() => {
                 // Swap Sources
                 if (category === 'fashion') {
-                    beforeImg.src = 'images/hero-before.webp';
-                    afterImg.src = 'images/hero-after.webp';
+                    beforeImg.src = 'images/hero-before.png';
+                    afterImg.src = 'images/hero-after.png';
                 } else {
-                    beforeImg.src = 'images/lifestyle-hero-before.webp';
-                    afterImg.src = 'images/lifestyle-hero-after.webp';
+                    beforeImg.src = 'images/lifestyle-hero-before.png';
+                    afterImg.src = 'images/lifestyle-hero-after.png';
                 }
                 
                 // Fade In
@@ -861,10 +861,10 @@
                 // Reset Slider Handle to Center
                 afterImage.style.width = '50%';
                 sliderHandle.style.left = '50%';
-            }, 300);
+            }, 1000); // 1 Second Delay
         }
 
-        // --- SERVICES LOGIC (CAROUSEL WITH CROSS-FADE) ---
+        // --- SERVICES LOGIC (CAROUSEL WITH 1s CROSS-FADE) ---
         const servicesData = [
             { id: 'western', title: 'Western Casual', sub: 'Denim • Streetwear • Activewear • Loungewear', challenge: 'Speed-to-market.', solution: 'Rapid variant generation.', cultural: 'Optional localization layer.', badgeType: 'medium', formHeadline: 'Get a Free Casual Wear Demo' },
             { id: 'modest', title: 'Modest Fashion', sub: 'Abayas • Hijabs • Kaftans • Tunics', challenge: 'Cultural alignment.', solution: 'Region-calibrated styling.', cultural: 'Pre-built variant packs for GCC/SEA.', badgeType: 'critical', formHeadline: 'Get a Free Modest Fashion Demo' },
@@ -930,13 +930,13 @@
             };
             
             const prefix = prefixMap[categoryId];
-            if (!prefix) return 'images/logo.webp';
+            if (!prefix) return 'images/logo.png';
 
-            if (categoryId === 'custom') return `images/${prefix}.webp`;
-            return `images/${prefix}-${index + 1}.webp`;
+            if (categoryId === 'custom') return `images/${prefix}.png`;
+            return `images/${prefix}-${index + 1}.png`;
         }
 
-        // UPDATED CAROUSEL FUNCTION WITH CROSS-FADE
+        // UPDATED CAROUSEL FUNCTION WITH 1s CROSS-FADE
         function updateCarousel() {
             const cat = servicesData.find(c => c.id === activeCategoryId);
             const src = getImageSrc(activeCategoryId, activeImageIndex);
@@ -944,7 +944,7 @@
             // 1. Fade Out Current Image
             carouselImage.style.opacity = '0';
             
-            // 2. Wait for fade to finish (400ms matches CSS transition)
+            // 2. Wait for fade to finish (1000ms matches CSS transition)
             setTimeout(() => {
                 // 3. Swap Source while invisible
                 carouselImage.src = src;
@@ -952,7 +952,7 @@
                 
                 // 4. Fade In New Image
                 carouselImage.style.opacity = '1';
-            }, 400);
+            }, 1000);
 
             if (activeCategoryId === 'custom') {
                 prevBtn.style.display = 'none';
@@ -996,7 +996,7 @@
                     <div class="card-cta-container"><button onclick="openDemoForm('${cat.id}', '${cat.formHeadline}')" class="btn btn-primary" style="width: 100%; max-width: 300px;">Get Free Demo</button></div>
                 `;
                 contextCardEl.classList.remove('fade-out');
-            }, 300);
+            }, 1000); // 1 Second Delay to match CSS transition
         }
 
         function setActiveCategory(id) {
