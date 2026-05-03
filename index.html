@@ -157,12 +157,13 @@
             position: relative; 
             overflow: hidden;
             box-shadow: var(--shadow-card), 0 0 60px rgba(0,0,0,0.5);
+            height: 500px; /* Fixed Height for Consistency */
         }
         
         .comparison-container { 
             position: relative; 
             width: 100%; 
-            aspect-ratio: 16 / 9;
+            height: 100%;
             border-radius: var(--border-radius); 
             overflow: hidden; 
             background: #111; 
@@ -228,9 +229,10 @@
         .step-text { font-size: 0.95rem; line-height: 1.6; color: var(--color-text-secondary); font-weight: 300; }
         .trust-note { text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); font-family: var(--font-mono); opacity: 0.8; letter-spacing: 0.02em; }
 
-        /* Services */
+        /* Services - SIDE BY SIDE LAYOUT */
         .services h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .services p.subheadline { text-align: center; margin-bottom: 2rem; font-size: 1.1rem; }
+        
         .nav-rail-container { width: 100%; overflow-x: auto; padding-bottom: 1rem; margin-bottom: 2rem; scrollbar-width: thin; scrollbar-color: var(--color-accent-teal) var(--color-bg-deep); position: relative; z-index: 10; background: transparent; border-bottom: 1px solid var(--color-border); }
         .nav-rail-container::-webkit-scrollbar { height: 6px; }
         .nav-rail-container::-webkit-scrollbar-track { background: transparent; }
@@ -241,18 +243,24 @@
         .rail-btn.active { background: var(--color-accent-teal); color: var(--color-bg-deep); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3); }
         .rail-divider { width: 1px; height: 24px; background: var(--color-border); margin: 0 0.5rem; flex-shrink: 0; }
 
+        /* Desktop Grid Layout for Services */
+        .services-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
         /* Carousel with Spinner */
         .carousel-container { 
             position: relative; 
             width: 100%; 
-            max-width: 900px; 
-            margin: 0 auto 3rem auto; 
+            height: 500px; /* Match Hero Height */
             border-radius: var(--border-radius); 
             overflow: hidden; 
             border: 1px solid var(--color-border); 
             background: #111; 
             box-shadow: var(--shadow-card); 
-            aspect-ratio: 4/5; 
         }
         .carousel-slide { 
             width: 100%; 
@@ -293,18 +301,38 @@
         .carousel-prev { left: 15px; }
         .carousel-next { right: 15px; }
 
-        .context-card { background: var(--color-bg-card); backdrop-filter: blur(12px); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 2.5rem; max-width: 900px; margin: 0 auto; transition: all 1s ease; opacity: 1; transform: translateY(0); position: relative; z-index: 5; }
+        .context-card { 
+            background: var(--color-bg-card); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid var(--color-border); 
+            border-radius: var(--border-radius); 
+            padding: 2.5rem; 
+            height: 500px; /* Match Hero Height */
+            overflow-y: auto; /* Internal Scroll if needed */
+            transition: all 1s ease; 
+            opacity: 1; 
+            transform: translateY(0); 
+            position: relative; 
+            z-index: 5; 
+            display: flex;
+            flex-direction: column;
+        }
+        /* Custom Scrollbar for Card */
+        .context-card::-webkit-scrollbar { width: 6px; }
+        .context-card::-webkit-scrollbar-track { background: transparent; }
+        .context-card::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 20px; }
+
         .context-card.fade-out { opacity: 0; transform: translateY(10px); }
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
         .card-title-group h3 { font-size: 1.75rem; color: var(--color-text-primary); margin-bottom: 0.25rem; }
         .card-sub { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 300; }
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .card-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; flex-grow: 1; }
         .card-section h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; font-family: var(--font-heading); display: flex; align-items: center; gap: 0.5rem; }
         .label-challenge { color: var(--color-accent-violet); }
         .label-solution { color: var(--color-accent-teal); }
         .label-cultural { color: var(--color-accent-gold); }
         .card-section p { font-size: 0.95rem; line-height: 1.6; }
-        .card-cta-container { border-top: 1px solid var(--color-border); padding-top: 1.5rem; text-align: right; }
+        .card-cta-container { border-top: 1px solid var(--color-border); padding-top: 1.5rem; text-align: right; margin-top: auto; }
 
         .badge-quality, .badge-cultural-high, .badge-cultural-critical, .badge-cultural-medium, .badge-cultural-bespoke { display: inline-block; padding: 4px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 600; font-family: var(--font-heading); vertical-align: middle; }
         .badge-quality { background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); border: 1px solid rgba(0, 212, 170, 0.2); }
@@ -419,11 +447,16 @@
             .process-step { padding: 1.5rem; }
             .services h2 { margin-bottom: 0.5rem; }
             .services p.subheadline { margin-bottom: 1.5rem; }
+            
+            /* Mobile Services Layout Revert */
+            .services-grid-layout { display: flex; flex-direction: column; gap: 2rem; }
+            .carousel-container { height: 400px; }
+            .context-card { height: auto; min-height: 300px; }
+
             .nav-rail-container { margin-bottom: 1.5rem; padding-bottom: 1rem; }
             .rail-btn { padding: 8px 16px; font-size: 0.8rem; }
-            .carousel-container { margin-bottom: 2rem; aspect-ratio: 3/4; }
+            
             .carousel-btn { font-size: 1.5rem; padding: 5px; }
-            .context-card { padding: 1.5rem; margin-top: 0; }
             .card-header { margin-bottom: 1rem; }
             .card-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 1rem; }
             .results h2 { margin-bottom: 0.5rem; }
@@ -458,9 +491,7 @@
             .tab-btn { padding: 8px 16px; font-size: 0.85rem; }
             
             /* Mobile Mega Menu Override */
-            .mega-menu { 
-                display: none; /* Hide grid on mobile, use hamburger links instead */
-            }
+            .mega-menu { display: none; }
         }
     </style>
 </head>
@@ -620,14 +651,19 @@
                 <div class="nav-rail" id="navRail"></div>
             </div>
 
-            <div class="carousel-container" id="carouselContainer">
-                <div class="carousel-loader" id="carouselLoader"></div>
-                <button class="carousel-btn carousel-prev" id="prevBtn">&#10094;</button>
-                <img src="" alt="Service Image" class="carousel-slide" id="carouselImage">
-                <button class="carousel-btn carousel-next" id="nextBtn">&#10095;</button>
-            </div>
+            <!-- SIDE BY SIDE LAYOUT WRAPPER -->
+            <div class="services-grid-layout">
+                <!-- Left: Image Deck -->
+                <div class="carousel-container" id="carouselContainer">
+                    <div class="carousel-loader" id="carouselLoader"></div>
+                    <button class="carousel-btn carousel-prev" id="prevBtn">&#10094;</button>
+                    <img src="" alt="Service Image" class="carousel-slide" id="carouselImage">
+                    <button class="carousel-btn carousel-next" id="nextBtn">&#10095;</button>
+                </div>
 
-            <div class="context-card" id="contextCard"></div>
+                <!-- Right: Context Card -->
+                <div class="context-card" id="contextCard"></div>
+            </div>
         </div>
     </section>
 
