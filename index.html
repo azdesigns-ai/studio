@@ -245,22 +245,22 @@
 
         /* Desktop Grid Layout for Services */
         .services-grid-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
             gap: 2rem;
-            align-items: start;
+            align-items: stretch;
         }
 
-        /* Carousel with Spinner */
+        /* Carousel with Spinner - FIXED WIDTH */
         .carousel-container { 
             position: relative; 
-            width: 100%; 
+            width: 400px; /* Fixed Instagram Width */
             height: 500px; /* Match Hero Height */
             border-radius: var(--border-radius); 
             overflow: hidden; 
             border: 1px solid var(--color-border); 
             background: #111; 
             box-shadow: var(--shadow-card); 
+            flex-shrink: 0;
         }
         .carousel-slide { 
             width: 100%; 
@@ -316,6 +316,7 @@
             z-index: 5; 
             display: flex;
             flex-direction: column;
+            flex-grow: 1; /* Fill remaining space */
         }
         /* Custom Scrollbar for Card */
         .context-card::-webkit-scrollbar { width: 6px; }
@@ -323,23 +324,56 @@
         .context-card::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 20px; }
 
         .context-card.fade-out { opacity: 0; transform: translateY(10px); }
-        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
-        .card-title-group h3 { font-size: 1.75rem; color: var(--color-text-primary); margin-bottom: 0.25rem; }
+        
+        /* Two Column Layout Inside Card */
+        .card-header-center { text-align: center; margin-bottom: 2rem; }
+        .card-header-center h3 { font-size: 1.75rem; color: var(--color-text-primary); margin-bottom: 0.25rem; }
         .card-sub { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 300; }
-        .card-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; flex-grow: 1; }
-        .card-section h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; font-family: var(--font-heading); display: flex; align-items: center; gap: 0.5rem; }
-        .label-challenge { color: var(--color-accent-violet); }
-        .label-solution { color: var(--color-accent-teal); }
-        .label-cultural { color: var(--color-accent-gold); }
-        .card-section p { font-size: 0.95rem; line-height: 1.6; }
-        .card-cta-container { border-top: 1px solid var(--color-border); padding-top: 1.5rem; text-align: right; margin-top: auto; }
+        
+        .card-content-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+        .card-column h4 { 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+            margin-bottom: 1.5rem; 
+            font-family: var(--font-heading); 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+        .col-challenge h4 { color: var(--color-accent-violet); }
+        .col-solution h4 { color: var(--color-accent-teal); }
+        
+        .spec-item { margin-bottom: 1.5rem; }
+        .spec-title { font-size: 0.85rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.25rem; display: block; }
+        .spec-desc { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; }
 
-        .badge-quality, .badge-cultural-high, .badge-cultural-critical, .badge-cultural-medium, .badge-cultural-bespoke { display: inline-block; padding: 4px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 600; font-family: var(--font-heading); vertical-align: middle; }
+        .card-footer { 
+            border-top: 1px solid var(--color-border); 
+            padding-top: 1.5rem; 
+            margin-top: auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .card-badges { display: flex; gap: 0.75rem; }
+        .badge-quality, .badge-cultural-critical { 
+            display: inline-block; 
+            padding: 4px 10px; 
+            border-radius: 50px; 
+            font-size: 0.7rem; 
+            font-weight: 600; 
+            font-family: var(--font-heading); 
+        }
         .badge-quality { background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); border: 1px solid rgba(0, 212, 170, 0.2); }
-        .badge-cultural-high { background: rgba(108, 92, 231, 0.15); color: var(--color-accent-violet); border: 1px solid rgba(108, 92, 231, 0.3); }
         .badge-cultural-critical { background: rgba(108, 92, 231, 0.15); color: var(--color-accent-violet); border: 1px solid rgba(108, 92, 231, 0.3); }
-        .badge-cultural-medium { background: rgba(0, 212, 170, 0.15); color: var(--color-accent-teal); border: 1px solid rgba(0, 212, 170, 0.3); }
-        .badge-cultural-bespoke { background: linear-gradient(135deg, rgba(0, 212, 170, 0.2), rgba(108, 92, 231, 0.2)); color: var(--color-accent-teal); border: 1px solid var(--color-accent-teal); }
 
         /* Results */
         .results h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
@@ -450,15 +484,14 @@
             
             /* Mobile Services Layout Revert */
             .services-grid-layout { display: flex; flex-direction: column; gap: 2rem; }
-            .carousel-container { height: 400px; }
+            .carousel-container { width: 100%; height: 400px; }
             .context-card { height: auto; min-height: 300px; }
+            .card-content-split { grid-template-columns: 1fr; gap: 1.5rem; }
 
             .nav-rail-container { margin-bottom: 1.5rem; padding-bottom: 1rem; }
             .rail-btn { padding: 8px 16px; font-size: 0.8rem; }
             
             .carousel-btn { font-size: 1.5rem; padding: 5px; }
-            .card-header { margin-bottom: 1rem; }
-            .card-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 1rem; }
             .results h2 { margin-bottom: 0.5rem; }
             .results p.subheadline { margin-bottom: 1.5rem; }
             .metrics-grid { gap: 1rem; margin-bottom: 2rem; }
@@ -653,7 +686,7 @@
 
             <!-- SIDE BY SIDE LAYOUT WRAPPER -->
             <div class="services-grid-layout">
-                <!-- Left: Image Deck -->
+                <!-- Left: Image Deck (Fixed 400px) -->
                 <div class="carousel-container" id="carouselContainer">
                     <div class="carousel-loader" id="carouselLoader"></div>
                     <button class="carousel-btn carousel-prev" id="prevBtn">&#10094;</button>
@@ -661,7 +694,7 @@
                     <button class="carousel-btn carousel-next" id="nextBtn">&#10095;</button>
                 </div>
 
-                <!-- Right: Context Card -->
+                <!-- Right: Context Card (Fill Remaining) -->
                 <div class="context-card" id="contextCard"></div>
             </div>
         </div>
@@ -1017,16 +1050,146 @@
 
         // --- SERVICES LOGIC (CAROUSEL WITH PRELOADER & SPINNER) ---
         const servicesData = [
-            { id: 'western', title: 'Western Casual', sub: 'Denim • Streetwear • Activewear • Loungewear', challenge: 'Speed-to-market.', solution: 'Rapid variant generation.', cultural: 'Optional localization layer.', badgeType: 'medium', formHeadline: 'Get a Free Casual Wear Demo' },
-            { id: 'modest', title: 'Modest Fashion', sub: 'Abayas • Hijabs • Kaftans • Tunics', challenge: 'Cultural alignment.', solution: 'Region-calibrated styling.', cultural: 'Pre-built variant packs for GCC/SEA.', badgeType: 'critical', formHeadline: 'Get a Free Modest Fashion Demo' },
-            { id: 'ethnic', title: 'Ethnic Traditional', sub: 'Sarees • Lehengas • Kurtas • Sherwanis', challenge: 'Authentic representation.', solution: 'Heritage draping & textures.', cultural: 'Validates patterns per region.', badgeType: 'high', formHeadline: 'Get a Free Ethnic Fashion Demo' },
-            { id: 'intimate', title: 'Intimate Wear', sub: 'Lingerie • Shapewear • Sleepwear • Swimwear', challenge: 'Discretion & norms.', solution: 'AI lookbooks, discreet styling.', cultural: 'Pre-validates against ad policies.', badgeType: 'critical', formHeadline: 'Get a Free Intimate Wear Demo' },
-            { id: 'kids', title: 'Kids & Teen Fashion', sub: 'Kids\' Ethnic • Party Outfits • School Wear • Teen Casual', challenge: 'Safety & trust.', solution: 'Family lifestyle scenes.', cultural: 'Age-appropriate guidelines.', badgeType: 'medium', formHeadline: 'Get a Free Kids Fashion Demo' },
-            { id: 'luxury', title: 'Luxury Accessories', sub: 'Timepieces • Fine Jewelry • Designer Bags • Eyewear', challenge: 'Craftsmanship storytelling.', solution: 'Macro texture shots.', cultural: 'Gold motifs for GCC, Minimalism for EU.', badgeType: 'high', formHeadline: 'Get a Free Luxury Asset Demo' },
-            { id: 'beauty', title: 'Beauty & Cosmetics', sub: 'Makeup • Skincare • Luxury Fragrance • Haircare', challenge: 'Skin tone diversity.', solution: 'Hyper-realistic application.', cultural: 'Undertone-accurate rendering.', badgeType: 'high', formHeadline: 'Get a Free Beauty Campaign Demo' },
-            { id: 'tech', title: 'Global Lifestyle & Tech', sub: 'Smart Home Tech • Lifestyle Gadgets • EV Accessories • Wellness', challenge: 'Local living standards.', solution: 'Context-aware scenes.', cultural: 'Compact setups for Asia, Family for GCC.', badgeType: 'high', formHeadline: 'Get a Free Tech Lifestyle Demo' },
-            { id: 'b2b', title: 'B2B / Agencies', sub: 'White-Label Solutions • Bulk Orders • Export Services • API Integration', challenge: 'Scalability.', solution: 'Bulk catalog generation.', cultural: 'Client-defined presets.', badgeType: 'medium', formHeadline: 'Get a Free B2B Workflow Demo' },
-            { id: 'custom', title: 'Custom Solutions', sub: 'Bespoke Projects • Multi-Category Brands • Campaign Innovation • Enterprise', challenge: 'Unique needs.', solution: 'Dedicated creative director.', cultural: 'Co-created rules.', badgeType: 'bespoke', formHeadline: 'Book a Custom Strategy Session' }
+            { 
+                id: 'western', title: 'Western Casual', sub: 'Denim • Streetwear • Activewear • Loungewear', 
+                challenge: [
+                    { t: 'Trend Velocity', d: 'Fast fashion moves too quickly for traditional shoot schedules.' },
+                    { t: 'Model Diversity', d: 'Sourcing diverse talent for every global market is costly and slow.' },
+                    { t: 'Brand Consistency', d: 'Maintaining a unified look across thousands of SKUs and regions.' }
+                ],
+                solution: [
+                    { t: 'Infinite Variants', d: 'Generate 100+ localized versions from a single base image instantly.' },
+                    { t: '50+ Region Ruleset', d: 'Automated demographic adjustments for age, ethnicity, and body type.' },
+                    { t: 'Fabric & Skin QA', d: 'Proprietary refinement for realistic denim, cotton, and skin undertones.' }
+                ],
+                badgeType: 'medium', formHeadline: 'Get a Free Casual Wear Demo' 
+            },
+            { 
+                id: 'modest', title: 'Modest Fashion', sub: 'Abayas • Hijabs • Kaftans • Tunics', 
+                challenge: [
+                    { t: 'Cultural Risk', d: 'Fear of offending local audiences with incorrect styling or posing.' },
+                    { t: 'Production Bottlenecks', d: 'High costs and logistical delays in shooting across multiple countries.' },
+                    { t: 'Authentic Representation', d: 'Generic AI often fails to capture the drape and flow of modest fabrics.' }
+                ],
+                solution: [
+                    { t: 'Smart Localization', d: 'Auto-adjusting hemlines, sleeves, and headwear for GCC/SEA norms.' },
+                    { t: 'Rapid Deployment', d: '48-hour turnaround for seasonal collections with zero travel costs.' },
+                    { t: 'Hyper-Real Textures', d: 'Advanced rendering for chiffon, silk, jersey, and natural skin tones.' }
+                ],
+                badgeType: 'critical', formHeadline: 'Get a Free Modest Fashion Demo' 
+            },
+            { 
+                id: 'ethnic', title: 'Ethnic Traditional', sub: 'Sarees • Lehengas • Kurtas • Sherwanis', 
+                challenge: [
+                    { t: 'Heritage Accuracy', d: 'Incorrect patterns or draping can alienate traditional buyers.' },
+                    { t: 'Seasonal Urgency', d: 'Festive seasons require massive content volume in very short windows.' },
+                    { t: 'Texture Complexity', d: 'Capturing the shine of silk, embroidery, and heavy embellishments.' }
+                ],
+                solution: [
+                    { t: 'Pattern Validation', d: 'AI trained on authentic regional motifs and traditional weaving styles.' },
+                    { t: 'Bulk Catalog Gen', d: 'Scale from 10 to 1,000 festive variants without additional studio time.' },
+                    { t: 'Macro-Detail Render', d: 'High-fidelity processing for zari, gota, and intricate handwork details.' }
+                ],
+                badgeType: 'high', formHeadline: 'Get a Free Ethnic Fashion Demo' 
+            },
+            { 
+                id: 'intimate', title: 'Intimate Wear', sub: 'Lingerie • Shapewear • Sleepwear • Swimwear', 
+                challenge: [
+                    { t: 'Ad Policy Compliance', d: 'Strict platform rules often block standard model photography.' },
+                    { t: 'Body Inclusivity', d: 'Showing how garments fit diverse body shapes is logistically difficult.' },
+                    { t: 'Fabric Sensitivity', d: 'Lace and sheer materials are notoriously hard to render realistically.' }
+                ],
+                solution: [
+                    { t: 'Discreet Styling AI', d: 'Generates compliant, artistic lookbooks that bypass aggressive filtering.' },
+                    { t: 'Morphological Mapping', d: 'Accurate fit visualization across 15+ distinct body types and sizes.' },
+                    { t: 'Sheer-Texture Engine', d: 'Specialized lighting models for lace, mesh, and delicate skin interaction.' }
+                ],
+                badgeType: 'critical', formHeadline: 'Get a Free Intimate Wear Demo' 
+            },
+            { 
+                id: 'kids', title: 'Kids & Teen Fashion', sub: 'Kids\' Ethnic • Party Outfits • School Wear • Teen Casual', 
+                challenge: [
+                    { t: 'Safety & Ethics', d: 'Growing concern over using real minors in high-volume commercial shoots.' },
+                    { t: 'Playful Context', d: 'Capturing natural movement and energy requires complex setups.' },
+                    { t: 'Durability Perception', d: 'Parents need to see how clothes hold up in real-life play scenarios.' }
+                ],
+                solution: [
+                    { t: 'Synthetic Youth Models', d: 'Ethical, hyper-realistic AI children that adhere to strict safety guidelines.' },
+                    { t: 'Dynamic Posing Library', d: 'Access to 500+ age-appropriate, energetic poses and lifestyle scenes.' },
+                    { t: 'Lifestyle Integration', d: 'Seamless placement in parks, schools, and home environments.' }
+                ],
+                badgeType: 'medium', formHeadline: 'Get a Free Kids Fashion Demo' 
+            },
+            { 
+                id: 'luxury', title: 'Luxury Accessories', sub: 'Timepieces • Fine Jewelry • Designer Bags • Eyewear', 
+                challenge: [
+                    { t: 'Craftsmanship Storytelling', d: 'Standard photos fail to convey the weight and value of premium goods.' },
+                    { t: 'Global Aspirations', d: 'Luxury means different things in Paris, Dubai, and Tokyo.' },
+                    { t: 'Reflection Control', d: 'Jewelry and watches are difficult to light without unwanted glare.' }
+                ],
+                solution: [
+                    { t: 'Macro-Texture Shots', d: 'Ultra-high-res rendering for leather grain, metal hardware, and stitching.' },
+                    { t: 'Cultural Contextualization', d: 'Gold-motif calibration for GCC; Minimalist styling for EU/East Asia.' },
+                    { t: 'Ray-Traced Lighting', d: 'Physically accurate light reflection for diamonds, gold, and polished surfaces.' }
+                ],
+                badgeType: 'high', formHeadline: 'Get a Free Luxury Asset Demo' 
+            },
+            { 
+                id: 'beauty', title: 'Beauty & Cosmetics', sub: 'Makeup • Skincare • Luxury Fragrance • Haircare', 
+                challenge: [
+                    { t: 'Skin Tone Diversity', d: 'Foundations and concealers must look perfect on every complexion.' },
+                    { t: 'Application Realism', d: 'AI often struggles with how makeup sits on skin texture and pores.' },
+                    { t: 'Regulatory Claims', d: 'Visuals must support specific product claims (e.g., "hydrating," "matte").' }
+                ],
+                solution: [
+                    { t: 'Undertone Accuracy', d: 'Precise color matching across 50+ Fitzpatrick skin tone scales.' },
+                    { t: 'Hyper-Real Application', d: 'Micro-detail rendering for lipstick texture, eyeshadow blend, and skin glow.' },
+                    { t: 'Feature-Specific QA', d: 'Targeted enhancement for dewy, matte, or full-coverage finish validation.' }
+                ],
+                badgeType: 'high', formHeadline: 'Get a Free Beauty Campaign Demo' 
+            },
+            { 
+                id: 'tech', title: 'Global Lifestyle & Tech', sub: 'Smart Home Tech • Lifestyle Gadgets • EV Accessories • Wellness', 
+                challenge: [
+                    { t: 'Local Living Standards', d: 'A smart home looks different in a NYC apartment vs. a Riyadh villa.' },
+                    { t: 'Product Integration', d: 'Ensuring tech gadgets look naturally placed, not just "pasted" in.' },
+                    { t: 'Feature Demonstration', d: 'Showing how a product fits into a daily routine without a video shoot.' }
+                ],
+                solution: [
+                    { t: 'Context-Aware Scenes', d: 'Compact setups for Asia; Family-centric layouts for GCC; Industrial for EU.' },
+                    { t: 'Shadow & Light Matching', d: 'Automatic ambient light adjustment for seamless product-to-scene blending.' },
+                    { t: 'Lifestyle Narrative Gen', d: 'Creates sequential storytelling images for user manuals and ads.' }
+                ],
+                badgeType: 'high', formHeadline: 'Get a Free Tech Lifestyle Demo' 
+            },
+            { 
+                id: 'b2b', title: 'B2B / Agencies', sub: 'White-Label Solutions • Bulk Orders • Export Services • API Integration', 
+                challenge: [
+                    { t: 'Scalability Demands', d: 'Agencies need to deliver hundreds of assets for multiple clients simultaneously.' },
+                    { t: 'Client Specificity', d: 'Every brand has unique guidelines that generic AI tools ignore.' },
+                    { t: 'Margin Protection', d: 'Traditional outsourcing eats into agency profitability.' }
+                ],
+                solution: [
+                    { t: 'White-Label API', d: 'Seamless integration into your existing workflow with branded outputs.' },
+                    { t: 'Custom Rule Sets', d: 'Upload brand books to enforce specific colors, fonts, and styling automatically.' },
+                    { t: 'Bulk Catalog Gen', d: 'Reduce production costs by 90% while maintaining studio-grade quality.' }
+                ],
+                badgeType: 'medium', formHeadline: 'Get a Free B2B Workflow Demo' 
+            },
+            { 
+                id: 'custom', title: 'Custom Solutions', sub: 'Bespoke Projects • Multi-Category Brands • Campaign Innovation • Enterprise', 
+                challenge: [
+                    { t: 'Unique Requirements', d: 'Off-the-shelf tools can\'t handle bespoke campaign innovations.' },
+                    { t: 'Complex Integration', d: 'Need to mix AI with existing legacy assets or specific 3D models.' },
+                    { t: 'Strategic Alignment', d: 'Ensuring visuals align with high-level corporate goals.' }
+                ],
+                solution: [
+                    { t: 'Dedicated Creative Dir.', d: 'Direct access to our lead stylists and cultural advisors for your project.' },
+                    { t: 'Hybrid Workflow', d: 'We blend your 3D assets with our AI engine for perfect consistency.' },
+                    { t: 'Co-Created Rules', d: 'We build a custom AI model trained specifically on your brand\'s history.' }
+                ],
+                badgeType: 'bespoke', formHeadline: 'Book a Custom Strategy Session' 
+            }
         ];
 
         let activeCategoryId = 'western';
@@ -1187,14 +1350,45 @@
             contextCardEl.classList.add('fade-out');
             setTimeout(() => {
                 const cat = servicesData.find(c => c.id === activeCategoryId);
-                contextCardEl.innerHTML = `
-                    <div class="card-header"><div class="card-title-group"><h3>${cat.title}</h3><div class="card-sub">${cat.sub}</div></div></div>
-                    <div class="card-grid">
-                        <div class="card-section"><h4 class="label-challenge">THE CHALLENGE</h4><p>${cat.challenge}</p></div>
-                        <div class="card-section"><h4 class="label-solution">OUR AI SOLUTION <span class="badge-quality">✓ Studio-Grade</span></h4><p>${cat.solution}</p></div>
-                        <div class="card-section"><h4 class="label-cultural">CULTURAL INTELLIGENCE ${getBadgeHTML(cat.badgeType)}</h4><p>${cat.cultural}</p></div>
+                
+                // Generate Challenge Items
+                const challengeItems = cat.challenge.map(item => `
+                    <div class="spec-item">
+                        <span class="spec-title">${item.t}</span>
+                        <p class="spec-desc">${item.d}</p>
                     </div>
-                    <div class="card-cta-container"><button onclick="openDemoForm('${cat.id}', '${cat.formHeadline}')" class="btn btn-primary" style="width: 100%; max-width: 300px;">Get Free Demo</button></div>
+                `).join('');
+
+                // Generate Solution Items
+                const solutionItems = cat.solution.map(item => `
+                    <div class="spec-item">
+                        <span class="spec-title">${item.t}</span>
+                        <p class="spec-desc">${item.d}</p>
+                    </div>
+                `).join('');
+
+                contextCardEl.innerHTML = `
+                    <div class="card-header-center">
+                        <h3>${cat.title}</h3>
+                        <div class="card-sub">${cat.sub}</div>
+                    </div>
+                    <div class="card-content-split">
+                        <div class="card-column col-challenge">
+                            <h4>The Challenge</h4>
+                            ${challengeItems}
+                        </div>
+                        <div class="card-column col-solution">
+                            <h4>Our AI Solution</h4>
+                            ${solutionItems}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-badges">
+                            <span class="badge-quality">✓ Studio-Grade Realism</span>
+                            <span class="badge-cultural-critical">✓ Critical Cultural QA</span>
+                        </div>
+                        <button onclick="openDemoForm('${cat.id}', '${cat.formHeadline}')" class="btn btn-primary">Get Free Demo →</button>
+                    </div>
                 `;
                 contextCardEl.classList.remove('fade-out');
             }, 1000);
@@ -1232,4 +1426,3 @@
     </script>
 </body>
 </html>
-
