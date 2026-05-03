@@ -28,7 +28,7 @@
             --font-body: 'Inter', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
             --transition-fast: 0.2s ease;
-            --transition-slow: 1s cubic-bezier(0.4, 0, 0.2, 1); /* 1 Second Transition */
+            --transition-slow: 1s cubic-bezier(0.4, 0, 0.2, 1);
             --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
             --border-radius: 16px;
             --section-padding: clamp(60px, 8vw, 110px);
@@ -93,7 +93,6 @@
         .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
         .trust-bar { color: var(--color-text-secondary); font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.8; margin-bottom: 2rem; }
         
-        /* Hero Visual */
         .hero-visual { 
             max-width: 900px; 
             margin: 0 auto; 
@@ -117,7 +116,7 @@
             cursor: col-resize;
         }
         .comp-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .comp-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 1s ease-in-out; /* 1s Transition */ }
+        .comp-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 1s ease-in-out; }
         .img-before { z-index: 1; }
         .img-after { z-index: 2; border-right: 2px solid var(--color-accent-teal); overflow: hidden; width: 50%; }
         
@@ -189,16 +188,53 @@
         .rail-btn.active { background: var(--color-accent-teal); color: var(--color-bg-deep); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3); }
         .rail-divider { width: 1px; height: 24px; background: var(--color-border); margin: 0 0.5rem; flex-shrink: 0; }
 
-        /* Carousel with 1s Cross-Fade */
-        .carousel-container { position: relative; width: 100%; max-width: 900px; margin: 0 auto 3rem auto; border-radius: var(--border-radius); overflow: hidden; border: 1px solid var(--color-border); background: #111; box-shadow: var(--shadow-card); aspect-ratio: 4/5; }
+        /* Carousel with Spinner */
+        .carousel-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 900px; 
+            margin: 0 auto 3rem auto; 
+            border-radius: var(--border-radius); 
+            overflow: hidden; 
+            border: 1px solid var(--color-border); 
+            background: #111; 
+            box-shadow: var(--shadow-card); 
+            aspect-ratio: 4/5; 
+        }
         .carousel-slide { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
             display: block; 
             opacity: 1;
-            transition: opacity 1s ease-in-out; /* 1s Transition */
+            transition: opacity 1s ease-in-out; 
         }
+        
+        /* SPINNER STYLES */
+        .carousel-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid var(--color-accent-teal);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 5;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .carousel-loader.active {
+            opacity: 1;
+        }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
         .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: transparent; color: rgba(255, 255, 255, 0.7); border: none; width: auto; height: auto; border-radius: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.3s ease; font-size: 2rem; padding: 10px; outline: none; }
         .carousel-btn:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); transform: translateY(-50%) scale(1.1); }
         .carousel-prev { left: 15px; }
@@ -502,6 +538,7 @@
             </div>
 
             <div class="carousel-container" id="carouselContainer">
+                <div class="carousel-loader" id="carouselLoader"></div>
                 <button class="carousel-btn carousel-prev" id="prevBtn">&#10094;</button>
                 <img src="" alt="Service Image" class="carousel-slide" id="carouselImage">
                 <button class="carousel-btn carousel-next" id="nextBtn">&#10095;</button>
@@ -835,17 +872,14 @@
             const afterImg = document.getElementById('heroAfterImg');
             const tabs = document.querySelectorAll('.tab-btn');
             
-            // Update Active Tab UI
             tabs.forEach(tab => tab.classList.remove('active'));
             if(category === 'fashion') tabs[0].classList.add('active');
             else tabs[1].classList.add('active');
 
-            // Fade Out (1s matches CSS)
             beforeImg.style.opacity = '0';
             afterImg.style.opacity = '0';
 
             setTimeout(() => {
-                // Swap Sources
                 if (category === 'fashion') {
                     beforeImg.src = 'images/hero-before.png';
                     afterImg.src = 'images/hero-after.png';
@@ -854,17 +888,15 @@
                     afterImg.src = 'images/lifestyle-hero-after.png';
                 }
                 
-                // Fade In
                 beforeImg.style.opacity = '1';
                 afterImg.style.opacity = '1';
                 
-                // Reset Slider Handle to Center
                 afterImage.style.width = '50%';
                 sliderHandle.style.left = '50%';
-            }, 1000); // 1 Second Delay
+            }, 1000);
         }
 
-        // --- SERVICES LOGIC (CAROUSEL WITH 1s CROSS-FADE) ---
+        // --- SERVICES LOGIC (CAROUSEL WITH PRELOADER & SPINNER) ---
         const servicesData = [
             { id: 'western', title: 'Western Casual', sub: 'Denim • Streetwear • Activewear • Loungewear', challenge: 'Speed-to-market.', solution: 'Rapid variant generation.', cultural: 'Optional localization layer.', badgeType: 'medium', formHeadline: 'Get a Free Casual Wear Demo' },
             { id: 'modest', title: 'Modest Fashion', sub: 'Abayas • Hijabs • Kaftans • Tunics', challenge: 'Cultural alignment.', solution: 'Region-calibrated styling.', cultural: 'Pre-built variant packs for GCC/SEA.', badgeType: 'critical', formHeadline: 'Get a Free Modest Fashion Demo' },
@@ -883,6 +915,7 @@
         const navRailEl = document.getElementById('navRail');
         const contextCardEl = document.getElementById('contextCard');
         const carouselImage = document.getElementById('carouselImage');
+        const carouselLoader = document.getElementById('carouselLoader');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
 
@@ -936,23 +969,72 @@
             return `images/${prefix}-${index + 1}.png`;
         }
 
-        // UPDATED CAROUSEL FUNCTION WITH 1s CROSS-FADE
+        // --- TIERED PRELOADER LOGIC ---
+        function preloadImages() {
+            const loadImg = (src) => {
+                const img = new Image();
+                img.src = src;
+            };
+
+            // Tier 1: Hero + Default Category (Western) All Images
+            loadImg('images/hero-before.png');
+            loadImg('images/hero-after.png');
+            loadImg('images/western-casual-1.png');
+            loadImg('images/western-casual-2.png');
+            loadImg('images/western-casual-3.png');
+
+            // Tier 2: First Image of All Other Categories
+            const otherCategories = ['modest', 'ethnic', 'intimate', 'kids', 'luxury', 'beauty', 'tech', 'b2b', 'custom'];
+            otherCategories.forEach(catId => {
+                const src = getImageSrc(catId, 0);
+                loadImg(src);
+            });
+
+            // Tier 3: Remaining Images of All Categories (Background)
+            setTimeout(() => {
+                servicesData.forEach(cat => {
+                    if (cat.id === 'custom') return; // Custom only has 1 image
+                    for(let i=1; i<3; i++) {
+                        loadImg(getImageSrc(cat.id, i));
+                    }
+                });
+            }, 2000); // Wait 2 seconds after page load to start Tier 3
+        }
+
+        // Run Preloader on Load
+        window.addEventListener('load', preloadImages);
+
+        // --- CAROUSEL UPDATE WITH SPINNER FALLBACK ---
         function updateCarousel() {
             const cat = servicesData.find(c => c.id === activeCategoryId);
             const src = getImageSrc(activeCategoryId, activeImageIndex);
             
-            // 1. Fade Out Current Image
-            carouselImage.style.opacity = '0';
-            
-            // 2. Wait for fade to finish (1000ms matches CSS transition)
-            setTimeout(() => {
-                // 3. Swap Source while invisible
+            // Show Spinner Immediately
+            carouselLoader.classList.add('active');
+            carouselImage.style.opacity = '0'; // Fade out current
+
+            // Create a temporary image to check load status
+            const tempImg = new Image();
+            tempImg.src = src;
+
+            // If already cached, this triggers instantly. If not, it waits.
+            tempImg.onload = () => {
+                // Hide Spinner
+                carouselLoader.classList.remove('active');
+                
+                // Swap Source
                 carouselImage.src = src;
                 carouselImage.alt = cat.title;
                 
-                // 4. Fade In New Image
+                // Fade In New Image
                 carouselImage.style.opacity = '1';
-            }, 1000);
+            };
+
+            // Error Handling
+            tempImg.onerror = () => {
+                carouselLoader.classList.remove('active');
+                carouselImage.style.opacity = '1'; // Show broken image or placeholder
+            };
 
             if (activeCategoryId === 'custom') {
                 prevBtn.style.display = 'none';
@@ -996,7 +1078,7 @@
                     <div class="card-cta-container"><button onclick="openDemoForm('${cat.id}', '${cat.formHeadline}')" class="btn btn-primary" style="width: 100%; max-width: 300px;">Get Free Demo</button></div>
                 `;
                 contextCardEl.classList.remove('fade-out');
-            }, 1000); // 1 Second Delay to match CSS transition
+            }, 1000);
         }
 
         function setActiveCategory(id) {
