@@ -157,7 +157,7 @@
             position: relative; 
             overflow: hidden;
             box-shadow: var(--shadow-card), 0 0 60px rgba(0,0,0,0.5);
-            height: 500px; /* Fixed Height for Consistency */
+            height: 600px; /* Increased Height */
         }
         
         .comparison-container { 
@@ -250,11 +250,11 @@
             align-items: stretch;
         }
 
-        /* Carousel with Spinner - FIXED WIDTH */
+        /* Carousel with Spinner - FIXED WIDTH & HEIGHT */
         .carousel-container { 
             position: relative; 
-            width: 400px; /* Fixed Instagram Width */
-            height: 500px; /* Match Hero Height */
+            width: 480px; /* 4:5 Ratio at 600px Height */
+            height: 600px; /* Increased Height */
             border-radius: var(--border-radius); 
             overflow: hidden; 
             border: 1px solid var(--color-border); 
@@ -307,7 +307,7 @@
             border: 1px solid var(--color-border); 
             border-radius: var(--border-radius); 
             padding: 2.5rem; 
-            height: 500px; /* Match Hero Height */
+            height: 600px; /* Match Hero Height */
             overflow-y: auto; /* Internal Scroll if needed */
             transition: all 1s ease; 
             opacity: 1; 
@@ -349,9 +349,9 @@
         .col-challenge h4 { color: var(--color-accent-violet); }
         .col-solution h4 { color: var(--color-accent-teal); }
         
-        .spec-item { margin-bottom: 1.5rem; }
+        .spec-item { margin-bottom: 1.25rem; }
         .spec-title { font-size: 0.85rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.25rem; display: block; }
-        .spec-desc { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; }
+        .spec-desc { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.5; }
 
         .card-footer { 
             border-top: 1px solid var(--color-border); 
@@ -686,7 +686,7 @@
 
             <!-- SIDE BY SIDE LAYOUT WRAPPER -->
             <div class="services-grid-layout">
-                <!-- Left: Image Deck (Fixed 400px) -->
+                <!-- Left: Image Deck (Fixed 480px) -->
                 <div class="carousel-container" id="carouselContainer">
                     <div class="carousel-loader" id="carouselLoader"></div>
                     <button class="carousel-btn carousel-prev" id="prevBtn">&#10094;</button>
@@ -1053,140 +1053,140 @@
             { 
                 id: 'western', title: 'Western Casual', sub: 'Denim • Streetwear • Activewear • Loungewear', 
                 challenge: [
-                    { t: 'Trend Velocity', d: 'Fast fashion moves too quickly for traditional shoot schedules.' },
-                    { t: 'Model Diversity', d: 'Sourcing diverse talent for every global market is costly and slow.' },
-                    { t: 'Brand Consistency', d: 'Maintaining a unified look across thousands of SKUs and regions.' }
+                    { t: 'Trend Velocity', d: 'Fast fashion moves too quickly for traditional shoots.' },
+                    { t: 'Model Diversity', d: 'Sourcing diverse global talent is costly and slow.' },
+                    { t: 'Brand Consistency', d: 'Hard to maintain a unified look across thousands of SKUs.' }
                 ],
                 solution: [
-                    { t: 'Infinite Variants', d: 'Generate 100+ localized versions from a single base image instantly.' },
-                    { t: '50+ Region Ruleset', d: 'Automated demographic adjustments for age, ethnicity, and body type.' },
-                    { t: 'Fabric & Skin QA', d: 'Proprietary refinement for realistic denim, cotton, and skin undertones.' }
+                    { t: 'Infinite Variants', d: 'Generate 100+ localized versions from one base image.' },
+                    { t: '50+ Region Ruleset', d: 'Auto-adjusts demographics for age, ethnicity, and size.' },
+                    { t: 'Fabric & Skin QA', d: 'Proprietary refinement for realistic denim and cotton.' }
                 ],
                 badgeType: 'medium', formHeadline: 'Get a Free Casual Wear Demo' 
             },
             { 
                 id: 'modest', title: 'Modest Fashion', sub: 'Abayas • Hijabs • Kaftans • Tunics', 
                 challenge: [
-                    { t: 'Cultural Risk', d: 'Fear of offending local audiences with incorrect styling or posing.' },
-                    { t: 'Production Bottlenecks', d: 'High costs and logistical delays in shooting across multiple countries.' },
-                    { t: 'Authentic Representation', d: 'Generic AI often fails to capture the drape and flow of modest fabrics.' }
+                    { t: 'Cultural Risk', d: 'Fear of offending locals with incorrect styling or posing.' },
+                    { t: 'Production Delays', d: 'High costs and logistics of shooting in multiple countries.' },
+                    { t: 'Authentic Drape', d: 'Generic AI fails to capture the flow of modest fabrics.' }
                 ],
                 solution: [
-                    { t: 'Smart Localization', d: 'Auto-adjusting hemlines, sleeves, and headwear for GCC/SEA norms.' },
-                    { t: 'Rapid Deployment', d: '48-hour turnaround for seasonal collections with zero travel costs.' },
-                    { t: 'Hyper-Real Textures', d: 'Advanced rendering for chiffon, silk, jersey, and natural skin tones.' }
+                    { t: 'Smart Localization', d: 'Auto-adjusts hemlines, sleeves, and headwear for GCC/SEA.' },
+                    { t: 'Rapid Deployment', d: '48-hour turnaround for seasonal collections; zero travel.' },
+                    { t: 'Hyper-Real Textures', d: 'Advanced rendering for chiffon, silk, and jersey.' }
                 ],
                 badgeType: 'critical', formHeadline: 'Get a Free Modest Fashion Demo' 
             },
             { 
                 id: 'ethnic', title: 'Ethnic Traditional', sub: 'Sarees • Lehengas • Kurtas • Sherwanis', 
                 challenge: [
-                    { t: 'Heritage Accuracy', d: 'Incorrect patterns or draping can alienate traditional buyers.' },
-                    { t: 'Seasonal Urgency', d: 'Festive seasons require massive content volume in very short windows.' },
-                    { t: 'Texture Complexity', d: 'Capturing the shine of silk, embroidery, and heavy embellishments.' }
+                    { t: 'Heritage Accuracy', d: 'Incorrect patterns or draping alienate traditional buyers.' },
+                    { t: 'Seasonal Urgency', d: 'Festive seasons require massive volume in short windows.' },
+                    { t: 'Texture Complexity', d: 'Capturing the shine of silk and heavy embroidery.' }
                 ],
                 solution: [
-                    { t: 'Pattern Validation', d: 'AI trained on authentic regional motifs and traditional weaving styles.' },
-                    { t: 'Bulk Catalog Gen', d: 'Scale from 10 to 1,000 festive variants without additional studio time.' },
-                    { t: 'Macro-Detail Render', d: 'High-fidelity processing for zari, gota, and intricate handwork details.' }
+                    { t: 'Pattern Validation', d: 'AI trained on authentic regional motifs and weaves.' },
+                    { t: 'Bulk Catalog Gen', d: 'Scale from 10 to 1,000 festive variants instantly.' },
+                    { t: 'Macro-Detail Render', d: 'High-fidelity processing for zari and handwork.' }
                 ],
                 badgeType: 'high', formHeadline: 'Get a Free Ethnic Fashion Demo' 
             },
             { 
                 id: 'intimate', title: 'Intimate Wear', sub: 'Lingerie • Shapewear • Sleepwear • Swimwear', 
                 challenge: [
-                    { t: 'Ad Policy Compliance', d: 'Strict platform rules often block standard model photography.' },
-                    { t: 'Body Inclusivity', d: 'Showing how garments fit diverse body shapes is logistically difficult.' },
-                    { t: 'Fabric Sensitivity', d: 'Lace and sheer materials are notoriously hard to render realistically.' }
+                    { t: 'Ad Policy Compliance', d: 'Strict platform rules often block standard model photos.' },
+                    { t: 'Body Inclusivity', d: 'Showing fit on diverse body shapes is logistically hard.' },
+                    { t: 'Fabric Sensitivity', d: 'Lace and sheer materials are hard to render realistically.' }
                 ],
                 solution: [
-                    { t: 'Discreet Styling AI', d: 'Generates compliant, artistic lookbooks that bypass aggressive filtering.' },
-                    { t: 'Morphological Mapping', d: 'Accurate fit visualization across 15+ distinct body types and sizes.' },
-                    { t: 'Sheer-Texture Engine', d: 'Specialized lighting models for lace, mesh, and delicate skin interaction.' }
+                    { t: 'Discreet Styling AI', d: 'Generates compliant, artistic lookbooks that bypass filters.' },
+                    { t: 'Morphological Mapping', d: 'Accurate fit visualization across 15+ body types.' },
+                    { t: 'Sheer-Texture Engine', d: 'Specialized lighting for lace, mesh, and skin interaction.' }
                 ],
                 badgeType: 'critical', formHeadline: 'Get a Free Intimate Wear Demo' 
             },
             { 
                 id: 'kids', title: 'Kids & Teen Fashion', sub: 'Kids\' Ethnic • Party Outfits • School Wear • Teen Casual', 
                 challenge: [
-                    { t: 'Safety & Ethics', d: 'Growing concern over using real minors in high-volume commercial shoots.' },
-                    { t: 'Playful Context', d: 'Capturing natural movement and energy requires complex setups.' },
-                    { t: 'Durability Perception', d: 'Parents need to see how clothes hold up in real-life play scenarios.' }
+                    { t: 'Safety & Ethics', d: 'Growing concern over using real minors in commercial shoots.' },
+                    { t: 'Playful Context', d: 'Capturing natural movement requires complex setups.' },
+                    { t: 'Durability Perception', d: 'Parents need to see clothes holding up in real play.' }
                 ],
                 solution: [
-                    { t: 'Synthetic Youth Models', d: 'Ethical, hyper-realistic AI children that adhere to strict safety guidelines.' },
-                    { t: 'Dynamic Posing Library', d: 'Access to 500+ age-appropriate, energetic poses and lifestyle scenes.' },
-                    { t: 'Lifestyle Integration', d: 'Seamless placement in parks, schools, and home environments.' }
+                    { t: 'Synthetic Youth Models', d: 'Ethical, hyper-realistic AI children adhering to safety guidelines.' },
+                    { t: 'Dynamic Posing Library', d: '500+ age-appropriate, energetic poses and scenes.' },
+                    { t: 'Lifestyle Integration', d: 'Seamless placement in parks, schools, and homes.' }
                 ],
                 badgeType: 'medium', formHeadline: 'Get a Free Kids Fashion Demo' 
             },
             { 
                 id: 'luxury', title: 'Luxury Accessories', sub: 'Timepieces • Fine Jewelry • Designer Bags • Eyewear', 
                 challenge: [
-                    { t: 'Craftsmanship Storytelling', d: 'Standard photos fail to convey the weight and value of premium goods.' },
+                    { t: 'Craftsmanship Story', d: 'Standard photos fail to convey the weight of premium goods.' },
                     { t: 'Global Aspirations', d: 'Luxury means different things in Paris, Dubai, and Tokyo.' },
-                    { t: 'Reflection Control', d: 'Jewelry and watches are difficult to light without unwanted glare.' }
+                    { t: 'Reflection Control', d: 'Jewelry and watches are difficult to light without glare.' }
                 ],
                 solution: [
-                    { t: 'Macro-Texture Shots', d: 'Ultra-high-res rendering for leather grain, metal hardware, and stitching.' },
-                    { t: 'Cultural Contextualization', d: 'Gold-motif calibration for GCC; Minimalist styling for EU/East Asia.' },
-                    { t: 'Ray-Traced Lighting', d: 'Physically accurate light reflection for diamonds, gold, and polished surfaces.' }
+                    { t: 'Macro-Texture Shots', d: 'Ultra-high-res rendering for leather, metal, and stitching.' },
+                    { t: 'Cultural Context', d: 'Gold-motif calibration for GCC; Minimalist styling for EU.' },
+                    { t: 'Ray-Traced Lighting', d: 'Physically accurate reflection for diamonds and gold.' }
                 ],
                 badgeType: 'high', formHeadline: 'Get a Free Luxury Asset Demo' 
             },
             { 
                 id: 'beauty', title: 'Beauty & Cosmetics', sub: 'Makeup • Skincare • Luxury Fragrance • Haircare', 
                 challenge: [
-                    { t: 'Skin Tone Diversity', d: 'Foundations and concealers must look perfect on every complexion.' },
-                    { t: 'Application Realism', d: 'AI often struggles with how makeup sits on skin texture and pores.' },
-                    { t: 'Regulatory Claims', d: 'Visuals must support specific product claims (e.g., "hydrating," "matte").' }
+                    { t: 'Skin Tone Diversity', d: 'Foundations must look perfect on every complexion.' },
+                    { t: 'Application Realism', d: 'AI struggles with how makeup sits on skin texture.' },
+                    { t: 'Regulatory Claims', d: 'Visuals must support claims like "hydrating" or "matte."' }
                 ],
                 solution: [
-                    { t: 'Undertone Accuracy', d: 'Precise color matching across 50+ Fitzpatrick skin tone scales.' },
-                    { t: 'Hyper-Real Application', d: 'Micro-detail rendering for lipstick texture, eyeshadow blend, and skin glow.' },
-                    { t: 'Feature-Specific QA', d: 'Targeted enhancement for dewy, matte, or full-coverage finish validation.' }
+                    { t: 'Undertone Accuracy', d: 'Precise color matching across 50+ Fitzpatrick scales.' },
+                    { t: 'Hyper-Real Application', d: 'Micro-detail rendering for lipstick and skin glow.' },
+                    { t: 'Feature-Specific QA', d: 'Targeted enhancement for dewy or matte finish validation.' }
                 ],
                 badgeType: 'high', formHeadline: 'Get a Free Beauty Campaign Demo' 
             },
             { 
                 id: 'tech', title: 'Global Lifestyle & Tech', sub: 'Smart Home Tech • Lifestyle Gadgets • EV Accessories • Wellness', 
                 challenge: [
-                    { t: 'Local Living Standards', d: 'A smart home looks different in a NYC apartment vs. a Riyadh villa.' },
-                    { t: 'Product Integration', d: 'Ensuring tech gadgets look naturally placed, not just "pasted" in.' },
-                    { t: 'Feature Demonstration', d: 'Showing how a product fits into a daily routine without a video shoot.' }
+                    { t: 'Local Living Standards', d: 'A smart home looks different in NYC vs. Riyadh.' },
+                    { t: 'Product Integration', d: 'Ensuring gadgets look naturally placed, not "pasted."' },
+                    { t: 'Feature Demo', d: 'Showing product fit in daily routines without video shoots.' }
                 ],
                 solution: [
-                    { t: 'Context-Aware Scenes', d: 'Compact setups for Asia; Family-centric layouts for GCC; Industrial for EU.' },
-                    { t: 'Shadow & Light Matching', d: 'Automatic ambient light adjustment for seamless product-to-scene blending.' },
-                    { t: 'Lifestyle Narrative Gen', d: 'Creates sequential storytelling images for user manuals and ads.' }
+                    { t: 'Context-Aware Scenes', d: 'Compact setups for Asia; Family-centric for GCC.' },
+                    { t: 'Shadow & Light Match', d: 'Automatic ambient light adjustment for seamless blending.' },
+                    { t: 'Lifestyle Narrative', d: 'Creates sequential storytelling images for ads.' }
                 ],
                 badgeType: 'high', formHeadline: 'Get a Free Tech Lifestyle Demo' 
             },
             { 
                 id: 'b2b', title: 'B2B / Agencies', sub: 'White-Label Solutions • Bulk Orders • Export Services • API Integration', 
                 challenge: [
-                    { t: 'Scalability Demands', d: 'Agencies need to deliver hundreds of assets for multiple clients simultaneously.' },
-                    { t: 'Client Specificity', d: 'Every brand has unique guidelines that generic AI tools ignore.' },
+                    { t: 'Scalability Demands', d: 'Agencies need hundreds of assets for multiple clients.' },
+                    { t: 'Client Specificity', d: 'Every brand has unique guidelines generic AI ignores.' },
                     { t: 'Margin Protection', d: 'Traditional outsourcing eats into agency profitability.' }
                 ],
                 solution: [
-                    { t: 'White-Label API', d: 'Seamless integration into your existing workflow with branded outputs.' },
-                    { t: 'Custom Rule Sets', d: 'Upload brand books to enforce specific colors, fonts, and styling automatically.' },
-                    { t: 'Bulk Catalog Gen', d: 'Reduce production costs by 90% while maintaining studio-grade quality.' }
+                    { t: 'White-Label API', d: 'Seamless integration into your workflow with branded outputs.' },
+                    { t: 'Custom Rule Sets', d: 'Upload brand books to enforce colors and styling automatically.' },
+                    { t: 'Bulk Catalog Gen', d: 'Reduce production costs by 90% with studio-grade quality.' }
                 ],
                 badgeType: 'medium', formHeadline: 'Get a Free B2B Workflow Demo' 
             },
             { 
                 id: 'custom', title: 'Custom Solutions', sub: 'Bespoke Projects • Multi-Category Brands • Campaign Innovation • Enterprise', 
                 challenge: [
-                    { t: 'Unique Requirements', d: 'Off-the-shelf tools can\'t handle bespoke campaign innovations.' },
-                    { t: 'Complex Integration', d: 'Need to mix AI with existing legacy assets or specific 3D models.' },
+                    { t: 'Unique Requirements', d: 'Off-the-shelf tools can\'t handle bespoke innovations.' },
+                    { t: 'Complex Integration', d: 'Need to mix AI with existing legacy assets or 3D models.' },
                     { t: 'Strategic Alignment', d: 'Ensuring visuals align with high-level corporate goals.' }
                 ],
                 solution: [
-                    { t: 'Dedicated Creative Dir.', d: 'Direct access to our lead stylists and cultural advisors for your project.' },
-                    { t: 'Hybrid Workflow', d: 'We blend your 3D assets with our AI engine for perfect consistency.' },
-                    { t: 'Co-Created Rules', d: 'We build a custom AI model trained specifically on your brand\'s history.' }
+                    { t: 'Dedicated Creative Dir.', d: 'Direct access to lead stylists and cultural advisors.' },
+                    { t: 'Hybrid Workflow', d: 'We blend your 3D assets with our AI for perfect consistency.' },
+                    { t: 'Co-Created Rules', d: 'We build a custom AI model trained on your brand history.' }
                 ],
                 badgeType: 'bespoke', formHeadline: 'Book a Custom Strategy Session' 
             }
