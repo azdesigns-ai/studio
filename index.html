@@ -375,34 +375,62 @@
         .badge-quality { background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); border: 1px solid rgba(0, 212, 170, 0.2); }
         .badge-cultural-critical { background: rgba(108, 92, 231, 0.15); color: var(--color-accent-violet); border: 1px solid rgba(108, 92, 231, 0.3); }
 
-        /* Results */
+        /* Results - SIDE BY SIDE GRID */
         .results h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .results p.subheadline { text-align: center; margin-bottom: 3rem; font-size: 1.1rem; }
-        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        
+        .results-grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
         .metric-badge { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 2.5rem; border-radius: var(--border-radius); text-align: center; transition: all var(--transition-fast); backdrop-filter: blur(12px); }
         .metric-badge:hover { transform: translateY(-4px); border-color: var(--color-accent-teal); box-shadow: 0 12px 40px rgba(0, 212, 170, 0.15); }
         .metric-value { font-size: 3rem; font-family: var(--font-heading); font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.75rem; line-height: 1; letter-spacing: -0.02em; }
         .metric-label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-accent-teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; font-weight: 500; }
         .metric-desc { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 300; }
-        .case-study { background: var(--color-bg-card); backdrop-filter: blur(12px); padding: 3rem; border-radius: var(--border-radius); margin-bottom: 1.5rem; border: 1px solid var(--color-border); position: relative; overflow: hidden; }
+        
+        .case-study { background: var(--color-bg-card); backdrop-filter: blur(12px); padding: 3rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); position: relative; overflow: hidden; }
         .case-study::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--color-accent-teal); }
         .case-study h4 { margin-bottom: 1.5rem; color: var(--color-accent-teal); font-family: var(--font-heading); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; }
         .case-detail { margin-bottom: 1rem; font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.6; display: flex; flex-direction: column; }
         .case-stat { color: var(--color-text-primary); font-weight: 600; font-size: 1.05rem; margin-bottom: 0.25rem; }
         .case-context { font-size: 0.85rem; opacity: 0.8; font-weight: 300; }
 
-        /* Pricing */
+        /* Pricing - REARRANGED LAYOUT */
         .pricing h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .pricing p.subheadline { text-align: center; margin-bottom: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .pricing-path-container { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem; }
-        .path-column { display: flex; flex-direction: column; gap: 1.5rem; }
-        .path-title { font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-text-primary); margin-bottom: 1rem; font-weight: 600; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem; }
-        .price-card-small { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 1.5rem; transition: all 0.3s ease; }
-        .price-card-small:hover { border-color: var(--color-accent-teal); transform: translateY(-2px); }
-        .price-card-small h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .price-card-small ul { list-style: none; margin-bottom: 1.5rem; }
-        .price-card-small li { font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; padding-left: 1.2rem; position: relative; }
-        .price-card-small li::before { content: '•'; color: var(--color-accent-teal); position: absolute; left: 0; }
+        
+        /* Top Row: Audit & Catalog Side-by-Side */
+        .pricing-top-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Middle Row: Ready to Scale Banner */
+        .pricing-middle-row {
+            margin-bottom: 4rem;
+        }
+        .scale-banner {
+            background: var(--color-bg-card); 
+            border: 1px solid var(--color-border); 
+            border-radius: var(--border-radius); 
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .scale-banner ul { list-style: none; display: flex; gap: 2rem; flex-wrap: wrap; }
+        .scale-banner li { font-size: 0.9rem; color: var(--color-text-secondary); padding-left: 1.2rem; position: relative; }
+        .scale-banner li::before { content: '•'; color: var(--color-accent-teal); position: absolute; left: 0; }
+
+        /* Bottom Row: Monthly Plans */
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
         .plan-card { background: var(--color-bg-card); backdrop-filter: blur(12px); padding: 2.5rem 2rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); display: flex; flex-direction: column; transition: all var(--transition-smooth); }
         .plan-card:hover { border-color: rgba(255,255,255,0.2); }
@@ -414,6 +442,7 @@
         .plan-features { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
         .plan-features li { padding: 0.75rem 0; font-size: 0.9rem; color: var(--color-text-secondary); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; gap: 0.5rem; }
         .plan-features li:last-child { border-bottom: none; }
+        
         .includes-list { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 2rem; border-radius: var(--border-radius); max-width: 900px; margin: 0 auto; }
         .includes-list h4 { margin-bottom: 1rem; font-size: 1.1rem; text-align: center; }
         .inc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
@@ -467,7 +496,12 @@
         @media (max-width: 768px) {
             .nav-links, .desktop-cta { display: none; }
             .hamburger { display: flex; }
-            .pricing-path-container { grid-template-columns: 1fr; }
+            
+            /* Mobile Pricing Revert */
+            .pricing-top-row { grid-template-columns: 1fr; }
+            .scale-banner { flex-direction: column; text-align: center; }
+            .scale-banner ul { flex-direction: column; gap: 0.5rem; }
+
             .process-steps { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.4rem; }
             .sticky-mobile-cta { display: block !important; }
@@ -494,10 +528,13 @@
             .carousel-btn { font-size: 1.5rem; padding: 5px; }
             .results h2 { margin-bottom: 0.5rem; }
             .results p.subheadline { margin-bottom: 1.5rem; }
-            .metrics-grid { gap: 1rem; margin-bottom: 2rem; }
+            
+            /* Mobile Results Revert */
+            .results-grid-container { grid-template-columns: 1fr; gap: 1.5rem; }
+            
             .metric-badge { padding: 1.5rem; }
             .metric-value { font-size: 2.5rem; margin-bottom: 0.5rem; }
-            .case-study { padding: 1.5rem; margin-bottom: 1rem; }
+            .case-study { padding: 1.5rem; }
             .case-study h4 { margin-bottom: 1rem; }
             .pricing h2 { margin-bottom: 0.5rem; }
             .pricing p.subheadline { margin-bottom: 1.5rem; }
@@ -705,44 +742,47 @@
         <div class="container">
             <h2>Real Brands. Real Growth.</h2>
             <p class="subheadline">See how cultural intelligence and studio-grade realism drives discovery, engagement, and conversion.</p>
-            <div class="metrics-grid">
+            
+            <div class="results-grid-container">
                 <div class="metric-badge"><div class="metric-value"><span class="counter" data-target="1.34">0</span>M</div><div class="metric-label">Average Views Per Client</div><div class="metric-desc">In 60-90 day period</div></div>
                 <div class="metric-badge"><div class="metric-value"><span class="counter" data-target="90.6">0</span>%</div><div class="metric-label">Non-Follower Reach</div><div class="metric-desc">Pure organic discovery</div></div>
             </div>
             
-            <div class="case-study">
-                <h4>Case Study 1: The Viral Reach Engine</h4>
-                <div class="case-detail">
-                    <span class="case-stat">1.35M Views in 90 days</span>
+            <div class="results-grid-container">
+                <div class="case-study">
+                    <h4>Case Study 1: The Viral Reach Engine</h4>
+                    <div class="case-detail">
+                        <span class="case-stat">1.35M Views in 90 days</span>
+                    </div>
+                    <div class="case-detail">
+                        <span class="case-stat">548K Accounts Reached</span>
+                    </div>
+                    <div class="case-detail">
+                        <span class="case-stat">91% Non-Follower Audience</span>
+                        <span class="case-context">Pure organic discovery</span>
+                    </div>
+                    <div class="case-detail">
+                        <span class="case-stat">2,645 New Followers</span>
+                        <span class="case-context">From a single top-performing Reel</span>
+                    </div>
                 </div>
-                <div class="case-detail">
-                    <span class="case-stat">548K Accounts Reached</span>
-                </div>
-                <div class="case-detail">
-                    <span class="case-stat">91% Non-Follower Audience</span>
-                    <span class="case-context">Pure organic discovery</span>
-                </div>
-                <div class="case-detail">
-                    <span class="case-stat">2,645 New Followers</span>
-                    <span class="case-context">From a single top-performing Reel</span>
-                </div>
-            </div>
 
-            <div class="case-study">
-                <h4>Case Study 2: The Growth Accelerator</h4>
-                <div class="case-detail">
-                    <span class="case-stat">1.41M Views in 60 days</span>
-                </div>
-                <div class="case-detail">
-                    <span class="case-stat">+111,882% Surge in Profile Activity</span>
-                </div>
-                <div class="case-detail">
-                    <span class="case-stat">54K+ Profile Visits</span>
-                    <span class="case-context">Driven by external traffic</span>
-                </div>
-                <div class="case-detail">
-                    <span class="case-stat">93.3% Non-Follower Views</span>
-                    <span class="case-context">Massive new audience acquisition</span>
+                <div class="case-study">
+                    <h4>Case Study 2: The Growth Accelerator</h4>
+                    <div class="case-detail">
+                        <span class="case-stat">1.41M Views in 60 days</span>
+                    </div>
+                    <div class="case-detail">
+                        <span class="case-stat">+111,882% Surge in Profile Activity</span>
+                    </div>
+                    <div class="case-detail">
+                        <span class="case-stat">54K+ Profile Visits</span>
+                        <span class="case-context">Driven by external traffic</span>
+                    </div>
+                    <div class="case-detail">
+                        <span class="case-stat">93.3% Non-Follower Views</span>
+                        <span class="case-context">Massive new audience acquisition</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -754,41 +794,42 @@
             <h2>Invest in Content That Converts. Scale Without the Overhead.</h2>
             <p class="subheadline">Traditional shoots cost $5k–$10k per day. Our AI Studio delivers studio-grade, culturally-calibrated assets for a fraction of the cost—with no long-term lock-ins.</p>
             
-            <div class="pricing-path-container">
-                <div class="path-column">
-                    <div class="path-title">🧪 Start Small & Specific</div>
-                    <div class="price-card-small">
-                        <h3>Free Cultural Strategy Audit</h3>
-                        <ul>
-                            <li>Free Cultural Strategy Call</li>
-                            <li>1 Custom Demo Asset</li>
-                        </ul>
-                        <button class="btn btn-primary" style="width:100%" onclick="openDemoForm('audit', 'Start Your Free Cultural Audit')">Book Free Audit →</button>
-                    </div>
-                    <div class="price-card-small" style="border-color: var(--color-accent-orange);">
-                        <h3 style="color: var(--color-accent-orange);">🟠 Catalog Pro Update ($2,500)</h3>
-                        <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 1rem; font-style: italic;">One-Time Project</p>
-                        <ul>
-                            <li>Up to 20 Product Variants</li>
-                            <li>Background Scene & Model Calibration</li>
-                            <li>Consistent Model Locking Across SKUs</li>
-                        </ul>
-                        <button class="btn btn-catalog" style="width:100%" onclick="selectPlan('Catalog Pro')">Start Catalog Pro</button>
-                    </div>
+            <!-- TOP ROW: AUDIT & CATALOG SIDE-BY-SIDE -->
+            <div class="pricing-top-row">
+                <div class="price-card-small">
+                    <h3>Free Cultural Strategy Audit</h3>
+                    <ul>
+                        <li>Free Cultural Strategy Call</li>
+                        <li>1 Custom Demo Asset</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width:100%" onclick="openDemoForm('audit', 'Start Your Free Cultural Audit')">Book Free Audit →</button>
                 </div>
-                <div class="path-column">
-                    <div class="path-title">🚀 Ready To Scale? (Monthly)</div>
-                    <div style="background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 1.5rem;">
-                        <ul style="list-style: none; margin-bottom: 1.5rem;">
-                            <li style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; padding-left: 1.2rem; position: relative;">• Cancel anytime after min. term</li>
-                            <li style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; padding-left: 1.2rem; position: relative;">• Dedicated Account Manager</li>
-                            <li style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 0.5rem; padding-left: 1.2rem; position: relative;">• Priority QA Queue</li>
-                        </ul>
-                        <button class="btn btn-secondary" style="width:100%" onclick="document.getElementById('pricing-plans').scrollIntoView({behavior: 'smooth'})">View Monthly Plans Below ↓</button>
-                    </div>
+                <div class="price-card-small" style="border-color: var(--color-accent-orange);">
+                    <h3 style="color: var(--color-accent-orange);">🟠 Catalog Pro Update ($2,500)</h3>
+                    <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 1rem; font-style: italic;">One-Time Project</p>
+                    <ul>
+                        <li>Up to 20 Product Variants</li>
+                        <li>Background Scene & Model Calibration</li>
+                        <li>Consistent Model Locking Across SKUs</li>
+                    </ul>
+                    <button class="btn btn-catalog" style="width:100%" onclick="selectPlan('Catalog Pro')">Start Catalog Pro</button>
                 </div>
             </div>
 
+            <!-- MIDDLE ROW: READY TO SCALE BANNER -->
+            <div class="pricing-middle-row">
+                <div class="scale-banner">
+                    <div class="path-title" style="margin:0; border:none;">🚀 Ready To Scale? (Monthly)</div>
+                    <ul>
+                        <li>Cancel anytime after min. term</li>
+                        <li>Dedicated Account Manager</li>
+                        <li>Priority QA Queue</li>
+                    </ul>
+                    <button class="btn btn-secondary" onclick="document.getElementById('pricing-plans').scrollIntoView({behavior: 'smooth'})">View Monthly Plans ↓</button>
+                </div>
+            </div>
+
+            <!-- BOTTOM ROW: MONTHLY PLANS -->
             <div id="pricing-plans" class="plans-grid">
                 <div class="plan-card">
                     <div class="plan-name">🟢 Launch Pad</div>
@@ -1426,3 +1467,4 @@
     </script>
 </body>
 </html>
+
