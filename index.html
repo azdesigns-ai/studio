@@ -281,57 +281,92 @@
         .step-text { font-size: 0.95rem; line-height: 1.6; color: var(--color-text-secondary); font-weight: 300; }
         .trust-note { text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); font-family: var(--font-mono); opacity: 0.8; letter-spacing: 0.02em; }
 
-        /* Services - SIDE BY SIDE LAYOUT */
+        /* Services - TWO TIER NAVIGATION */
         .services h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .services p.subheadline { text-align: center; margin-bottom: 2rem; font-size: 1.1rem; }
         
+        /* Tier 1: Umbrella Pills */
+        .umbrella-tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .umbrella-tabs-pill {
+            background: rgba(21, 30, 45, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--color-border);
+            border-radius: 50px;
+            padding: 6px;
+            display: flex;
+            gap: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            max-width: 90vw;
+        }
+        .umbrella-tabs-pill::-webkit-scrollbar { display: none; }
+        .umbrella-btn {
+            background: transparent;
+            border: none;
+            color: var(--color-text-secondary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .umbrella-btn:hover { color: var(--color-text-primary); }
+        .umbrella-btn.active {
+            background: var(--color-accent-teal);
+            color: var(--color-bg-deep);
+            box-shadow: 0 2px 10px rgba(0, 212, 170, 0.3);
+        }
+
+        /* Tier 2: Sub-Category Rail */
         .nav-rail-container { 
             width: 100%; 
-            max-width: 800px; /* Constrain width for better readability */
+            max-width: 1000px; 
             margin: 0 auto 2rem auto;
             padding-bottom: 1rem; 
             position: relative; 
             z-index: 10; 
             background: transparent; 
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-accent-teal) var(--color-bg-deep);
         }
+        .nav-rail-container::-webkit-scrollbar { height: 4px; }
+        .nav-rail-container::-webkit-scrollbar-track { background: transparent; }
+        .nav-rail-container::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 20px; }
         
-        /* VERTICAL NAV RAIL STYLES */
         .nav-rail { 
             display: flex; 
-            flex-direction: column; /* Vertical Stack */
-            align-items: stretch; 
-            gap: 1rem; 
+            flex-direction: row; /* Horizontal */
+            align-items: center; 
+            gap: 0.75rem; 
+            min-width: max-content; 
             padding: 0 1rem; 
         }
         
-        .rail-header {
-            font-family: var(--font-heading);
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--color-text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            padding-left: 0.5rem;
-            border-left: 3px solid var(--color-border);
-        }
-
         .rail-btn { 
             background: rgba(255,255,255,0.03); 
             border: 1px solid var(--color-border); 
             color: var(--color-text-secondary); 
-            padding: 12px 20px; 
-            border-radius: 12px; /* Slightly squarer for list look */
-            font-size: 0.9rem; 
+            padding: 10px 20px; 
+            border-radius: 50px; 
+            font-size: 0.85rem; 
             font-family: var(--font-heading); 
             font-weight: 500; 
             cursor: pointer; 
             transition: all 0.2s ease; 
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-align: left;
+            gap: 8px;
+            white-space: nowrap;
         }
         .rail-btn:hover { background: rgba(255,255,255,0.08); color: var(--color-text-primary); border-color: var(--color-text-secondary); }
         .rail-btn.active { background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.1); }
@@ -595,7 +630,7 @@
         .pricing h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .pricing p.subheadline { text-align: center; margin-bottom: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto; }
         
-        /* Top Row: Audit & Catalog Side-by-Side */
+        /* Top Row: Audit & Catalog Side-by-Side (Styled as Cards) */
         .pricing-top-row {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -821,7 +856,7 @@
             .card-content-split { grid-template-columns: 1fr; gap: 1.5rem; }
 
             .nav-rail-container { margin-bottom: 1.5rem; padding-bottom: 1rem; }
-            .rail-btn { padding: 12px 16px; font-size: 0.9rem; }
+            .rail-btn { padding: 8px 16px; font-size: 0.8rem; }
             
             /* Mobile Carousel Buttons */
             .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
@@ -1051,6 +1086,16 @@
             <h2>AI Visual Services for Every Brand</h2>
             <p class="subheadline">Studio-grade execution. Regional cultural intelligence baked in. Select your category to see how we solve your specific market challenges.</p>
 
+            <!-- TIER 1: UMBRELLA PILLS -->
+            <div class="umbrella-tabs-container">
+                <div class="umbrella-tabs-pill">
+                    <button class="umbrella-btn active" onclick="filterByUmbrella('fashion')">Fashion & Apparel</button>
+                    <button class="umbrella-btn" onclick="filterByUmbrella('lifestyle')">Lifestyle & Retail</button>
+                    <button class="umbrella-btn" onclick="filterByUmbrella('enterprise')">Professional Services</button>
+                </div>
+            </div>
+
+            <!-- TIER 2: SUB-CATEGORY RAIL -->
             <div class="nav-rail-container">
                 <div class="nav-rail" id="navRail"></div>
             </div>
@@ -1425,7 +1470,8 @@
                 afterImage.style.width = '50%';
                 sliderHandle.style.left = '50%';
 
-                // NOTE: Removed scrollIntoView for Rail to keep focus on Hero
+                // Sync with Services Umbrella Pills
+                syncUmbrellaPills(umbrella);
             }, 1000);
         }
 
@@ -1667,22 +1713,8 @@
 
         function renderNavRail() {
             navRailEl.innerHTML = '';
-            let currentUmbrella = '';
             
             servicesData.forEach((cat, index) => {
-                // If umbrella changes, insert a header
-                if (cat.umbrella !== currentUmbrella) {
-                    currentUmbrella = cat.umbrella;
-                    const headerDiv = document.createElement('div');
-                    headerDiv.className = 'rail-header';
-                    
-                    if(currentUmbrella === 'fashion') headerDiv.innerText = 'Fashion & Apparel';
-                    else if(currentUmbrella === 'lifestyle') headerDiv.innerText = 'Lifestyle & Retail';
-                    else headerDiv.innerText = 'Professional Services';
-                    
-                    navRailEl.appendChild(headerDiv);
-                }
-
                 const btn = document.createElement('button');
                 btn.className = `rail-btn ${cat.id === activeCategoryId ? 'active' : ''}`;
                 
@@ -1893,6 +1925,40 @@
             renderContextCard();
         }
 
+        // --- UMBRELLA FILTER LOGIC ---
+        function filterByUmbrella(umbrella) {
+            // 1. Update Umbrella Pills UI
+            syncUmbrellaPills(umbrella);
+            
+            // 2. Update Hero Tabs UI & Images
+            switchHeroTab(umbrella, 0); // 0 is dummy index for scroll, we handle scroll below
+            
+            // 3. Scroll Rail to first item of this umbrella
+            const firstItemOfUmbrella = servicesData.find(item => item.umbrella === umbrella);
+            if(firstItemOfUmbrella) {
+                setActiveCategory(firstItemOfUmbrella.id);
+                
+                // Find the button in the rail and scroll to it
+                setTimeout(() => {
+                    const railButtons = document.querySelectorAll('.rail-btn');
+                    const index = servicesData.findIndex(item => item.id === firstItemOfUmbrella.id);
+                    if(railButtons[index]) {
+                        railButtons[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    }
+                }, 100);
+            }
+        }
+
+        function syncUmbrellaPills(umbrella) {
+            const pills = document.querySelectorAll('.umbrella-btn');
+            pills.forEach(pill => {
+                pill.classList.remove('active');
+                if(pill.textContent.toLowerCase().includes(umbrella === 'fashion' ? 'fashion' : umbrella === 'lifestyle' ? 'lifestyle' : 'professional')) {
+                    pill.classList.add('active');
+                }
+            });
+        }
+
         function openDemoForm(categoryId, headline) {
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             const contactHeadline = document.querySelector('#contact h2');
@@ -1924,3 +1990,4 @@
     </script>
 </body>
 </html>
+
