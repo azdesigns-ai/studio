@@ -209,14 +209,12 @@
         .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: var(--color-bg-deep); border: 2px solid var(--color-accent-teal); border-radius: 50%; z-index: 10; cursor: ew-resize; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(0, 212, 170, 0.4); }
         .slider-handle::after { content: '↔'; color: var(--color-accent-teal); font-weight: bold; font-size: 1.2rem; }
 
-        /* FLOATING PILL BAR TABS - UPDATED TO 3 */
+        /* FLOATING PILL BAR TABS - UPDATED FOR MOBILE SCROLL */
         .hero-tabs-container {
             display: flex;
             justify-content: center;
             margin-top: 1.5rem;
             margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 10px;
         }
         .hero-tabs-pill {
             background: rgba(21, 30, 45, 0.8);
@@ -227,6 +225,16 @@
             display: flex;
             gap: 0.5rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            /* Mobile Scroll Fix */
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE 10+ */
+            max-width: 90vw;
+        }
+        .hero-tabs-pill::-webkit-scrollbar { 
+            display: none; /* Chrome/Safari */
         }
         .tab-btn {
             background: transparent;
@@ -277,57 +285,69 @@
         .services h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .services p.subheadline { text-align: center; margin-bottom: 2rem; font-size: 1.1rem; }
         
-        .nav-rail-container { width: 100%; overflow-x: auto; padding-bottom: 1rem; margin-bottom: 2rem; scrollbar-width: thin; scrollbar-color: var(--color-accent-teal) var(--color-bg-deep); position: relative; z-index: 10; background: transparent; border-bottom: 1px solid var(--color-border); }
-        .nav-rail-container::-webkit-scrollbar { height: 6px; }
-        .nav-rail-container::-webkit-scrollbar-track { background: transparent; }
-        .nav-rail-container::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 20px; }
-        .nav-rail { display: flex; align-items: center; gap: 0.75rem; min-width: max-content; padding: 0 1rem; }
+        .nav-rail-container { 
+            width: 100%; 
+            max-width: 800px; /* Constrain width for better readability */
+            margin: 0 auto 2rem auto;
+            padding-bottom: 1rem; 
+            position: relative; 
+            z-index: 10; 
+            background: transparent; 
+        }
         
-        /* Segmented Rail Styles */
+        /* VERTICAL NAV RAIL STYLES */
+        .nav-rail { 
+            display: flex; 
+            flex-direction: column; /* Vertical Stack */
+            align-items: stretch; 
+            gap: 1rem; 
+            padding: 0 1rem; 
+        }
+        
         .rail-header {
             font-family: var(--font-heading);
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: var(--color-text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin: 0 1rem 0 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
             padding-left: 0.5rem;
-            border-left: 2px solid var(--color-border);
+            border-left: 3px solid var(--color-border);
         }
 
         .rail-btn { 
-            background: rgba(255,255,255,0.05); 
+            background: rgba(255,255,255,0.03); 
             border: 1px solid var(--color-border); 
             color: var(--color-text-secondary); 
-            padding: 10px 20px; 
-            border-radius: 50px; 
-            font-size: 0.85rem; 
+            padding: 12px 20px; 
+            border-radius: 12px; /* Slightly squarer for list look */
+            font-size: 0.9rem; 
             font-family: var(--font-heading); 
             font-weight: 500; 
             cursor: pointer; 
             transition: all 0.2s ease; 
-            white-space: nowrap; 
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
+            text-align: left;
         }
-        .rail-btn:hover { background: rgba(255,255,255,0.1); color: var(--color-text-primary); }
-        .rail-btn.active { background: var(--color-bg-card-solid); color: var(--color-text-primary); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.1); }
+        .rail-btn:hover { background: rgba(255,255,255,0.08); color: var(--color-text-primary); border-color: var(--color-text-secondary); }
+        .rail-btn.active { background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.1); }
         
         /* Umbrella Dots */
-        .dot-indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .dot-indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
         .dot-fashion { background-color: var(--color-accent-teal); box-shadow: 0 0 5px var(--color-accent-teal); }
         .dot-lifestyle { background-color: var(--color-accent-violet); box-shadow: 0 0 5px var(--color-accent-violet); }
         .dot-enterprise { background-color: var(--color-accent-gold); box-shadow: 0 0 5px var(--color-accent-gold); }
-
-        .rail-divider { width: 1px; height: 24px; background: var(--color-border); margin: 0 0.5rem; flex-shrink: 0; }
 
         /* Desktop Grid Layout for Services */
         .services-grid-layout {
             display: flex;
             gap: 2rem;
             align-items: stretch;
+            justify-content: center;
         }
 
         /* Carousel with Premium Interface */
@@ -465,6 +485,7 @@
             flex-direction: column;
             flex-grow: 1;
             box-shadow: var(--shadow-premium);
+            max-width: 600px; /* Constrain width */
         }
         /* Custom Scrollbar for Card */
         .context-card::-webkit-scrollbar { width: 6px; }
@@ -577,20 +598,25 @@
         /* Top Row: Audit & Catalog Side-by-Side */
         .pricing-top-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Middle Row: Ready to Scale Banner */
         .pricing-middle-row {
             margin-bottom: 4rem;
+            display: flex;
+            justify-content: center;
         }
         .scale-banner {
             background: var(--color-bg-card); 
             border: 1px solid var(--color-border); 
             border-radius: var(--border-radius); 
-            padding: 1.5rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -598,13 +624,23 @@
             gap: 1rem;
             backdrop-filter: blur(16px);
             box-shadow: var(--shadow-premium);
+            max-width: 800px; /* Constrain Width */
+            width: 100%;
         }
         .scale-banner ul { list-style: none; display: flex; gap: 2rem; flex-wrap: wrap; }
         .scale-banner li { font-size: 0.9rem; color: var(--color-text-secondary); padding-left: 1.2rem; position: relative; }
         .scale-banner li::before { content: '•'; color: var(--color-accent-teal); position: absolute; left: 0; }
 
         /* Bottom Row: Monthly Plans */
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+        .plans-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 1.5rem; 
+            margin-bottom: 4rem; 
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
         .plan-card { 
             background: var(--color-bg-card); 
             backdrop-filter: blur(16px); 
@@ -615,6 +651,7 @@
             flex-direction: column; 
             transition: all var(--transition-smooth); 
             box-shadow: var(--shadow-premium);
+            height: 100%;
         }
         .plan-card:hover { 
             border-color: rgba(255,255,255,0.2); 
@@ -784,7 +821,7 @@
             .card-content-split { grid-template-columns: 1fr; gap: 1.5rem; }
 
             .nav-rail-container { margin-bottom: 1.5rem; padding-bottom: 1rem; }
-            .rail-btn { padding: 8px 16px; font-size: 0.8rem; }
+            .rail-btn { padding: 12px 16px; font-size: 0.9rem; }
             
             /* Mobile Carousel Buttons */
             .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
@@ -822,7 +859,7 @@
             .brand-logo-img { height: 40px; }
             .slider-labels-row { top: 10px; padding: 0 10px; }
             .slider-label { font-size: 0.65rem; padding: 4px 8px; }
-            .hero-tabs-pill { padding: 4px; flex-wrap: wrap; justify-content: center; }
+            .hero-tabs-pill { padding: 4px; flex-wrap: nowrap; justify-content: flex-start; }
             .tab-btn { padding: 8px 16px; font-size: 0.85rem; }
             
             /* Mobile Mega Menu Override */
@@ -1097,20 +1134,22 @@
             <h2>Invest in Content That Converts. Scale Without the Overhead.</h2>
             <p class="subheadline">Traditional shoots cost $5k–$10k per day. Our AI Studio delivers studio-grade, culturally-calibrated assets for a fraction of the cost—with no long-term lock-ins.</p>
             
-            <!-- TOP ROW: AUDIT & CATALOG SIDE-BY-SIDE -->
+            <!-- TOP ROW: AUDIT & CATALOG SIDE-BY-SIDE (Styled as Cards) -->
             <div class="pricing-top-row">
-                <div class="price-card-small">
-                    <h3>Free Cultural Strategy Audit</h3>
-                    <ul>
+                <div class="plan-card">
+                    <div class="plan-name">Free Cultural Strategy Audit</div>
+                    <div class="plan-price" style="font-size: 1.8rem;">$0<span>/audit</span></div>
+                    <ul class="plan-features">
                         <li>Free Cultural Strategy Call</li>
                         <li>1 Custom Demo Asset</li>
+                        <li>Regional Fit Assessment</li>
                     </ul>
                     <button class="btn btn-primary" style="width:100%" onclick="openDemoForm('audit', 'Start Your Free Cultural Audit')">Request Free Audit →</button>
                 </div>
-                <div class="price-card-small" style="border-color: var(--color-accent-orange);">
-                    <h3 style="color: var(--color-accent-orange);">🟠 Catalog Pro Update ($2,500)</h3>
-                    <p style="font-size: 0.8rem; color: var(--color-text-secondary); margin-bottom: 1rem; font-style: italic;">One-Time Project</p>
-                    <ul>
+                <div class="plan-card" style="border-color: var(--color-accent-orange);">
+                    <div class="plan-name" style="color: var(--color-accent-orange);">🟠 Catalog Pro Update</div>
+                    <div class="plan-price">$2,500<span>/project</span></div>
+                    <ul class="plan-features">
                         <li>Up to 20 Product Variants</li>
                         <li>Background Scene & Model Calibration</li>
                         <li>Consistent Model Locking Across SKUs</li>
@@ -1122,9 +1161,9 @@
             <!-- MIDDLE ROW: READY TO SCALE BANNER -->
             <div class="pricing-middle-row">
                 <div class="scale-banner">
-                    <div class="path-title" style="margin:0; border:none;">🚀 Ready To Scale? (Monthly)</div>
+                    <div class="path-title" style="margin:0; border:none; font-weight: 700; font-size: 1.1rem; color: var(--color-text-primary);">🚀 Ready To Scale? (Monthly)</div>
                     <ul>
-                        <li>3-Month Initial Commitment, then Month-to-Month</li>
+                        <li>3-Month Initial Commitment</li>
                         <li>Dedicated Account Manager</li>
                         <li>Priority QA Queue</li>
                     </ul>
@@ -1175,7 +1214,7 @@
             <div class="includes-list">
                 <h4>✅ All Monthly Plans Include:</h4>
                 <div class="inc-grid">
-                    <div class="inc-item"><span class="inc-check">✓</span> 3-Month Initial Commitment, then Flexible Monthly</div>
+                    <div class="inc-item"><span class="inc-check">✓</span> 3-Month Initial Commitment</div>
                     <div class="inc-item"><span class="inc-check">✓</span> Transparent Reporting & Analytics</div>
                     <div class="inc-item"><span class="inc-check">✓</span> Built-In Cultural Check for 50+ Regions</div>
                     <div class="inc-item"><span class="inc-check">✓</span> Human-in-the-Loop QA Safety</div>
@@ -1224,7 +1263,7 @@
                     </div>
                     <div class="concierge-text">
                         <span class="concierge-title">DM us on Instagram</span>
-                        <span class="concierge-desc">@azdesigns.ai • Mention your industry in DM</span>
+                        <span class="concierge-desc">@azdesigns.ai • Response within 2 Hours</span>
                     </div>
                 </a>
             </div>
@@ -1361,7 +1400,6 @@
             const tabs = document.querySelectorAll('.tab-btn');
             
             tabs.forEach(tab => tab.classList.remove('active'));
-            // Find the button that was clicked based on text content or index logic
             if(umbrella === 'fashion') tabs[0].classList.add('active');
             else if(umbrella === 'lifestyle') tabs[1].classList.add('active');
             else tabs[2].classList.add('active');
@@ -1370,17 +1408,13 @@
             afterImg.style.opacity = '0';
 
             setTimeout(() => {
-                // In a real scenario, you would swap these images based on the umbrella
-                // For now, we keep the default fashion images or swap if you have files
                 if (umbrella === 'fashion') {
                     beforeImg.src = 'images/hero-before.png';
                     afterImg.src = 'images/hero-after.png';
                 } else if (umbrella === 'lifestyle') {
-                    // Placeholder for lifestyle images
                     beforeImg.src = 'images/lifestyle-hero-before.png'; 
                     afterImg.src = 'images/lifestyle-hero-after.png';
                 } else {
-                    // Placeholder for enterprise images
                     beforeImg.src = 'images/enterprise-hero-before.png';
                     afterImg.src = 'images/enterprise-hero-after.png';
                 }
@@ -1391,13 +1425,7 @@
                 afterImage.style.width = '50%';
                 sliderHandle.style.left = '50%';
 
-                // Scroll Nav Rail to the first item of this umbrella
-                const railButtons = document.querySelectorAll('.rail-btn');
-                if(railButtons[railIndex]) {
-                    railButtons[railIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    // Optionally activate the first item of that group
-                    // setActiveCategory(servicesData[railIndex].id); 
-                }
+                // NOTE: Removed scrollIntoView for Rail to keep focus on Hero
             }, 1000);
         }
 
@@ -1668,9 +1696,6 @@
                 btn.onclick = () => setActiveCategory(cat.id);
                 navRailEl.appendChild(btn);
             });
-            
-            const activeBtn = navRailEl.querySelector('.active');
-            if(activeBtn) activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
 
         function getImageSrc(categoryId, index) {
@@ -1721,7 +1746,10 @@
             }, 2000);
         }
 
-        window.addEventListener('load', preloadImages);
+        window.addEventListener('load', () => {
+            preloadImages();
+            window.scrollTo(0,0); // Ensure page loads at top
+        });
 
         // --- CAROUSEL UPDATE WITH SPINNER FALLBACK ---
         function updateCarousel() {
