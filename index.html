@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AZ Designs | Next-Gen AI Creative Studio for Fashion & Lifestyle</title>
-    <meta name="description" content="Culturally calibrated, studio-grade AI visuals for fashion, tech, and lifestyle brands. Scale content across global markets with built-in cultural QA.">
+    <title>AZ Designs | Next-Gen AI Creative Studio</title>
+    <meta name="description" content="Culturally calibrated, studio-grade AI visuals for fashion, tech, lifestyle, and professional services. Scale content across global markets.">
     
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="AZ Designs | Culturally Calibrated AI Visuals">
+    <meta property="og:description" content="Stop choosing between speed and cultural relevance. Generate studio-grade visuals that resonate globally.">
+    <meta property="og:image" content="https://azdesigns.ai/images/hero-after.png">
+    <meta property="og:url" content="https://azdesigns.ai">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +24,7 @@
     <style>
         :root {
             --color-bg-deep: #0A0E14;
-            --color-bg-card: rgba(21, 30, 45, 0.7);
+            --color-bg-card: rgba(21, 30, 45, 0.6);
             --color-bg-card-solid: #151E2D;
             --color-accent-teal: #00D4AA;
             --color-accent-teal-hover: #00b895;
@@ -29,7 +39,8 @@
             --font-mono: 'JetBrains Mono', monospace;
             --transition-fast: 0.2s ease;
             --transition-slow: 1s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+            --shadow-premium: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            --shadow-glow: 0 8px 32px 0 rgba(0, 212, 170, 0.15), inset 0 0 0 1px rgba(0, 212, 170, 0.2);
             --border-radius: 16px;
             --section-padding: clamp(60px, 8vw, 110px);
         }
@@ -52,7 +63,7 @@
         .btn-catalog:hover { background: linear-gradient(135deg, #FF6347, var(--color-accent-orange)); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 127, 80, 0.4); }
 
         /* Header */
-        header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 14, 20, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid var(--color-border); }
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10, 14, 20, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--color-border); }
         .header-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
         .brand-wrapper { display: flex; align-items: center; gap: 15px; text-decoration: none; }
         .brand-logo-img { height: 50px; width: auto; object-fit: contain; }
@@ -63,23 +74,23 @@
         .nav-item { font-weight: 500; cursor: pointer; font-size: 0.9rem; transition: color 0.2s; position: relative; }
         .nav-item:hover { color: var(--color-accent-teal); }
         
-        /* CARD GRID MEGA MENU */
+        /* CARD GRID MEGA MENU - 3 COLUMNS */
         .mega-menu { 
             position: absolute; 
             top: 100%; 
             left: 50%; 
             transform: translateX(-50%) translateY(10px); 
             width: 90vw; 
-            max-width: 900px; 
-            background: var(--color-bg-card-solid); 
+            max-width: 1000px; 
+            background: rgba(21, 30, 45, 0.98); 
             border: 1px solid var(--color-border); 
             border-radius: 16px; 
-            padding: 1.5rem; 
+            padding: 2rem; 
             display: grid; 
-            grid-template-columns: repeat(5, 1fr); 
-            gap: 1rem; 
-            box-shadow: var(--shadow-card); 
-            backdrop-filter: blur(20px); 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 2rem; 
+            box-shadow: var(--shadow-premium); 
+            backdrop-filter: blur(24px); 
             opacity: 0; 
             visibility: hidden; 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
@@ -87,15 +98,27 @@
         }
         .nav-item:hover .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
         
+        .mega-column { display: flex; flex-direction: column; gap: 1rem; }
+        .mega-col-title {
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
         .mega-card {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 1.25rem 0.5rem;
+            gap: 10px;
+            padding: 0.75rem;
             background: rgba(255,255,255,0.03);
             border: 1px solid var(--color-border);
-            border-radius: 12px;
+            border-radius: 8px;
             text-decoration: none;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -103,30 +126,27 @@
         .mega-card:hover {
             background: rgba(0, 212, 170, 0.1);
             border-color: var(--color-accent-teal);
-            transform: translateY(-4px);
+            transform: translateX(5px);
         }
         .mega-card svg {
-            width: 28px;
-            height: 28px;
+            width: 20px;
+            height: 20px;
             stroke: var(--color-text-secondary);
             stroke-width: 1.5;
             fill: none;
-            margin-bottom: 0.75rem;
             transition: stroke 0.3s ease;
         }
         .mega-card:hover svg { stroke: var(--color-accent-teal); }
         .mega-card-title {
             font-family: var(--font-heading);
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 500;
             color: var(--color-text-primary);
-            text-align: center;
-            line-height: 1.2;
         }
 
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
         .hamburger span { width: 24px; height: 2px; background: var(--color-text-primary); transition: var(--transition-fast); border-radius: 2px; }
-        .mobile-menu { position: fixed; top: 0; right: -100%; width: 80%; max-width: 320px; height: 100vh; background: var(--color-bg-card-solid); z-index: 1000; padding: 80px 2rem 2rem; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 40px rgba(0,0,0,0.7); backdrop-filter: blur(20px); }
+        .mobile-menu { position: fixed; top: 0; right: -100%; width: 80%; max-width: 320px; height: 100vh; background: rgba(21, 30, 45, 0.98); z-index: 1000; padding: 80px 2rem 2rem; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 40px rgba(0,0,0,0.7); backdrop-filter: blur(20px); }
         .mobile-menu.active { right: 0; }
         .mobile-menu a { display: block; padding: 1.2rem 0; font-size: 1.1rem; border-bottom: 1px solid var(--color-border); font-family: var(--font-heading); color: var(--color-text-primary); }
         .close-mobile { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.5rem; color: var(--color-text-secondary); }
@@ -156,8 +176,8 @@
             padding: 0; 
             position: relative; 
             overflow: hidden;
-            box-shadow: var(--shadow-card), 0 0 60px rgba(0,0,0,0.5);
-            height: 600px; /* Increased Height */
+            box-shadow: var(--shadow-premium);
+            height: 600px;
         }
         
         .comparison-container { 
@@ -170,7 +190,14 @@
             cursor: col-resize;
         }
         .comp-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .comp-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 1s ease-in-out; }
+        .comp-img img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            object-position: center center;
+            display: block; 
+            transition: opacity 1s ease-in-out; 
+        }
         .img-before { z-index: 1; }
         .img-after { z-index: 2; border-right: 2px solid var(--color-accent-teal); overflow: hidden; width: 50%; }
         
@@ -182,12 +209,14 @@
         .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: var(--color-bg-deep); border: 2px solid var(--color-accent-teal); border-radius: 50%; z-index: 10; cursor: ew-resize; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(0, 212, 170, 0.4); }
         .slider-handle::after { content: '↔'; color: var(--color-accent-teal); font-weight: bold; font-size: 1.2rem; }
 
-        /* FLOATING PILL BAR TABS */
+        /* FLOATING PILL BAR TABS - UPDATED TO 3 */
         .hero-tabs-container {
             display: flex;
             justify-content: center;
             margin-top: 1.5rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .hero-tabs-pill {
             background: rgba(21, 30, 45, 0.8);
@@ -203,13 +232,14 @@
             background: transparent;
             border: none;
             color: var(--color-text-secondary);
-            padding: 10px 24px;
+            padding: 10px 20px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-family: var(--font-heading);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
         .tab-btn:hover { color: var(--color-text-primary); }
         .tab-btn.active {
@@ -222,8 +252,22 @@
         .how-it-works h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .how-it-works p.subheadline { text-align: center; margin-bottom: 4rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto; }
         .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
-        .process-step { background: var(--color-bg-card); backdrop-filter: blur(12px); border-radius: var(--border-radius); padding: 2.5rem; border: 1px solid var(--color-border); transition: all 0.3s ease; position: relative; overflow: hidden; }
-        .process-step:hover { transform: translateY(-6px); border-color: var(--color-accent-teal); box-shadow: 0 12px 40px rgba(0, 212, 170, 0.15); }
+        .process-step { 
+            background: var(--color-bg-card); 
+            backdrop-filter: blur(16px); 
+            border-radius: var(--border-radius); 
+            padding: 2.5rem; 
+            border: 1px solid var(--color-border); 
+            transition: all 0.3s ease; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: var(--shadow-premium);
+        }
+        .process-step:hover { 
+            transform: translateY(-6px); 
+            border-color: var(--color-accent-teal); 
+            box-shadow: var(--shadow-glow); 
+        }
         .step-number { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 700; color: rgba(255,255,255,0.04); position: absolute; top: -10px; right: 20px; line-height: 1; pointer-events: none; }
         .process-step h3 { font-size: 1.35rem; color: var(--color-text-primary); margin-bottom: 1.5rem; font-weight: 600; letter-spacing: -0.01em; }
         .step-text { font-size: 0.95rem; line-height: 1.6; color: var(--color-text-secondary); font-weight: 300; }
@@ -238,9 +282,45 @@
         .nav-rail-container::-webkit-scrollbar-track { background: transparent; }
         .nav-rail-container::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 20px; }
         .nav-rail { display: flex; align-items: center; gap: 0.75rem; min-width: max-content; padding: 0 1rem; }
-        .rail-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--color-border); color: var(--color-text-secondary); padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-family: var(--font-heading); font-weight: 500; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
+        
+        /* Segmented Rail Styles */
+        .rail-header {
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 0 1rem 0 0.5rem;
+            padding-left: 0.5rem;
+            border-left: 2px solid var(--color-border);
+        }
+
+        .rail-btn { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid var(--color-border); 
+            color: var(--color-text-secondary); 
+            padding: 10px 20px; 
+            border-radius: 50px; 
+            font-size: 0.85rem; 
+            font-family: var(--font-heading); 
+            font-weight: 500; 
+            cursor: pointer; 
+            transition: all 0.2s ease; 
+            white-space: nowrap; 
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         .rail-btn:hover { background: rgba(255,255,255,0.1); color: var(--color-text-primary); }
-        .rail-btn.active { background: var(--color-accent-teal); color: var(--color-bg-deep); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.3); }
+        .rail-btn.active { background: var(--color-bg-card-solid); color: var(--color-text-primary); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.1); }
+        
+        /* Umbrella Dots */
+        .dot-indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .dot-fashion { background-color: var(--color-accent-teal); box-shadow: 0 0 5px var(--color-accent-teal); }
+        .dot-lifestyle { background-color: var(--color-accent-violet); box-shadow: 0 0 5px var(--color-accent-violet); }
+        .dot-enterprise { background-color: var(--color-accent-gold); box-shadow: 0 0 5px var(--color-accent-gold); }
+
         .rail-divider { width: 1px; height: 24px; background: var(--color-border); margin: 0 0.5rem; flex-shrink: 0; }
 
         /* Desktop Grid Layout for Services */
@@ -250,17 +330,18 @@
             align-items: stretch;
         }
 
-        /* Carousel with Spinner - FIXED WIDTH & HEIGHT */
+        /* Carousel with Premium Interface */
         .carousel-container { 
             position: relative; 
-            width: 480px; /* 4:5 Ratio at 600px Height */
-            height: 600px; /* Increased Height */
+            width: 480px;
+            height: 600px;
             border-radius: var(--border-radius); 
             overflow: hidden; 
             border: 1px solid var(--color-border); 
             background: #111; 
-            box-shadow: var(--shadow-card); 
+            box-shadow: var(--shadow-premium); 
             flex-shrink: 0;
+            touch-action: pan-y;
         }
         .carousel-slide { 
             width: 100%; 
@@ -269,6 +350,7 @@
             display: block; 
             opacity: 1;
             transition: opacity 1s ease-in-out; 
+            background-color: #111;
         }
         
         /* SPINNER STYLES */
@@ -296,19 +378,84 @@
             100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: transparent; color: rgba(255, 255, 255, 0.7); border: none; width: auto; height: auto; border-radius: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.3s ease; font-size: 2rem; padding: 10px; outline: none; }
-        .carousel-btn:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); transform: translateY(-50%) scale(1.1); }
+        /* PREMIUM GHOST ARROWS */
+        .carousel-btn { 
+            position: absolute; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            background: transparent; 
+            color: #fff; 
+            border: none; 
+            width: 48px; 
+            height: 48px; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 10; 
+            transition: all 0.3s ease; 
+            font-size: 1.5rem; 
+            outline: none; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .carousel-btn:hover { 
+            background: rgba(0,0,0,0.3);
+            transform: translateY(-50%) scale(1.1); 
+        }
         .carousel-prev { left: 15px; }
         .carousel-next { right: 15px; }
 
+        /* IMAGE COUNTER (Top Right) */
+        .image-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(10, 14, 20, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #fff;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* PAGINATION DOTS (Bottom Center) */
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+        }
+        .dot.active {
+            background: var(--color-accent-teal);
+            transform: scale(1.2);
+            box-shadow: 0 0 8px rgba(0, 212, 170, 0.4);
+        }
+
         .context-card { 
             background: var(--color-bg-card); 
-            backdrop-filter: blur(12px); 
+            backdrop-filter: blur(16px); 
             border: 1px solid var(--color-border); 
             border-radius: var(--border-radius); 
             padding: 2.5rem; 
-            height: 600px; /* Match Hero Height */
-            overflow-y: auto; /* Internal Scroll if needed */
+            height: 600px;
+            overflow-y: auto;
             transition: all 1s ease; 
             opacity: 1; 
             transform: translateY(0); 
@@ -316,7 +463,8 @@
             z-index: 5; 
             display: flex;
             flex-direction: column;
-            flex-grow: 1; /* Fill remaining space */
+            flex-grow: 1;
+            box-shadow: var(--shadow-premium);
         }
         /* Custom Scrollbar for Card */
         .context-card::-webkit-scrollbar { width: 6px; }
@@ -386,18 +534,41 @@
             margin-bottom: 4rem;
         }
 
-        .metric-badge { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 2.5rem; border-radius: var(--border-radius); text-align: center; transition: all var(--transition-fast); backdrop-filter: blur(12px); }
-        .metric-badge:hover { transform: translateY(-4px); border-color: var(--color-accent-teal); box-shadow: 0 12px 40px rgba(0, 212, 170, 0.15); }
+        .metric-badge { 
+            background: var(--color-bg-card); 
+            border: 1px solid var(--color-border); 
+            padding: 2.5rem; 
+            border-radius: var(--border-radius); 
+            text-align: center; 
+            transition: all var(--transition-fast); 
+            backdrop-filter: blur(16px); 
+            box-shadow: var(--shadow-premium);
+        }
+        .metric-badge:hover { 
+            transform: translateY(-4px); 
+            border-color: var(--color-accent-teal); 
+            box-shadow: var(--shadow-glow); 
+        }
         .metric-value { font-size: 3rem; font-family: var(--font-heading); font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.75rem; line-height: 1; letter-spacing: -0.02em; }
         .metric-label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-accent-teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; font-weight: 500; }
         .metric-desc { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 300; }
         
-        .case-study { background: var(--color-bg-card); backdrop-filter: blur(12px); padding: 3rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); position: relative; overflow: hidden; }
+        .case-study { 
+            background: var(--color-bg-card); 
+            backdrop-filter: blur(16px); 
+            padding: 3rem; 
+            border-radius: var(--border-radius); 
+            border: 1px solid var(--color-border); 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: var(--shadow-premium);
+        }
         .case-study::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--color-accent-teal); }
         .case-study h4 { margin-bottom: 1.5rem; color: var(--color-accent-teal); font-family: var(--font-heading); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; }
         .case-detail { margin-bottom: 1rem; font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.6; display: flex; flex-direction: column; }
         .case-stat { color: var(--color-text-primary); font-weight: 600; font-size: 1.05rem; margin-bottom: 0.25rem; }
         .case-context { font-size: 0.85rem; opacity: 0.8; font-weight: 300; }
+        .case-source { font-size: 0.7rem; color: var(--color-text-secondary); font-family: var(--font-mono); opacity: 0.6; margin-top: 0.5rem; display: block; }
 
         /* Pricing - REARRANGED LAYOUT */
         .pricing h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
@@ -425,6 +596,8 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-premium);
         }
         .scale-banner ul { list-style: none; display: flex; gap: 2rem; flex-wrap: wrap; }
         .scale-banner li { font-size: 0.9rem; color: var(--color-text-secondary); padding-left: 1.2rem; position: relative; }
@@ -432,9 +605,28 @@
 
         /* Bottom Row: Monthly Plans */
         .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
-        .plan-card { background: var(--color-bg-card); backdrop-filter: blur(12px); padding: 2.5rem 2rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); display: flex; flex-direction: column; transition: all var(--transition-smooth); }
-        .plan-card:hover { border-color: rgba(255,255,255,0.2); }
-        .plan-card.popular { border: 1px solid var(--color-accent-violet); box-shadow: 0 8px 32px rgba(108,92,231,0.15); position: relative; transform: scale(1.02); z-index: 10; }
+        .plan-card { 
+            background: var(--color-bg-card); 
+            backdrop-filter: blur(16px); 
+            padding: 2.5rem 2rem; 
+            border-radius: var(--border-radius); 
+            border: 1px solid var(--color-border); 
+            display: flex; 
+            flex-direction: column; 
+            transition: all var(--transition-smooth); 
+            box-shadow: var(--shadow-premium);
+        }
+        .plan-card:hover { 
+            border-color: rgba(255,255,255,0.2); 
+            transform: translateY(-4px);
+        }
+        .plan-card.popular { 
+            border: 1px solid var(--color-accent-violet); 
+            box-shadow: 0 8px 32px rgba(108,92,231,0.15), inset 0 0 0 1px rgba(108,92,231,0.2); 
+            position: relative; 
+            transform: scale(1.02); 
+            z-index: 10; 
+        }
         .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--color-accent-violet); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; font-family: var(--font-heading); }
         .plan-name { font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--color-text-primary); font-weight: 500; }
         .plan-price { font-size: 2.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--color-text-primary); font-family: var(--font-heading); letter-spacing: -0.02em; }
@@ -443,7 +635,16 @@
         .plan-features li { padding: 0.75rem 0; font-size: 0.9rem; color: var(--color-text-secondary); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; gap: 0.5rem; }
         .plan-features li:last-child { border-bottom: none; }
         
-        .includes-list { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 2rem; border-radius: var(--border-radius); max-width: 900px; margin: 0 auto; }
+        .includes-list { 
+            background: var(--color-bg-card); 
+            border: 1px solid var(--color-border); 
+            padding: 2rem; 
+            border-radius: var(--border-radius); 
+            max-width: 900px; 
+            margin: 0 auto; 
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-premium);
+        }
         .includes-list h4 { margin-bottom: 1rem; font-size: 1.1rem; text-align: center; }
         .inc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
         .inc-item { display: flex; align-items: center; gap: 0.75rem; color: var(--color-text-secondary); font-size: 0.9rem; }
@@ -452,17 +653,50 @@
         /* Quality & Trust */
         .quality h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .trust-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin: 4rem 0; }
-        .pillar { background: var(--color-bg-card); backdrop-filter: blur(12px); padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); transition: all var(--transition-fast); text-align: left; }
-        .pillar:hover { border-color: var(--color-accent-teal); transform: translateY(-4px); }
+        .pillar { 
+            background: var(--color-bg-card); 
+            backdrop-filter: blur(16px); 
+            padding: 2rem; 
+            border-radius: var(--border-radius); 
+            border: 1px solid var(--color-border); 
+            transition: all var(--transition-fast); 
+            text-align: left; 
+            box-shadow: var(--shadow-premium);
+        }
+        .pillar:hover { 
+            border-color: var(--color-accent-teal); 
+            transform: translateY(-4px); 
+            box-shadow: var(--shadow-glow);
+        }
         .pillar-title { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--color-text-primary); font-weight: 600; }
         .security-badges { text-align: center; color: var(--color-text-secondary); font-size: 0.8rem; gap: 1rem; display: flex; justify-content: center; flex-wrap: wrap; font-family: var(--font-mono); opacity: 0.8; }
         .security-badges span { display: inline-flex; align-items: center; gap: 0.5rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 4px; }
 
         /* Contact */
-        .contact { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 4rem 2rem; margin-top: 2rem; text-align: center; }
+        .contact { 
+            background: var(--color-bg-card); 
+            border: 1px solid var(--color-border); 
+            border-radius: var(--border-radius); 
+            padding: 4rem 2rem; 
+            margin-top: 2rem; 
+            text-align: center; 
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-premium);
+        }
         .contact h2 { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 1rem; transition: color 0.3s; }
         .contact p.subheadline { margin-bottom: 3rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .concierge-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 3rem 2rem; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
+        .concierge-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid var(--color-border); 
+            border-radius: var(--border-radius); 
+            padding: 3rem 2rem; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1.5rem; 
+        }
         .concierge-option { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 0.3s ease; text-decoration: none; color: var(--color-text-primary); border: 1px solid transparent; }
         .concierge-option:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--color-border); transform: translateY(-2px); }
         .concierge-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: var(--color-accent-teal); }
@@ -474,9 +708,31 @@
         .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--color-bg-card-solid); border: 1px solid var(--color-accent-teal); color: var(--color-text-primary); padding: 12px 24px; border-radius: 50px; font-family: var(--font-heading); font-weight: 500; z-index: 2000; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 20px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 8px; }
         .toast.show { transform: translateX(-50%) translateY(0); }
 
-        /* Footer */
-        footer { background: #05080C; padding: 3rem 0 2rem; margin-top: 4rem; border-top: 1px solid var(--color-border); position: relative; z-index: 2; }
-        .footer-inner { text-align: center; }
+        /* Footer WITH TECH PATTERN */
+        footer { 
+            background: #05080C; 
+            padding: 3rem 0 2rem; 
+            margin-top: 4rem; 
+            border-top: 1px solid var(--color-border); 
+            position: relative; 
+            z-index: 2; 
+            overflow: hidden;
+        }
+        /* Subtle Neural Network Pattern */
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2300D4AA' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .footer-inner { text-align: center; position: relative; z-index: 2; }
         .footer-brand-wrapper { display: inline-flex; align-items: center; gap: 15px; margin-bottom: 1.5rem; }
         .footer-logo-img { height: 40px; width: auto; object-fit: contain; }
         .footer-brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; text-align: left; }
@@ -509,6 +765,11 @@
             .hero h1 { margin-bottom: 1rem; }
             .hero p.subheadline { margin-bottom: 1.5rem; font-size: 1rem; }
             .trust-bar { margin-bottom: 1.5rem; }
+            
+            /* MOBILE HERO ADJUSTMENT */
+            .hero-visual { height: auto; aspect-ratio: 4 / 5; }
+            .comp-img img { object-position: center top; }
+
             .how-it-works h2 { margin-bottom: 0.5rem; }
             .how-it-works p.subheadline { margin-bottom: 2rem; font-size: 1rem; }
             .process-steps { gap: 1rem; margin-bottom: 2rem; }
@@ -525,7 +786,11 @@
             .nav-rail-container { margin-bottom: 1.5rem; padding-bottom: 1rem; }
             .rail-btn { padding: 8px 16px; font-size: 0.8rem; }
             
-            .carousel-btn { font-size: 1.5rem; padding: 5px; }
+            /* Mobile Carousel Buttons */
+            .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+            .carousel-prev { left: 10px; }
+            .carousel-next { right: 10px; }
+
             .results h2 { margin-bottom: 0.5rem; }
             .results p.subheadline { margin-bottom: 1.5rem; }
             
@@ -557,7 +822,7 @@
             .brand-logo-img { height: 40px; }
             .slider-labels-row { top: 10px; padding: 0 10px; }
             .slider-label { font-size: 0.65rem; padding: 4px 8px; }
-            .hero-tabs-pill { padding: 4px; }
+            .hero-tabs-pill { padding: 4px; flex-wrap: wrap; justify-content: center; }
             .tab-btn { padding: 8px 16px; font-size: 0.85rem; }
             
             /* Mobile Mega Menu Override */
@@ -585,52 +850,83 @@
             
             <nav class="nav-links">
                 <div class="nav-item">
-                    Solutions ▾
-                    <!-- CARD GRID MEGA MENU -->
+                    Services ▾
+                    <!-- CARD GRID MEGA MENU - 3 COLUMNS -->
                     <div class="mega-menu">
-                        <!-- Row 1 -->
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('western')">
-                            <svg viewBox="0 0 24 24"><path d="M20.38 3.4a1.6 1.6 0 0 0-1.6-1.6H5.22a1.6 1.6 0 0 0-1.6 1.6v1.6h16.76V3.4zM3.62 7h16.76v13.6a1.6 1.6 0 0 1-1.6 1.6H5.22a1.6 1.6 0 0 1-1.6-1.6V7z"/></svg>
-                            <span class="mega-card-title">Western Casual</span>
-                        </a>
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('modest')">
-                            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg>
-                            <span class="mega-card-title">Modest Fashion</span>
-                        </a>
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('ethnic')">
-                            <svg viewBox="0 0 24 24"><path d="M12 2l-2 4h4l-2-4z"/><path d="M12 6v16"/><path d="M8 10h8"/><path d="M7 22h10"/></svg>
-                            <span class="mega-card-title">Ethnic Traditional</span>
-                        </a>
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('intimate')">
-                            <svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg>
-                            <span class="mega-card-title">Intimate Wear</span>
-                        </a>
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('kids')">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg>
-                            <span class="mega-card-title">Kids & Teen</span>
-                        </a>
+                        <!-- Column 1: Fashion -->
+                        <div class="mega-column">
+                            <div class="mega-col-title">Fashion & Apparel</div>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('western')">
+                                <svg viewBox="0 0 24 24"><path d="M20.38 3.4a1.6 1.6 0 0 0-1.6-1.6H5.22a1.6 1.6 0 0 0-1.6 1.6v1.6h16.76V3.4zM3.62 7h16.76v13.6a1.6 1.6 0 0 1-1.6 1.6H5.22a1.6 1.6 0 0 1-1.6-1.6V7z"/></svg>
+                                <span class="mega-card-title">Western Casual</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('modest')">
+                                <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg>
+                                <span class="mega-card-title">Modest Fashion</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('ethnic')">
+                                <svg viewBox="0 0 24 24"><path d="M12 2l-2 4h4l-2-4z"/><path d="M12 6v16"/><path d="M8 10h8"/><path d="M7 22h10"/></svg>
+                                <span class="mega-card-title">Ethnic Traditional</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('intimate')">
+                                <svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg>
+                                <span class="mega-card-title">Intimate Wear</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('kids')">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg>
+                                <span class="mega-card-title">Kids & Teen</span>
+                            </a>
+                        </div>
 
-                        <!-- Row 2 -->
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('luxury')">
-                            <svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/></svg>
-                            <span class="mega-card-title">Luxury Accessories</span>
-                        </a>
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('beauty')">
-                            <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-                            <span class="mega-card-title">Beauty & Cosmetics</span>
-                        </a>
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('tech')">
-                            <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
-                            <span class="mega-card-title">Global Tech</span>
-                        </a>
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('b2b')">
-                            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                            <span class="mega-card-title">B2B / Agencies</span>
-                        </a>
-                        <a href="#services" class="mega-card" onclick="setActiveCategory('custom')">
-                            <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-                            <span class="mega-card-title">Custom Solutions</span>
-                        </a>
+                        <!-- Column 2: Lifestyle -->
+                        <div class="mega-column">
+                            <div class="mega-col-title">Lifestyle & Retail</div>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('luxury')">
+                                <svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/></svg>
+                                <span class="mega-card-title">Luxury Accessories</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('beauty')">
+                                <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                                <span class="mega-card-title">Beauty & Cosmetics</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('tech')">
+                                <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                                <span class="mega-card-title">Global Tech</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('travel')">
+                                <svg viewBox="0 0 24 24"><path d="M2 12h20"/><path d="M13 2l9 10-9 10"/><path d="M11 2L2 12l9 10"/></svg>
+                                <span class="mega-card-title">Travel & Hospitality</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('fmcg')">
+                                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                                <span class="mega-card-title">FMCG & Retail</span>
+                            </a>
+                        </div>
+
+                        <!-- Column 3: Enterprise -->
+                        <div class="mega-column">
+                            <div class="mega-col-title">Professional Services</div>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('health')">
+                                <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                                <span class="mega-card-title">Health & Wellness</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('realestate')">
+                                <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg>
+                                <span class="mega-card-title">Real Estate</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('edtech')">
+                                <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                <span class="mega-card-title">Education & EdTech</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('b2b')">
+                                <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                                <span class="mega-card-title">B2B / Agencies</span>
+                            </a>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('custom')">
+                                <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                                <span class="mega-card-title">Custom Solutions</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
@@ -640,40 +936,40 @@
                 <a href="#about" class="nav-item">About</a>
                 <a href="#contact" class="nav-item">Contact</a>
             </nav>
-            <button class="btn btn-primary desktop-cta">Start Free Audit →</button>
+            <button class="btn btn-primary desktop-cta">Book Free Strategy Audit →</button>
             <div class="hamburger"><span></span><span></span><span></span></div>
         </div>
     </header>
 
     <div class="mobile-menu">
         <div class="close-mobile" onclick="document.querySelector('.mobile-menu').classList.remove('active')">✕</div>
-        <a href="#services">Solutions</a>
+        <a href="#services">Services</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#results">Results</a>
         <a href="#pricing">Pricing</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <div style="margin-top: 2rem;"><button class="btn btn-primary" style="width: 100%; border: none;" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Book Audit</button></div>
+        <div style="margin-top: 2rem;"><button class="btn btn-primary" style="width: 100%; border: none;" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Book Strategy Audit</button></div>
     </div>
 
-    <button class="sticky-mobile-cta" id="stickyMobileCta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Book Audit</button>
+    <button class="sticky-mobile-cta" id="stickyMobileCta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Book Strategy Audit</button>
     <div class="toast" id="toast"><span style="color: var(--color-accent-teal);">✓</span> Handle Copied to Clipboard!</div>
 
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <div class="badge">Trusted by 17+ Brands • 4 Regions • 90.6% Reach to New Audiences</div>
-            <h1>Culturally Calibrated.<br>Studio-Grade.<br>Built to Convert.</h1>
-            <p class="subheadline">Stop choosing between speed and cultural relevance. AZ Designs generates studio-grade fashion visuals with built-in cultural intelligence—so your content resonates in Riyadh, Paris, and Tokyo without extra shoots.</p>
+            <div class="badge">Trusted by 17+ Brands • 4+ Regions • 90.6% Reach to New Audiences</div>
+            <h1>Culturally Calibrated.<br>Studio-Grade AI.<br>Built to Convert.</h1>
+            <p class="subheadline">Don’t choose between speed and cultural relevance. We generate studio-grade, culturally-intelligent visuals for any industry—helping your brand resonate in Riyadh, Paris, and Tokyo without extra shoots.</p>
             <div class="hero-ctas">
-                <a href="#how-it-works" class="btn btn-primary">See How It Works →</a>
+                <a href="#how-it-works" class="btn btn-primary">View Our Process →</a>
             </div>
-            <div class="trust-bar">✓ 3x Faster Than Traditional Shoots • ✓ Studio-Grade QA • ✓ GDPR-Compliant</div>
+            <div class="trust-bar">✓ 3x Faster Than Traditional Shoots • ✓ Studio-Grade QA • ✓ Data Privacy Focused</div>
             
             <div class="hero-visual">
                 <div class="slider-labels-row">
                     <div class="slider-label label-right">AZ Calibrated</div>
-                    <div class="slider-label label-left">Generic</div>
+                    <div class="slider-label label-left">Standard AI</div>
                 </div>
                 <div class="comparison-container" id="comparisonSlider">
                     <div class="comp-img img-before">
@@ -686,11 +982,12 @@
                 </div>
             </div>
 
-            <!-- FLOATING PILL BAR TABS BELOW HERO -->
+            <!-- FLOATING PILL BAR TABS - 3 UMBRELLAS -->
             <div class="hero-tabs-container">
                 <div class="hero-tabs-pill">
-                    <button class="tab-btn active" onclick="switchHeroTab('fashion')">Fashion</button>
-                    <button class="tab-btn" onclick="switchHeroTab('lifestyle')">Lifestyle</button>
+                    <button class="tab-btn active" onclick="switchHeroTab('fashion', 0)">Fashion & Apparel</button>
+                    <button class="tab-btn" onclick="switchHeroTab('lifestyle', 5)">Lifestyle & Retail</button>
+                    <button class="tab-btn" onclick="switchHeroTab('enterprise', 10)">Professional Services</button>
                 </div>
             </div>
         </div>
@@ -703,9 +1000,9 @@
             <p class="subheadline">You bring the brand. We bring the cultural intelligence, AI workflow, and studio execution. The result: content that doesn't just look good—it performs.</p>
             <div class="process-steps">
                 <div class="process-step"><div class="step-number">01</div><h3>Strategy Session</h3><p class="step-text">Brand audit, target regions, and KPI alignment.</p></div>
-                <div class="process-step"><div class="step-number">02</div><h3>Culture Map</h3><p class="step-text">Regional advisors map modesty norms, visual codes, and trending aesthetics per market.</p></div>
+                <div class="process-step"><div class="step-number">02</div><h3>Regional Culture Map</h3><p class="step-text">Our regional experts map cultural norms, modesty standards, and visual codes per market.</p></div>
                 <div class="process-step"><div class="step-number">03</div><h3>AI + Human Production</h3><p class="step-text">AI engine generates studio-grade visuals; fashion stylists & cultural QA refine every frame.</p></div>
-                <div class="process-step"><div class="step-number">04</div><h3>Performance Delivery</h3><p class="step-text">Platform-optimized assets for Reels, ads, and e-comm, backed by data-driven insights.</p></div>
+                <div class="process-step"><div class="step-number">04</div><h3>Performance Delivery</h3><p class="step-text">Platform-optimized assets for Reels (AI-animated + human-edited), ads, and e-comm, backed by data-driven insights.</p></div>
             </div>
             <div class="trust-note">✓ Every asset reviewed by human cultural advisors • ✓ Optimized for viral reach • ✓ 92% first-pass approval</div>
         </div>
@@ -714,8 +1011,8 @@
     <!-- Dynamic Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2>Visual Solutions for Every Fashion and Lifestyle Category</h2>
-            <p class="subheadline">Studio-grade execution. Cultural intelligence baked in. Select your focus to see how we solve your specific challenges.</p>
+            <h2>AI Visual Services for Every Brand</h2>
+            <p class="subheadline">Studio-grade execution. Regional cultural intelligence baked in. Select your category to see how we solve your specific market challenges.</p>
 
             <div class="nav-rail-container">
                 <div class="nav-rail" id="navRail"></div>
@@ -726,6 +1023,10 @@
                 <!-- Left: Image Deck (Fixed 480px) -->
                 <div class="carousel-container" id="carouselContainer">
                     <div class="carousel-loader" id="carouselLoader"></div>
+                    
+                    <!-- NEW INTERFACE ELEMENTS -->
+                    <div class="image-counter" id="imageCounter">1 / 3</div>
+                    <div class="carousel-dots" id="carouselDots"></div>
                     <button class="carousel-btn carousel-prev" id="prevBtn">&#10094;</button>
                     <img src="" alt="Service Image" class="carousel-slide" id="carouselImage">
                     <button class="carousel-btn carousel-next" id="nextBtn">&#10095;</button>
@@ -740,12 +1041,12 @@
     <!-- Results -->
     <section class="results" id="results">
         <div class="container">
-            <h2>Real Brands. Real Growth.</h2>
+            <h2>Proven Results. Real Growth.</h2>
             <p class="subheadline">See how cultural intelligence and studio-grade realism drives discovery, engagement, and conversion.</p>
             
             <div class="results-grid-container">
-                <div class="metric-badge"><div class="metric-value"><span class="counter" data-target="1.34">0</span>M</div><div class="metric-label">Average Views Per Client</div><div class="metric-desc">In 60-90 day period</div></div>
-                <div class="metric-badge"><div class="metric-value"><span class="counter" data-target="90.6">0</span>%</div><div class="metric-label">Non-Follower Reach</div><div class="metric-desc">Pure organic discovery</div></div>
+                <div class="metric-badge"><div class="metric-value"><span class="counter" data-target="1.34">0</span>M</div><div class="metric-label">Avg. Monthly Views Per Client</div><div class="metric-desc">In 60-90 day period</div></div>
+                <div class="metric-badge"><div class="metric-value"><span class="counter" data-target="90.6">0</span>%</div><div class="metric-label">% New Audience Reach</div><div class="metric-desc">Pure organic discovery</div></div>
             </div>
             
             <div class="results-grid-container">
@@ -765,6 +1066,7 @@
                         <span class="case-stat">2,645 New Followers</span>
                         <span class="case-context">From a single top-performing Reel</span>
                     </div>
+                    <span class="case-source">Source: Instagram Insights, Q3 2025 (Client Name Withheld Under NDA)</span>
                 </div>
 
                 <div class="case-study">
@@ -783,6 +1085,7 @@
                         <span class="case-stat">93.3% Non-Follower Views</span>
                         <span class="case-context">Massive new audience acquisition</span>
                     </div>
+                    <span class="case-source">Source: Instagram Insights, Q4 2025 (Client Name Withheld Under NDA)</span>
                 </div>
             </div>
         </div>
@@ -802,7 +1105,7 @@
                         <li>Free Cultural Strategy Call</li>
                         <li>1 Custom Demo Asset</li>
                     </ul>
-                    <button class="btn btn-primary" style="width:100%" onclick="openDemoForm('audit', 'Start Your Free Cultural Audit')">Book Free Audit →</button>
+                    <button class="btn btn-primary" style="width:100%" onclick="openDemoForm('audit', 'Start Your Free Cultural Audit')">Request Free Audit →</button>
                 </div>
                 <div class="price-card-small" style="border-color: var(--color-accent-orange);">
                     <h3 style="color: var(--color-accent-orange);">🟠 Catalog Pro Update ($2,500)</h3>
@@ -812,7 +1115,7 @@
                         <li>Background Scene & Model Calibration</li>
                         <li>Consistent Model Locking Across SKUs</li>
                     </ul>
-                    <button class="btn btn-catalog" style="width:100%" onclick="selectPlan('Catalog Pro')">Start Catalog Pro</button>
+                    <button class="btn btn-catalog" style="width:100%" onclick="selectPlan('Catalog Pro')">Inquire About Catalog Pro</button>
                 </div>
             </div>
 
@@ -821,7 +1124,7 @@
                 <div class="scale-banner">
                     <div class="path-title" style="margin:0; border:none;">🚀 Ready To Scale? (Monthly)</div>
                     <ul>
-                        <li>Cancel anytime after min. term</li>
+                        <li>3-Month Initial Commitment, then Month-to-Month</li>
                         <li>Dedicated Account Manager</li>
                         <li>Priority QA Queue</li>
                     </ul>
@@ -832,51 +1135,51 @@
             <!-- BOTTOM ROW: MONTHLY PLANS -->
             <div id="pricing-plans" class="plans-grid">
                 <div class="plan-card">
-                    <div class="plan-name">🟢 Launch Pad</div>
+                    <div class="plan-name">Starter</div>
                     <div class="plan-price">$1,500<span>/mo</span></div>
-                    <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; font-style: italic;">Best for: Solopreneurs, Early-Stage D2C</p>
+                    <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; font-style: italic;">Ideal for: Startups & Solo Brands</p>
                     <ul class="plan-features">
                         <li>8 Studio-Grade Images AND 4 Short-Form Reels</li>
-                        <li>Standard Cultural QA (Top 3 Markets)</li>
+                        <li>Standard Cultural QA (Top 3 Regions)</li>
                         <li>Email Support (48h Turnaround)</li>
                     </ul>
-                    <button class="btn btn-secondary" style="width:100%" onclick="selectPlan('Launch Pad')">Start Launch Pad</button>
+                    <button class="btn btn-secondary" style="width:100%" onclick="selectPlan('Starter')">Inquire About Starter</button>
                 </div>
                 <div class="plan-card popular">
                     <div class="popular-badge">★ MOST POPULAR</div>
-                    <div class="plan-name">🔵 Scale Engine</div>
+                    <div class="plan-name">Growth</div>
                     <div class="plan-price">$3,500<span>/mo</span></div>
-                    <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; font-style: italic;">Best for: Scaling D2C Brands</p>
+                    <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; font-style: italic;">Ideal for: Growing D2C Brands</p>
                     <ul class="plan-features">
                         <li>20 Static Images + 8 Short-Form Reels</li>
-                        <li>Advanced Cultural QA (Global Compliance)</li>
+                        <li>Advanced Cultural QA (All Supported Regions)</li>
                         <li>1 Regional Adaptation Pack / Quarter</li>
                         <li>Priority Support (24h Turnaround)</li>
                     </ul>
-                    <button class="btn btn-primary" style="width:100%" onclick="selectPlan('Scale Engine')">Start Scale Engine</button>
+                    <button class="btn btn-primary" style="width:100%" onclick="selectPlan('Growth')">Discuss Growth Plan</button>
                 </div>
                 <div class="plan-card">
-                    <div class="plan-name">🟣 Global Dominance</div>
+                    <div class="plan-name">Enterprise</div>
                     <div class="plan-price">$7,500<span>/mo</span></div>
-                    <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; font-style: italic;">Best for: Agencies & Enterprise</p>
+                    <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; font-style: italic;">Ideal for: Agencies & Large Enterprises</p>
                     <ul class="plan-features">
-                        <li>Unlimited Assets (Fair Use)</li>
+                        <li>Unlimited Asset Generation (Standard Commercial License)</li>
                         <li>Bespoke Cultural QA & Custom Rule Sets</li>
                         <li>2 Regional Adaptation Packs / Quarter</li>
                         <li>24/7 Priority Support + Quarterly Strategy Calls</li>
                     </ul>
-                    <button class="btn btn-secondary" style="width:100%" onclick="selectPlan('Global Dominance')">Contact Sales</button>
+                    <button class="btn btn-secondary" style="width:100%" onclick="selectPlan('Enterprise')">Inquire About Enterprise</button>
                 </div>
             </div>
 
             <div class="includes-list">
                 <h4>✅ All Monthly Plans Include:</h4>
                 <div class="inc-grid">
-                    <div class="inc-item"><span class="inc-check">✓</span> Flexible Terms (Cancel after min. term)</div>
+                    <div class="inc-item"><span class="inc-check">✓</span> 3-Month Initial Commitment, then Flexible Monthly</div>
                     <div class="inc-item"><span class="inc-check">✓</span> Transparent Reporting & Analytics</div>
-                    <div class="inc-item"><span class="inc-check">✓</span> Built-In 50+ Region Cultural Check</div>
+                    <div class="inc-item"><span class="inc-check">✓</span> Built-In Cultural Check for 50+ Regions</div>
                     <div class="inc-item"><span class="inc-check">✓</span> Human-in-the-Loop QA Safety</div>
-                    <div class="inc-item"><span class="inc-check">✓</span> GDPR Compliant Data Security</div>
+                    <div class="inc-item"><span class="inc-check">✓</span> Data Privacy Focused Security</div>
                 </div>
             </div>
         </div>
@@ -892,8 +1195,8 @@
                     <p style="font-size:0.9rem;">Fabric physics and skin tone matching verified by professional fashion stylists.</p>
                 </div>
                 <div class="pillar">
-                    <div class="pillar-title">Cultural Intelligence</div>
-                    <p style="font-size:0.9rem;">50+ regional advisors plus an auto-compliance engine for every asset.</p>
+                    <div class="pillar-title">Regional Cultural Intelligence</div>
+                    <p style="font-size:0.9rem;">50+ regional advisors ensure cultural compliance across every major market.</p>
                 </div>
                 <div class="pillar">
                     <div class="pillar-title">Speed and Scale</div>
@@ -904,34 +1207,24 @@
                     <p style="font-size:0.9rem;">Human-in-the-loop QA ensures zero "uncanny valley" risk.</p>
                 </div>
             </div>
-            <div class="security-badges"><span>🔒 GDPR Compliant</span><span>✦ SOC 2 Type II</span><span>🌍 50+ Cultural Regions</span></div>
+            <div class="security-badges"><span>🔒 GDPR Compliant</span><span>✦ Secure Encrypted Transfer</span><span>🌍 50+ Regions Covered</span></div>
         </div>
     </section>
 
     <!-- Contact -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2>Create Studio-Grade Realistic Content that is Culturally Calibrated with Precision to Sell.</h2>
-            <p class="subheadline">Skip the forms. Let's talk directly about your brand's potential.</p>
+            <h2>Create Culturally Calibrated, Studio-Grade Content That Sells.</h2>
+            <p class="subheadline">Skip the long forms. Let’s discuss your brand’s potential.</p>
             
             <div class="concierge-card">
-                <a href="https://ig.me/m/azdesigns.ai?text=Hi!%20I'm%20interested%20in%20a%20Free%20Cultural%20AI%20Audit." target="_blank" class="concierge-option">
+                <a href="https://ig.me/m/azdesigns.ai?text=Hi!%20I'd%20like%20to%20request%20my%20Free%20Strategy%20Audit." target="_blank" class="concierge-option">
                     <div class="concierge-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </div>
                     <div class="concierge-text">
                         <span class="concierge-title">DM us on Instagram</span>
-                        <span class="concierge-desc">@azdesigns.ai • Fastest Response</span>
-                    </div>
-                </a>
-
-                <a href="mailto:azdesigns.ai@gmail.com?subject=Inquiry:%20Free%20Cultural%20AI%20Audit&body=Hi%20AZ%20Designs,%0A%0AI'm%20interested%20in%20learning%20more%20about%20your%20AI%20creative%20services%20and%20would%20like%20to%20schedule%20my%20free%20audit.%0A%0ABest%20regards," class="concierge-option">
-                    <div class="concierge-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    </div>
-                    <div class="concierge-text">
-                        <span class="concierge-title">Email Us Directly</span>
-                        <span class="concierge-desc">azdesigns.ai@gmail.com • Detailed Briefs</span>
+                        <span class="concierge-desc">@azdesigns.ai • Mention your industry in DM</span>
                     </div>
                 </a>
             </div>
@@ -948,7 +1241,7 @@
                     <span class="footer-brand-tagline">Next-Gen AI Creative Studio</span>
                 </div>
             </div>
-            <div class="footer-bottom">© 2026 AZ Designs • 🔒 GDPR Compliant • ✦ Studio-Grade QA • 🌍 Culturally Calibrated</div>
+            <div class="footer-bottom">© 2026 AZ Designs. All Rights Reserved.</div>
         </div>
     </footer>
 
@@ -1023,9 +1316,9 @@
             tickerTrack.appendChild(div);
         });
 
-        // --- RE-TRIGGERABLE COUNTER LOGIC ---
+        // --- FIXED COUNTER LOGIC ---
         const counters = document.querySelectorAll('.counter');
-        const resultsSection = document.querySelector('.metrics-grid');
+        const resultsSection = document.querySelector('.results'); 
         let counterTimeout;
 
         const counterObserver = new IntersectionObserver((entries) => {
@@ -1040,9 +1333,11 @@
                         const startTime = performance.now();
                         
                         function update(currentTime) {
-                            const progress = Math.min((currentTime - startTime) / duration, 1);
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
                             const easeOut = 1 - Math.pow(1 - progress, 3);
-                            counter.innerText = (target * easeOut).toFixed(1);
+                            const currentVal = target * easeOut;
+                            counter.innerText = currentVal.toFixed(1);
                             
                             if (progress < 1) requestAnimationFrame(update);
                             else counter.innerText = target.toFixed(1);
@@ -1055,30 +1350,39 @@
                     }, 500);
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
 
         if(resultsSection) counterObserver.observe(resultsSection);
 
-        // --- HERO TAB SWITCHING LOGIC (1s Transition) ---
-        function switchHeroTab(category) {
+        // --- HERO TAB SWITCHING LOGIC (Updated for 3 Umbrellas) ---
+        function switchHeroTab(umbrella, railIndex) {
             const beforeImg = document.getElementById('heroBeforeImg');
             const afterImg = document.getElementById('heroAfterImg');
             const tabs = document.querySelectorAll('.tab-btn');
             
             tabs.forEach(tab => tab.classList.remove('active'));
-            if(category === 'fashion') tabs[0].classList.add('active');
-            else tabs[1].classList.add('active');
+            // Find the button that was clicked based on text content or index logic
+            if(umbrella === 'fashion') tabs[0].classList.add('active');
+            else if(umbrella === 'lifestyle') tabs[1].classList.add('active');
+            else tabs[2].classList.add('active');
 
             beforeImg.style.opacity = '0';
             afterImg.style.opacity = '0';
 
             setTimeout(() => {
-                if (category === 'fashion') {
+                // In a real scenario, you would swap these images based on the umbrella
+                // For now, we keep the default fashion images or swap if you have files
+                if (umbrella === 'fashion') {
                     beforeImg.src = 'images/hero-before.png';
                     afterImg.src = 'images/hero-after.png';
-                } else {
-                    beforeImg.src = 'images/lifestyle-hero-before.png';
+                } else if (umbrella === 'lifestyle') {
+                    // Placeholder for lifestyle images
+                    beforeImg.src = 'images/lifestyle-hero-before.png'; 
                     afterImg.src = 'images/lifestyle-hero-after.png';
+                } else {
+                    // Placeholder for enterprise images
+                    beforeImg.src = 'images/enterprise-hero-before.png';
+                    afterImg.src = 'images/enterprise-hero-after.png';
                 }
                 
                 beforeImg.style.opacity = '1';
@@ -1086,13 +1390,22 @@
                 
                 afterImage.style.width = '50%';
                 sliderHandle.style.left = '50%';
+
+                // Scroll Nav Rail to the first item of this umbrella
+                const railButtons = document.querySelectorAll('.rail-btn');
+                if(railButtons[railIndex]) {
+                    railButtons[railIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    // Optionally activate the first item of that group
+                    // setActiveCategory(servicesData[railIndex].id); 
+                }
             }, 1000);
         }
 
-        // --- SERVICES LOGIC (CAROUSEL WITH PRELOADER & SPINNER) ---
+        // --- SERVICES LOGIC (CAROUSEL WITH PRELOADER, SPINNER & SWIPE) ---
         const servicesData = [
+            // FASHION & APPAREL (Indices 0-4)
             { 
-                id: 'western', title: 'Western Casual', sub: 'Denim • Streetwear • Activewear • Loungewear', 
+                id: 'western', title: 'Western Casual', sub: 'Denim • Streetwear • Activewear • Loungewear', umbrella: 'fashion',
                 challenge: [
                     { t: 'Trend Velocity', d: 'Fast fashion moves too quickly for traditional shoots.' },
                     { t: 'Model Diversity', d: 'Sourcing diverse global talent is costly and slow.' },
@@ -1100,27 +1413,27 @@
                 ],
                 solution: [
                     { t: 'Infinite Variants', d: 'Generate 100+ localized versions from one base image.' },
-                    { t: '50+ Region Ruleset', d: 'Auto-adjusts demographics for age, ethnicity, and size.' },
+                    { t: '50+ Regional Cultural Rulesets', d: 'Auto-adjusts demographics for age, ethnicity, and size.' },
                     { t: 'Fabric & Skin QA', d: 'Proprietary refinement for realistic denim and cotton.' }
                 ],
-                badgeType: 'medium', formHeadline: 'Get a Free Casual Wear Demo' 
+                badgeType: 'medium', formHeadline: 'Get Your Custom Sample' 
             },
             { 
-                id: 'modest', title: 'Modest Fashion', sub: 'Abayas • Hijabs • Kaftans • Tunics', 
+                id: 'modest', title: 'Modest Fashion', sub: 'Abayas • Hijabs • Kaftans • Tunics', umbrella: 'fashion',
                 challenge: [
                     { t: 'Cultural Risk', d: 'Fear of offending locals with incorrect styling or posing.' },
                     { t: 'Production Delays', d: 'High costs and logistics of shooting in multiple countries.' },
                     { t: 'Authentic Drape', d: 'Generic AI fails to capture the flow of modest fabrics.' }
                 ],
                 solution: [
-                    { t: 'Smart Localization', d: 'Auto-adjusts hemlines, sleeves, and headwear for GCC/SEA.' },
+                    { t: 'Region-Specific Styling', d: 'Auto-adjusts styling for GCC, SEA, and other key regions.' },
                     { t: 'Rapid Deployment', d: '48-hour turnaround for seasonal collections; zero travel.' },
                     { t: 'Hyper-Real Textures', d: 'Advanced rendering for chiffon, silk, and jersey.' }
                 ],
-                badgeType: 'critical', formHeadline: 'Get a Free Modest Fashion Demo' 
+                badgeType: 'critical', formHeadline: 'Get Your Custom Sample' 
             },
             { 
-                id: 'ethnic', title: 'Ethnic Traditional', sub: 'Sarees • Lehengas • Kurtas • Sherwanis', 
+                id: 'ethnic', title: 'Ethnic Traditional', sub: 'Sarees • Lehengas • Kurtas • Sherwanis', umbrella: 'fashion',
                 challenge: [
                     { t: 'Heritage Accuracy', d: 'Incorrect patterns or draping alienate traditional buyers.' },
                     { t: 'Seasonal Urgency', d: 'Festive seasons require massive volume in short windows.' },
@@ -1131,10 +1444,10 @@
                     { t: 'Bulk Catalog Gen', d: 'Scale from 10 to 1,000 festive variants instantly.' },
                     { t: 'Macro-Detail Render', d: 'High-fidelity processing for zari and handwork.' }
                 ],
-                badgeType: 'high', formHeadline: 'Get a Free Ethnic Fashion Demo' 
+                badgeType: 'high', formHeadline: 'Get Your Custom Sample' 
             },
             { 
-                id: 'intimate', title: 'Intimate Wear', sub: 'Lingerie • Shapewear • Sleepwear • Swimwear', 
+                id: 'intimate', title: 'Intimate Wear', sub: 'Lingerie • Shapewear • Sleepwear • Swimwear', umbrella: 'fashion',
                 challenge: [
                     { t: 'Ad Policy Compliance', d: 'Strict platform rules often block standard model photos.' },
                     { t: 'Body Inclusivity', d: 'Showing fit on diverse body shapes is logistically hard.' },
@@ -1145,10 +1458,10 @@
                     { t: 'Morphological Mapping', d: 'Accurate fit visualization across 15+ body types.' },
                     { t: 'Sheer-Texture Engine', d: 'Specialized lighting for lace, mesh, and skin interaction.' }
                 ],
-                badgeType: 'critical', formHeadline: 'Get a Free Intimate Wear Demo' 
+                badgeType: 'critical', formHeadline: 'Get Your Custom Sample' 
             },
             { 
-                id: 'kids', title: 'Kids & Teen Fashion', sub: 'Kids\' Ethnic • Party Outfits • School Wear • Teen Casual', 
+                id: 'kids', title: 'Kids & Teen Fashion', sub: 'Kids\' Ethnic • Party Outfits • School Wear • Teen Casual', umbrella: 'fashion',
                 challenge: [
                     { t: 'Safety & Ethics', d: 'Growing concern over using real minors in commercial shoots.' },
                     { t: 'Playful Context', d: 'Capturing natural movement requires complex setups.' },
@@ -1159,10 +1472,12 @@
                     { t: 'Dynamic Posing Library', d: '500+ age-appropriate, energetic poses and scenes.' },
                     { t: 'Lifestyle Integration', d: 'Seamless placement in parks, schools, and homes.' }
                 ],
-                badgeType: 'medium', formHeadline: 'Get a Free Kids Fashion Demo' 
+                badgeType: 'medium', formHeadline: 'Get Your Custom Sample' 
             },
+
+            // LIFESTYLE & RETAIL (Indices 5-9)
             { 
-                id: 'luxury', title: 'Luxury Accessories', sub: 'Timepieces • Fine Jewelry • Designer Bags • Eyewear', 
+                id: 'luxury', title: 'Luxury Accessories', sub: 'Timepieces • Fine Jewelry • Designer Bags • Eyewear', umbrella: 'lifestyle',
                 challenge: [
                     { t: 'Craftsmanship Story', d: 'Standard photos fail to convey the weight of premium goods.' },
                     { t: 'Global Aspirations', d: 'Luxury means different things in Paris, Dubai, and Tokyo.' },
@@ -1170,13 +1485,13 @@
                 ],
                 solution: [
                     { t: 'Macro-Texture Shots', d: 'Ultra-high-res rendering for leather, metal, and stitching.' },
-                    { t: 'Cultural Context', d: 'Gold-motif calibration for GCC; Minimalist styling for EU.' },
+                    { t: 'Region-Specific Styling', d: 'Gold-motif calibration for GCC; Minimalist styling for EU.' },
                     { t: 'Ray-Traced Lighting', d: 'Physically accurate reflection for diamonds and gold.' }
                 ],
-                badgeType: 'high', formHeadline: 'Get a Free Luxury Asset Demo' 
+                badgeType: 'high', formHeadline: 'Get Your Custom Sample' 
             },
             { 
-                id: 'beauty', title: 'Beauty & Cosmetics', sub: 'Makeup • Skincare • Luxury Fragrance • Haircare', 
+                id: 'beauty', title: 'Beauty & Cosmetics', sub: 'Makeup • Skincare • Luxury Fragrance • Haircare', umbrella: 'lifestyle',
                 challenge: [
                     { t: 'Skin Tone Diversity', d: 'Foundations must look perfect on every complexion.' },
                     { t: 'Application Realism', d: 'AI struggles with how makeup sits on skin texture.' },
@@ -1187,10 +1502,10 @@
                     { t: 'Hyper-Real Application', d: 'Micro-detail rendering for lipstick and skin glow.' },
                     { t: 'Feature-Specific QA', d: 'Targeted enhancement for dewy or matte finish validation.' }
                 ],
-                badgeType: 'high', formHeadline: 'Get a Free Beauty Campaign Demo' 
+                badgeType: 'high', formHeadline: 'Get Your Custom Sample' 
             },
             { 
-                id: 'tech', title: 'Global Lifestyle & Tech', sub: 'Smart Home Tech • Lifestyle Gadgets • EV Accessories • Wellness', 
+                id: 'tech', title: 'Global Lifestyle & Tech', sub: 'Smart Home Tech • Lifestyle Gadgets • EV Accessories • Wellness', umbrella: 'lifestyle',
                 challenge: [
                     { t: 'Local Living Standards', d: 'A smart home looks different in NYC vs. Riyadh.' },
                     { t: 'Product Integration', d: 'Ensuring gadgets look naturally placed, not "pasted."' },
@@ -1201,10 +1516,82 @@
                     { t: 'Shadow & Light Match', d: 'Automatic ambient light adjustment for seamless blending.' },
                     { t: 'Lifestyle Narrative', d: 'Creates sequential storytelling images for ads.' }
                 ],
-                badgeType: 'high', formHeadline: 'Get a Free Tech Lifestyle Demo' 
+                badgeType: 'high', formHeadline: 'Get Your Custom Sample' 
             },
             { 
-                id: 'b2b', title: 'B2B / Agencies', sub: 'White-Label Solutions • Bulk Orders • Export Services • API Integration', 
+                id: 'travel', title: 'Travel & Hospitality', sub: 'Hotels • Airlines • Tourism Boards • Resorts', umbrella: 'lifestyle',
+                challenge: [
+                    { t: 'Cultural Comfort', d: 'Ensuring environments feel welcoming to specific demographics.' },
+                    { t: 'Local Relevance', d: 'Showing amenities that resonate with regional travelers.' },
+                    { t: 'Seasonal Accuracy', d: 'Depicting correct weather and local attire for destination marketing.' }
+                ],
+                solution: [
+                    { t: 'Region-Specific Staging', d: 'Auto-adjusts room decor and dining scenes for GCC, EU, or Asian markets.' },
+                    { t: 'Demographic Targeting', d: 'Generates diverse guest avatars that reflect your target traveler profile.' },
+                    { t: 'Context-Aware Lighting', d: 'Matches local time-of-day and seasonal lighting for authentic vibes.' }
+                ],
+                badgeType: 'high', formHeadline: 'Get Your Custom Sample' 
+            },
+            { 
+                id: 'fmcg', title: 'FMCG & Retail', sub: 'Food & Beverage • Packaging • Shelf Visuals • CPG', umbrella: 'lifestyle',
+                challenge: [
+                    { t: 'Regulatory Cues', d: 'Visualizing Halal/Kosher certifications or local labeling requirements.' },
+                    { t: 'Shelf Presence', d: 'Creating realistic retail environments that match local layouts.' },
+                    { t: 'Cultural Consumption', d: 'Showing products used in culturally appropriate settings.' }
+                ],
+                solution: [
+                    { t: 'Smart Labeling', d: 'Auto-applies region-specific packaging and certification logos.' },
+                    { t: 'Localized Shelf Scenes', d: 'Generates backgrounds mimicking top retailers in target markets.' },
+                    { t: 'Consumption Context', d: 'Places products in culturally relevant meal or usage scenarios.' }
+                ],
+                badgeType: 'medium', formHeadline: 'Get Your Custom Sample' 
+            },
+
+            // PROFESSIONAL SERVICES (Indices 10-15)
+            { 
+                id: 'health', title: 'Health & Wellness', sub: 'Pharma • Supplements • Fitness Apps • Clinics', umbrella: 'enterprise',
+                challenge: [
+                    { t: 'Modesty in Health', d: 'Depicting fitness or medical contexts while respecting local norms.' },
+                    { t: 'Body Diversity', d: 'Representing realistic body types and ethnicities for relatable messaging.' },
+                    { t: 'Trust & Compliance', d: 'Ensuring visuals don\'t make unverified medical claims.' }
+                ],
+                solution: [
+                    { t: 'Modest Activewear AI', d: 'Generates fitness visuals with region-appropriate athletic wear.' },
+                    { t: 'Inclusive Avatars', d: 'Creates diverse patient/user models across age, size, and ethnicity.' },
+                    { t: 'Clinical Accuracy', d: 'Uses medically accurate lighting and settings for professional trust.' }
+                ],
+                badgeType: 'high', formHeadline: 'Get Your Custom Sample' 
+            },
+            { 
+                id: 'realestate', title: 'Real Estate & Interiors', sub: 'Residential • Commercial • Staging • Interior Design', umbrella: 'enterprise',
+                challenge: [
+                    { t: 'Localized Living', d: 'A living room in Riyadh looks different than one in Berlin.' },
+                    { t: 'Demographic Staging', d: 'Showing homes "lived-in" by the specific demographic likely to buy.' },
+                    { t: 'Empty Space Anxiety', d: 'Making unfurnished properties feel warm without physical staging.' }
+                ],
+                solution: [
+                    { t: 'Cultural Interior Design', d: 'Auto-furnishes spaces with decor styles popular in the target region.' },
+                    { t: 'Demographic Lifestyle Injection', d: 'Adds subtle signs of life relevant to local families.' },
+                    { t: 'Virtual Staging', d: 'High-end furniture placement that respects local architectural norms.' }
+                ],
+                badgeType: 'high', formHeadline: 'Get Your Custom Sample' 
+            },
+            { 
+                id: 'edtech', title: 'Education & EdTech', sub: 'Online Courses • K-12 Materials • University Marketing', umbrella: 'enterprise',
+                challenge: [
+                    { t: 'Student Relatability', d: 'Course materials featuring students from specific regions increase engagement.' },
+                    { t: 'Cultural Classroom Norms', d: 'Depicting appropriate teacher-student interactions per culture.' },
+                    { t: 'Inclusive Representation', d: 'Ensuring diverse gender and ethnic representation in learning materials.' }
+                ],
+                solution: [
+                    { t: 'Regional Student Avatars', d: 'Generates learners with local attire and features for higher relatability.' },
+                    { t: 'Contextual Classrooms', d: 'Creates background settings that match local school infrastructure.' },
+                    { t: 'Inclusive Group Dynamics', d: 'Balances gender and ethnic diversity in group study scenes.' }
+                ],
+                badgeType: 'medium', formHeadline: 'Get Your Custom Sample' 
+            },
+            { 
+                id: 'b2b', title: 'B2B / Agencies', sub: 'White-Label Solutions • Bulk Orders • Export Services • API', umbrella: 'enterprise',
                 challenge: [
                     { t: 'Scalability Demands', d: 'Agencies need hundreds of assets for multiple clients.' },
                     { t: 'Client Specificity', d: 'Every brand has unique guidelines generic AI ignores.' },
@@ -1215,10 +1602,10 @@
                     { t: 'Custom Rule Sets', d: 'Upload brand books to enforce colors and styling automatically.' },
                     { t: 'Bulk Catalog Gen', d: 'Reduce production costs by 90% with studio-grade quality.' }
                 ],
-                badgeType: 'medium', formHeadline: 'Get a Free B2B Workflow Demo' 
+                badgeType: 'medium', formHeadline: 'Get Your Custom Sample' 
             },
             { 
-                id: 'custom', title: 'Custom Solutions', sub: 'Bespoke Projects • Multi-Category Brands • Campaign Innovation • Enterprise', 
+                id: 'custom', title: 'Custom Solutions', sub: 'Bespoke Projects • Multi-Category Brands • Campaign Innovation', umbrella: 'enterprise',
                 challenge: [
                     { t: 'Unique Requirements', d: 'Off-the-shelf tools can\'t handle bespoke innovations.' },
                     { t: 'Complex Integration', d: 'Need to mix AI with existing legacy assets or 3D models.' },
@@ -1229,7 +1616,7 @@
                     { t: 'Hybrid Workflow', d: 'We blend your 3D assets with our AI for perfect consistency.' },
                     { t: 'Co-Created Rules', d: 'We build a custom AI model trained on your brand history.' }
                 ],
-                badgeType: 'bespoke', formHeadline: 'Book a Custom Strategy Session' 
+                badgeType: 'bespoke', formHeadline: 'Get Your Custom Sample' 
             }
         ];
 
@@ -1241,6 +1628,9 @@
         const carouselLoader = document.getElementById('carouselLoader');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
+        const carouselContainer = document.getElementById('carouselContainer');
+        const imageCounter = document.getElementById('imageCounter');
+        const carouselDots = document.getElementById('carouselDots');
 
         function getBadgeHTML(type) {
             const labels = { 'high': '<span class="badge-cultural-high">High</span>', 'critical': '<span class="badge-cultural-critical">Critical</span>', 'medium': '<span class="badge-cultural-medium">Medium</span>', 'bespoke': '<span class="badge-cultural-bespoke">Bespoke</span>' };
@@ -1249,40 +1639,47 @@
 
         function renderNavRail() {
             navRailEl.innerHTML = '';
-            let currentGroup = '';
+            let currentUmbrella = '';
+            
             servicesData.forEach((cat, index) => {
-                let group = '';
-                if (['western', 'modest', 'ethnic', 'intimate', 'kids'].includes(cat.id)) group = 'apparel';
-                else if (['luxury', 'beauty', 'tech'].includes(cat.id)) group = 'lifestyle';
-                else group = 'business';
-                if (currentGroup && currentGroup !== group) {
-                    const divider = document.createElement('div');
-                    divider.className = 'rail-divider';
-                    navRailEl.appendChild(divider);
+                // If umbrella changes, insert a header
+                if (cat.umbrella !== currentUmbrella) {
+                    currentUmbrella = cat.umbrella;
+                    const headerDiv = document.createElement('div');
+                    headerDiv.className = 'rail-header';
+                    
+                    if(currentUmbrella === 'fashion') headerDiv.innerText = 'Fashion & Apparel';
+                    else if(currentUmbrella === 'lifestyle') headerDiv.innerText = 'Lifestyle & Retail';
+                    else headerDiv.innerText = 'Professional Services';
+                    
+                    navRailEl.appendChild(headerDiv);
                 }
-                currentGroup = group;
+
                 const btn = document.createElement('button');
                 btn.className = `rail-btn ${cat.id === activeCategoryId ? 'active' : ''}`;
-                btn.innerText = cat.title;
+                
+                // Add colored dot
+                const dot = document.createElement('span');
+                dot.className = `dot-indicator dot-${cat.umbrella}`;
+                
+                btn.appendChild(dot);
+                btn.appendChild(document.createTextNode(cat.title));
+                
                 btn.onclick = () => setActiveCategory(cat.id);
                 navRailEl.appendChild(btn);
             });
+            
             const activeBtn = navRailEl.querySelector('.active');
             if(activeBtn) activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
 
         function getImageSrc(categoryId, index) {
             const prefixMap = {
-                'western': 'western-casual',
-                'modest': 'modest-fashion',
-                'ethnic': 'ethnic-traditional',
-                'intimate': 'intimate-wear',
-                'kids': 'kids-teen',
-                'luxury': 'luxury-accessories',
-                'beauty': 'beauty-cosmetics',
-                'tech': 'lifestyle-tech',
-                'b2b': 'b2b-agencies',
-                'custom': 'custom-bespoke'
+                'western': 'western-casual', 'modest': 'modest-fashion', 'ethnic': 'ethnic-traditional',
+                'intimate': 'intimate-wear', 'kids': 'kids-teen', 'luxury': 'luxury-accessories',
+                'beauty': 'beauty-cosmetics', 'tech': 'lifestyle-tech', 'travel': 'travel-hospitality',
+                'fmcg': 'fmcg-retail', 'health': 'health-wellness', 'realestate': 'real-estate',
+                'edtech': 'edtech-education', 'b2b': 'b2b-agencies', 'custom': 'custom-bespoke'
             };
             
             const prefix = prefixMap[categoryId];
@@ -1307,7 +1704,7 @@
             loadImg('images/western-casual-3.png');
 
             // Tier 2: First Image of All Other Categories
-            const otherCategories = ['modest', 'ethnic', 'intimate', 'kids', 'luxury', 'beauty', 'tech', 'b2b', 'custom'];
+            const otherCategories = ['modest', 'ethnic', 'intimate', 'kids', 'luxury', 'beauty', 'tech', 'travel', 'fmcg', 'health', 'realestate', 'edtech', 'b2b', 'custom'];
             otherCategories.forEach(catId => {
                 const src = getImageSrc(catId, 0);
                 loadImg(src);
@@ -1316,47 +1713,41 @@
             // Tier 3: Remaining Images of All Categories (Background)
             setTimeout(() => {
                 servicesData.forEach(cat => {
-                    if (cat.id === 'custom') return; // Custom only has 1 image
+                    if (cat.id === 'custom') return; 
                     for(let i=1; i<3; i++) {
                         loadImg(getImageSrc(cat.id, i));
                     }
                 });
-            }, 2000); // Wait 2 seconds after page load to start Tier 3
+            }, 2000);
         }
 
-        // Run Preloader on Load
         window.addEventListener('load', preloadImages);
 
         // --- CAROUSEL UPDATE WITH SPINNER FALLBACK ---
         function updateCarousel() {
             const cat = servicesData.find(c => c.id === activeCategoryId);
             const src = getImageSrc(activeCategoryId, activeImageIndex);
+            const totalImages = cat.id === 'custom' ? 1 : 3;
             
-            // Show Spinner Immediately
-            carouselLoader.classList.add('active');
-            carouselImage.style.opacity = '0'; // Fade out current
+            imageCounter.innerText = `${activeImageIndex + 1} / ${totalImages}`;
+            renderDots(totalImages);
 
-            // Create a temporary image to check load status
+            carouselLoader.classList.add('active');
+            carouselImage.style.opacity = '0';
+
             const tempImg = new Image();
             tempImg.src = src;
 
-            // If already cached, this triggers instantly. If not, it waits.
             tempImg.onload = () => {
-                // Hide Spinner
                 carouselLoader.classList.remove('active');
-                
-                // Swap Source
                 carouselImage.src = src;
                 carouselImage.alt = cat.title;
-                
-                // Fade In New Image
                 carouselImage.style.opacity = '1';
             };
 
-            // Error Handling
             tempImg.onerror = () => {
                 carouselLoader.classList.remove('active');
-                carouselImage.style.opacity = '1'; // Show broken image or placeholder
+                carouselImage.style.opacity = '1';
             };
 
             if (activeCategoryId === 'custom') {
@@ -1365,6 +1756,15 @@
             } else {
                 prevBtn.style.display = 'flex';
                 nextBtn.style.display = 'flex';
+            }
+        }
+
+        function renderDots(total) {
+            carouselDots.innerHTML = '';
+            for(let i=0; i<total; i++) {
+                const dot = document.createElement('div');
+                dot.className = `dot ${i === activeImageIndex ? 'active' : ''}`;
+                carouselDots.appendChild(dot);
             }
         }
 
@@ -1387,12 +1787,34 @@
         nextBtn.addEventListener('click', nextSlide);
         prevBtn.addEventListener('click', prevSlide);
 
+        // --- SWIPE FUNCTIONALITY ---
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        carouselContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive: true});
+
+        function handleSwipe() {
+            const threshold = 60;
+            if (touchEndX < touchStartX - threshold) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + threshold) {
+                prevSlide();
+            }
+        }
+
         function renderContextCard() {
             contextCardEl.classList.add('fade-out');
             setTimeout(() => {
                 const cat = servicesData.find(c => c.id === activeCategoryId);
                 
-                // Generate Challenge Items
                 const challengeItems = cat.challenge.map(item => `
                     <div class="spec-item">
                         <span class="spec-title">${item.t}</span>
@@ -1400,7 +1822,6 @@
                     </div>
                 `).join('');
 
-                // Generate Solution Items
                 const solutionItems = cat.solution.map(item => `
                     <div class="spec-item">
                         <span class="spec-title">${item.t}</span>
@@ -1428,7 +1849,7 @@
                             <span class="badge-quality">✓ Studio-Grade Realism</span>
                             <span class="badge-cultural-critical">✓ Critical Cultural QA</span>
                         </div>
-                        <button onclick="openDemoForm('${cat.id}', '${cat.formHeadline}')" class="btn btn-primary">Get Free Demo →</button>
+                        <button onclick="openDemoForm('${cat.id}', 'Get Your Custom Sample')" class="btn btn-primary">Get Your Custom Sample →</button>
                     </div>
                 `;
                 contextCardEl.classList.remove('fade-out');
@@ -1453,18 +1874,25 @@
         function selectPlan(planName) {
             document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             const contactHeadline = document.querySelector('#contact h2');
-            let headline = "Let's Create Visuals That Belong";
-            if (planName === 'Launch Pad') headline = "Start Your Launch Pad Trial";
-            else if (planName === 'Scale Engine') headline = "Activate Your Scale Engine";
-            else if (planName === 'Global Dominance') headline = "Enterprise Inquiry: Global Dominance";
-            else if (planName === 'Catalog Pro') headline = "Start Your Catalog Pro Update";
+            let headline = "Let's Discuss Your Visual Strategy";
+            if (planName === 'Starter') headline = "Let's Discuss the Starter Plan";
+            else if (planName === 'Growth') headline = "Let's Discuss the Growth Plan";
+            else if (planName === 'Enterprise') headline = "Let's Discuss Enterprise Solutions";
+            else if (planName === 'Catalog Pro') headline = "Let's Discuss Catalog Pro";
             if(contactHeadline) contactHeadline.innerText = headline;
         }
 
         renderNavRail();
         updateCarousel();
         renderContextCard();
+
+        // --- AUTO UPDATE FOOTER YEAR ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const footerBottom = document.querySelector('.footer-bottom');
+            if(footerBottom) {
+                footerBottom.innerHTML = `© ${new Date().getFullYear()} AZ Designs. All Rights Reserved.`;
+            }
+        });
     </script>
 </body>
 </html>
-
