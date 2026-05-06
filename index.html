@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,10 +147,110 @@
 
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
         .hamburger span { width: 24px; height: 2px; background: var(--color-text-primary); transition: var(--transition-fast); border-radius: 2px; }
-        .mobile-menu { position: fixed; top: 0; right: -100%; width: 80%; max-width: 320px; height: 100vh; background: rgba(21, 30, 45, 0.98); z-index: 1000; padding: 80px 2rem 2rem; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -10px 0 40px rgba(0,0,0,0.7); backdrop-filter: blur(20px); }
+        
+        /* MOBILE MENU WITH TABS */
+        .mobile-menu { 
+            position: fixed; 
+            top: 0; 
+            right: -100%; 
+            width: 85%; 
+            max-width: 360px; 
+            height: 100vh; 
+            background: rgba(10, 14, 20, 0.98); 
+            z-index: 1000; 
+            padding: 0; 
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            box-shadow: -10px 0 40px rgba(0,0,0,0.7); 
+            backdrop-filter: blur(20px); 
+            display: flex;
+            flex-direction: column;
+        }
         .mobile-menu.active { right: 0; }
-        .mobile-menu a { display: block; padding: 1.2rem 0; font-size: 1.1rem; border-bottom: 1px solid var(--color-border); font-family: var(--font-heading); color: var(--color-text-primary); }
-        .close-mobile { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.5rem; color: var(--color-text-secondary); }
+        
+        .mobile-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .close-mobile { cursor: pointer; font-size: 1.5rem; color: var(--color-text-secondary); }
+        
+        .mobile-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--color-border);
+            background: rgba(255,255,255,0.02);
+        }
+        .mobile-tab-btn {
+            flex: 1;
+            padding: 1rem 0.5rem;
+            background: transparent;
+            border: none;
+            color: var(--color-text-secondary);
+            font-family: var(--font-heading);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .mobile-tab-btn.active {
+            color: var(--color-accent-teal);
+            border-bottom-color: var(--color-accent-teal);
+            background: rgba(0, 212, 170, 0.05);
+        }
+        
+        .mobile-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+        .mobile-grid-view {
+            display: none;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .mobile-grid-view.active {
+            display: grid;
+        }
+        
+        .mobile-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .mobile-card:active {
+            background: rgba(0, 212, 170, 0.1);
+            border-color: var(--color-accent-teal);
+        }
+        .mobile-card-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+        }
+        .mobile-card-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--color-text-secondary);
+            stroke-width: 1.5;
+            fill: none;
+        }
+        .mobile-card-text {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
 
         .sticky-mobile-cta { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--color-accent-teal); color: var(--color-bg-deep); padding: 12px 24px; border-radius: 50px; font-weight: 700; box-shadow: 0 4px 20px rgba(0, 212, 170, 0.4); z-index: 998; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-family: var(--font-heading); border: none; cursor: pointer; display: none !important; }
         @media (max-width: 768px) { .sticky-mobile-cta { display: block !important; } .sticky-mobile-cta.visible { transform: translateX(-50%) translateY(0); } }
@@ -209,7 +310,7 @@
         .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; background: var(--color-bg-deep); border: 2px solid var(--color-accent-teal); border-radius: 50%; z-index: 10; cursor: ew-resize; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(0, 212, 170, 0.4); }
         .slider-handle::after { content: '↔'; color: var(--color-accent-teal); font-weight: bold; font-size: 1.2rem; }
 
-        /* FLOATING PILL BAR TABS - UPDATED FOR MOBILE SCROLL */
+        /* FLOATING PILL BAR TABS */
         .hero-tabs-container {
             display: flex;
             justify-content: center;
@@ -225,17 +326,12 @@
             display: flex;
             gap: 0.5rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            /* Mobile Scroll Fix */
             overflow-x: auto;
             white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* IE 10+ */
+            scrollbar-width: none;
             max-width: 90vw;
         }
-        .hero-tabs-pill::-webkit-scrollbar { 
-            display: none; /* Chrome/Safari */
-        }
+        .hero-tabs-pill::-webkit-scrollbar { display: none; }
         .tab-btn {
             background: transparent;
             border: none;
@@ -281,11 +377,10 @@
         .step-text { font-size: 0.95rem; line-height: 1.6; color: var(--color-text-secondary); font-weight: 300; }
         .trust-note { text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); font-family: var(--font-mono); opacity: 0.8; letter-spacing: 0.02em; }
 
-        /* Services - TWO TIER NAVIGATION */
+        /* Services */
         .services h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .services p.subheadline { text-align: center; margin-bottom: 2rem; font-size: 1.1rem; }
         
-        /* Tier 1: Umbrella Pills */
         .umbrella-tabs-container {
             display: flex;
             justify-content: center;
@@ -326,7 +421,6 @@
             box-shadow: 0 2px 10px rgba(0, 212, 170, 0.3);
         }
 
-        /* Tier 2: Sub-Category Rail */
         .nav-rail-container { 
             width: 100%; 
             max-width: 1000px; 
@@ -336,17 +430,15 @@
             z-index: 10; 
             background: transparent; 
             overflow-x: auto;
-            /* Hide Scrollbar */
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* IE 10+ */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
         }
-        .nav-rail-container::-webkit-scrollbar { 
-            display: none; /* Chrome/Safari */
-        }
+        .nav-rail-container::-webkit-scrollbar { display: none; }
         
         .nav-rail { 
             display: flex; 
-            flex-direction: row; /* Horizontal */
+            flex-direction: row; 
             align-items: center; 
             gap: 0.75rem; 
             min-width: max-content; 
@@ -372,13 +464,11 @@
         .rail-btn:hover { background: rgba(255,255,255,0.08); color: var(--color-text-primary); border-color: var(--color-text-secondary); }
         .rail-btn.active { background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); border-color: var(--color-accent-teal); font-weight: 600; box-shadow: 0 4px 12px rgba(0, 212, 170, 0.1); }
         
-        /* Umbrella Dots */
         .dot-indicator { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
         .dot-fashion { background-color: var(--color-accent-teal); box-shadow: 0 0 5px var(--color-accent-teal); }
         .dot-lifestyle { background-color: var(--color-accent-violet); box-shadow: 0 0 5px var(--color-accent-violet); }
         .dot-enterprise { background-color: var(--color-accent-gold); box-shadow: 0 0 5px var(--color-accent-gold); }
 
-        /* Desktop Grid Layout for Services */
         .services-grid-layout {
             display: flex;
             gap: 2rem;
@@ -386,7 +476,7 @@
             justify-content: center;
         }
 
-        /* Carousel with Premium Interface */
+        /* Carousel */
         .carousel-container { 
             position: relative; 
             width: 480px;
@@ -409,7 +499,6 @@
             background-color: #111;
         }
         
-        /* SPINNER STYLES */
         .carousel-loader {
             position: absolute;
             top: 50%;
@@ -426,15 +515,9 @@
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-        .carousel-loader.active {
-            opacity: 1;
-        }
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
+        .carousel-loader.active { opacity: 1; }
+        @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
 
-        /* PREMIUM GHOST ARROWS */
         .carousel-btn { 
             position: absolute; 
             top: 50%; 
@@ -455,14 +538,10 @@
             outline: none; 
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
-        .carousel-btn:hover { 
-            background: rgba(0,0,0,0.3);
-            transform: translateY(-50%) scale(1.1); 
-        }
+        .carousel-btn:hover { background: rgba(0,0,0,0.3); transform: translateY(-50%) scale(1.1); }
         .carousel-prev { left: 15px; }
         .carousel-next { right: 15px; }
 
-        /* PAGINATION DOTS (Bottom Center) */
         .carousel-dots {
             position: absolute;
             bottom: 20px;
@@ -473,19 +552,10 @@
             z-index: 10;
             pointer-events: none;
         }
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            transition: all 0.3s ease;
-        }
-        .dot.active {
-            background: var(--color-accent-teal);
-            transform: scale(1.2);
-            box-shadow: 0 0 8px rgba(0, 212, 170, 0.4);
-        }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: all 0.3s ease; }
+        .dot.active { background: var(--color-accent-teal); transform: scale(1.2); box-shadow: 0 0 8px rgba(0, 212, 170, 0.4); }
 
+        /* CONTEXT CARD - DESKTOP LAYOUT */
         .context-card { 
             background: var(--color-bg-card); 
             backdrop-filter: blur(16px); 
@@ -503,16 +573,13 @@
             flex-direction: column;
             flex-grow: 1;
             box-shadow: var(--shadow-premium);
-            max-width: 600px; /* Constrain width */
+            max-width: 600px;
         }
-        /* Custom Scrollbar for Card */
         .context-card::-webkit-scrollbar { width: 6px; }
         .context-card::-webkit-scrollbar-track { background: transparent; }
         .context-card::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 20px; }
-
         .context-card.fade-out { opacity: 0; transform: translateY(10px); }
         
-        /* Two Column Layout Inside Card */
         .card-header-center { text-align: center; margin-bottom: 2rem; }
         .card-header-center h3 { font-size: 1.75rem; color: var(--color-text-primary); margin-bottom: 0.25rem; }
         .card-sub { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 300; }
@@ -562,45 +629,20 @@
         .badge-quality { background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); border: 1px solid rgba(0, 212, 170, 0.2); }
         .badge-cultural-critical { background: rgba(108, 92, 231, 0.15); color: var(--color-accent-violet); border: 1px solid rgba(108, 92, 231, 0.3); }
 
-        /* Results - SIDE BY SIDE GRID */
+        /* Results */
         .results h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .results p.subheadline { text-align: center; margin-bottom: 3rem; font-size: 1.1rem; }
-        
-        .results-grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
+        .results-grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
         .metric-badge { 
-            background: var(--color-bg-card); 
-            border: 1px solid var(--color-border); 
-            padding: 2.5rem; 
-            border-radius: var(--border-radius); 
-            text-align: center; 
-            transition: all var(--transition-fast); 
-            backdrop-filter: blur(16px); 
-            box-shadow: var(--shadow-premium);
+            background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 2.5rem; border-radius: var(--border-radius); text-align: center; transition: all var(--transition-fast); backdrop-filter: blur(16px); box-shadow: var(--shadow-premium);
         }
-        .metric-badge:hover { 
-            transform: translateY(-4px); 
-            border-color: var(--color-accent-teal); 
-            box-shadow: var(--shadow-glow); 
-        }
+        .metric-badge:hover { transform: translateY(-4px); border-color: var(--color-accent-teal); box-shadow: var(--shadow-glow); }
         .metric-value { font-size: 3rem; font-family: var(--font-heading); font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.75rem; line-height: 1; letter-spacing: -0.02em; }
         .metric-label { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-accent-teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; font-weight: 500; }
         .metric-desc { font-size: 0.9rem; color: var(--color-text-secondary); font-weight: 300; }
         
         .case-study { 
-            background: var(--color-bg-card); 
-            backdrop-filter: blur(16px); 
-            padding: 3rem; 
-            border-radius: var(--border-radius); 
-            border: 1px solid var(--color-border); 
-            position: relative; 
-            overflow: hidden; 
-            box-shadow: var(--shadow-premium);
+            background: var(--color-bg-card); backdrop-filter: blur(16px); padding: 3rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); position: relative; overflow: hidden; box-shadow: var(--shadow-premium);
         }
         .case-study::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--color-accent-teal); }
         .case-study h4 { margin-bottom: 1.5rem; color: var(--color-accent-teal); font-family: var(--font-heading); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; }
@@ -609,79 +651,23 @@
         .case-context { font-size: 0.85rem; opacity: 0.8; font-weight: 300; }
         .case-source { font-size: 0.7rem; color: var(--color-text-secondary); font-family: var(--font-mono); opacity: 0.6; margin-top: 0.5rem; display: block; }
 
-        /* Pricing - REARRANGED LAYOUT */
+        /* Pricing */
         .pricing h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .pricing p.subheadline { text-align: center; margin-bottom: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-        
-        /* Top Row: Audit & Catalog Side-by-Side (Styled as Cards) */
-        .pricing-top-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Middle Row: Ready to Scale Banner */
-        .pricing-middle-row {
-            margin-bottom: 4rem;
-            display: flex;
-            justify-content: center;
-        }
+        .pricing-top-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .pricing-middle-row { margin-bottom: 4rem; display: flex; justify-content: center; }
         .scale-banner {
-            background: var(--color-bg-card); 
-            border: 1px solid var(--color-border); 
-            border-radius: var(--border-radius); 
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-premium);
-            max-width: 800px; /* Constrain Width */
-            width: 100%;
+            background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; backdrop-filter: blur(16px); box-shadow: var(--shadow-premium); max-width: 800px; width: 100%;
         }
         .scale-banner ul { list-style: none; display: flex; gap: 2rem; flex-wrap: wrap; }
         .scale-banner li { font-size: 0.9rem; color: var(--color-text-secondary); padding-left: 1.2rem; position: relative; }
         .scale-banner li::before { content: '•'; color: var(--color-accent-teal); position: absolute; left: 0; }
-
-        /* Bottom Row: Monthly Plans */
-        .plans-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 1.5rem; 
-            margin-bottom: 4rem; 
-            max-width: 1100px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; max-width: 1100px; margin-left: auto; margin-right: auto; }
         .plan-card { 
-            background: var(--color-bg-card); 
-            backdrop-filter: blur(16px); 
-            padding: 2.5rem 2rem; 
-            border-radius: var(--border-radius); 
-            border: 1px solid var(--color-border); 
-            display: flex; 
-            flex-direction: column; 
-            transition: all var(--transition-smooth); 
-            box-shadow: var(--shadow-premium);
-            height: 100%;
+            background: var(--color-bg-card); backdrop-filter: blur(16px); padding: 2.5rem 2rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); display: flex; flex-direction: column; transition: all var(--transition-smooth); box-shadow: var(--shadow-premium); height: 100%;
         }
-        .plan-card:hover { 
-            border-color: rgba(255,255,255,0.2); 
-            transform: translateY(-4px);
-        }
-        .plan-card.popular { 
-            border: 1px solid var(--color-accent-violet); 
-            box-shadow: 0 8px 32px rgba(108,92,231,0.15), inset 0 0 0 1px rgba(108,92,231,0.2); 
-            position: relative; 
-            transform: scale(1.02); 
-            z-index: 10; 
-        }
+        .plan-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
+        .plan-card.popular { border: 1px solid var(--color-accent-violet); box-shadow: 0 8px 32px rgba(108,92,231,0.15), inset 0 0 0 1px rgba(108,92,231,0.2); position: relative; transform: scale(1.02); z-index: 10; }
         .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--color-accent-violet); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; font-family: var(--font-heading); }
         .plan-name { font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--color-text-primary); font-weight: 500; }
         .plan-price { font-size: 2.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--color-text-primary); font-family: var(--font-heading); letter-spacing: -0.02em; }
@@ -689,17 +675,7 @@
         .plan-features { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
         .plan-features li { padding: 0.75rem 0; font-size: 0.9rem; color: var(--color-text-secondary); border-bottom: 1px solid var(--color-border); display: flex; align-items: center; gap: 0.5rem; }
         .plan-features li:last-child { border-bottom: none; }
-        
-        .includes-list { 
-            background: var(--color-bg-card); 
-            border: 1px solid var(--color-border); 
-            padding: 2rem; 
-            border-radius: var(--border-radius); 
-            max-width: 900px; 
-            margin: 0 auto; 
-            backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-premium);
-        }
+        .includes-list { background: var(--color-bg-card); border: 1px solid var(--color-border); padding: 2rem; border-radius: var(--border-radius); max-width: 900px; margin: 0 auto; backdrop-filter: blur(16px); box-shadow: var(--shadow-premium); }
         .includes-list h4 { margin-bottom: 1rem; font-size: 1.1rem; text-align: center; }
         .inc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
         .inc-item { display: flex; align-items: center; gap: 0.75rem; color: var(--color-text-secondary); font-size: 0.9rem; }
@@ -708,50 +684,17 @@
         /* Quality & Trust */
         .quality h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .trust-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin: 4rem 0; }
-        .pillar { 
-            background: var(--color-bg-card); 
-            backdrop-filter: blur(16px); 
-            padding: 2rem; 
-            border-radius: var(--border-radius); 
-            border: 1px solid var(--color-border); 
-            transition: all var(--transition-fast); 
-            text-align: left; 
-            box-shadow: var(--shadow-premium);
-        }
-        .pillar:hover { 
-            border-color: var(--color-accent-teal); 
-            transform: translateY(-4px); 
-            box-shadow: var(--shadow-glow);
-        }
+        .pillar { background: var(--color-bg-card); backdrop-filter: blur(16px); padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); transition: all var(--transition-fast); text-align: left; box-shadow: var(--shadow-premium); }
+        .pillar:hover { border-color: var(--color-accent-teal); transform: translateY(-4px); box-shadow: var(--shadow-glow); }
         .pillar-title { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--color-text-primary); font-weight: 600; }
         .security-badges { text-align: center; color: var(--color-text-secondary); font-size: 0.8rem; gap: 1rem; display: flex; justify-content: center; flex-wrap: wrap; font-family: var(--font-mono); opacity: 0.8; }
         .security-badges span { display: inline-flex; align-items: center; gap: 0.5rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 4px; }
 
         /* Contact */
-        .contact { 
-            background: var(--color-bg-card); 
-            border: 1px solid var(--color-border); 
-            border-radius: var(--border-radius); 
-            padding: 4rem 2rem; 
-            margin-top: 2rem; 
-            text-align: center; 
-            backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-premium);
-        }
+        .contact { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 4rem 2rem; margin-top: 2rem; text-align: center; backdrop-filter: blur(16px); box-shadow: var(--shadow-premium); }
         .contact h2 { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 1rem; transition: color 0.3s; }
         .contact p.subheadline { margin-bottom: 3rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .concierge-card { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(12px); 
-            border: 1px solid var(--color-border); 
-            border-radius: var(--border-radius); 
-            padding: 3rem 2rem; 
-            max-width: 600px; 
-            margin: 0 auto; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 1.5rem; 
-        }
+        .concierge-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 3rem 2rem; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
         .concierge-option { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 0.3s ease; text-decoration: none; color: var(--color-text-primary); border: 1px solid transparent; }
         .concierge-option:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--color-border); transform: translateY(-2px); }
         .concierge-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: var(--color-accent-teal); }
@@ -763,30 +706,13 @@
         .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--color-bg-card-solid); border: 1px solid var(--color-accent-teal); color: var(--color-text-primary); padding: 12px 24px; border-radius: 50px; font-family: var(--font-heading); font-weight: 500; z-index: 2000; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 20px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 8px; }
         .toast.show { transform: translateX(-50%) translateY(0); }
 
-        /* Footer WITH TECH PATTERN */
-        footer { 
-            background: #05080C; 
-            padding: 3rem 0 2rem; 
-            margin-top: 4rem; 
-            border-top: 1px solid var(--color-border); 
-            position: relative; 
-            z-index: 2; 
-            overflow: hidden;
-        }
-        /* Subtle Neural Network Pattern */
+        /* Footer */
+        footer { background: #05080C; padding: 3rem 0 2rem; margin-top: 4rem; border-top: 1px solid var(--color-border); position: relative; z-index: 2; overflow: hidden; }
         footer::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2300D4AA' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-            opacity: 0.4;
-            z-index: 0;
-            pointer-events: none;
+            opacity: 0.4; z-index: 0; pointer-events: none;
         }
-
         .footer-inner { text-align: center; position: relative; z-index: 2; }
         .footer-brand-wrapper { display: inline-flex; align-items: center; gap: 15px; margin-bottom: 1.5rem; }
         .footer-logo-img { height: 40px; width: auto; object-fit: contain; }
@@ -808,7 +734,6 @@
             .nav-links, .desktop-cta { display: none; }
             .hamburger { display: flex; }
             
-            /* Mobile Pricing Revert */
             .pricing-top-row { grid-template-columns: 1fr; }
             .scale-banner { flex-direction: column; text-align: center; }
             .scale-banner ul { flex-direction: column; gap: 0.5rem; }
@@ -821,7 +746,6 @@
             .hero p.subheadline { margin-bottom: 1.5rem; font-size: 1rem; }
             .trust-bar { margin-bottom: 1.5rem; }
             
-            /* MOBILE HERO ADJUSTMENT */
             .hero-visual { height: auto; aspect-ratio: 4 / 5; }
             .comp-img img { object-position: center top; }
 
@@ -832,26 +756,85 @@
             .services h2 { margin-bottom: 0.5rem; }
             .services p.subheadline { margin-bottom: 1.5rem; }
             
-            /* Mobile Services Layout Revert */
             .services-grid-layout { display: flex; flex-direction: column; gap: 2rem; }
             .carousel-container { width: 100%; height: 400px; }
-            .context-card { height: auto; min-height: 300px; }
-            .card-content-split { grid-template-columns: 1fr; gap: 1.5rem; }
+            
+            /* MOBILE CARD LAYOUT - SYNCED CAROUSEL */
+            .context-card { 
+                height: auto; 
+                min-height: 400px; 
+                padding: 1.5rem; 
+                overflow: visible; /* Allow peek */
+            }
+            .card-content-split {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 1rem;
+                padding-bottom: 1rem;
+                /* Hide scrollbar */
+                scrollbar-width: none; 
+                -ms-overflow-style: none;
+            }
+            .card-content-split::-webkit-scrollbar { display: none; }
+            
+            .mobile-slide {
+                min-width: 85%; /* Peek effect */
+                scroll-snap-align: center;
+                background: rgba(255,255,255,0.03);
+                border: 1px solid var(--color-border);
+                border-radius: 12px;
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .slide-header {
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .slide-challenge { color: var(--color-accent-violet); }
+            .slide-solution { color: var(--color-accent-teal); }
+            
+            .slide-title { font-size: 0.9rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.25rem; }
+            .slide-desc { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4; }
 
+            /* Fading Arrow Indicator */
+            .swipe-indicator {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--color-text-secondary);
+                font-size: 1.5rem;
+                opacity: 0.5;
+                pointer-events: none;
+                animation: fadeOut 3s forwards;
+                z-index: 20;
+            }
+            @keyframes fadeOut { 0% { opacity: 0.5; } 80% { opacity: 0.5; } 100% { opacity: 0; } }
+
+            .card-column { display: none; } /* Hide desktop columns */
+            .card-header-center { margin-bottom: 1rem; }
+            .card-header-center h3 { font-size: 1.4rem; }
+            
             .nav-rail-container { margin-bottom: 1.5rem; padding-bottom: 1rem; }
             .rail-btn { padding: 8px 16px; font-size: 0.8rem; }
             
-            /* Mobile Carousel Buttons */
             .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
             .carousel-prev { left: 10px; }
             .carousel-next { right: 10px; }
 
             .results h2 { margin-bottom: 0.5rem; }
             .results p.subheadline { margin-bottom: 1.5rem; }
-            
-            /* Mobile Results Revert */
             .results-grid-container { grid-template-columns: 1fr; gap: 1.5rem; }
-            
             .metric-badge { padding: 1.5rem; }
             .metric-value { font-size: 2.5rem; margin-bottom: 0.5rem; }
             .case-study { padding: 1.5rem; }
@@ -879,8 +862,6 @@
             .slider-label { font-size: 0.65rem; padding: 4px 8px; }
             .hero-tabs-pill { padding: 4px; flex-wrap: nowrap; justify-content: flex-start; }
             .tab-btn { padding: 8px 16px; font-size: 0.85rem; }
-            
-            /* Mobile Mega Menu Override */
             .mega-menu { display: none; }
         }
     </style>
@@ -906,9 +887,7 @@
             <nav class="nav-links">
                 <div class="nav-item">
                     Services ▾
-                    <!-- CARD GRID MEGA MENU - 3 COLUMNS -->
                     <div class="mega-menu">
-                        <!-- Column 1: Fashion -->
                         <div class="mega-column">
                             <div class="mega-col-title">Fashion & Apparel</div>
                             <a href="#services" class="mega-card" onclick="setActiveCategory('western')">
@@ -933,7 +912,6 @@
                             </a>
                         </div>
 
-                        <!-- Column 2: Lifestyle -->
                         <div class="mega-column">
                             <div class="mega-col-title">Lifestyle & Retail</div>
                             <a href="#services" class="mega-card" onclick="setActiveCategory('luxury')">
@@ -958,7 +936,6 @@
                             </a>
                         </div>
 
-                        <!-- Column 3: Enterprise -->
                         <div class="mega-column">
                             <div class="mega-col-title">Professional Services</div>
                             <a href="#services" class="mega-card" onclick="setActiveCategory('health')">
@@ -996,15 +973,93 @@
         </div>
     </header>
 
+    <!-- MOBILE MENU WITH TABS -->
     <div class="mobile-menu">
-        <div class="close-mobile" onclick="document.querySelector('.mobile-menu').classList.remove('active')">✕</div>
-        <a href="#services">Services</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#results">Results</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <div style="margin-top: 2rem;"><button class="btn btn-primary" style="width: 100%; border: none;" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Book Strategy Audit</button></div>
+        <div class="mobile-header">
+            <span style="font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem;">Services</span>
+            <div class="close-mobile" onclick="document.querySelector('.mobile-menu').classList.remove('active')">✕</div>
+        </div>
+        
+        <div class="mobile-tabs">
+            <button class="mobile-tab-btn active" onclick="switchMobileTab('fashion')" aria-pressed="true">Fashion</button>
+            <button class="mobile-tab-btn" onclick="switchMobileTab('lifestyle')" aria-pressed="false">Lifestyle</button>
+            <button class="mobile-tab-btn" onclick="switchMobileTab('enterprise')" aria-pressed="false">Enterprise</button>
+        </div>
+        
+        <div class="mobile-content">
+            <div class="mobile-grid-view active" id="mobile-grid-fashion">
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('western'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M20.38 3.4a1.6 1.6 0 0 0-1.6-1.6H5.22a1.6 1.6 0 0 0-1.6 1.6v1.6h16.76V3.4zM3.62 7h16.76v13.6a1.6 1.6 0 0 1-1.6 1.6H5.22a1.6 1.6 0 0 1-1.6-1.6V7z"/></svg></div>
+                    <span class="mobile-card-text">Western Casual</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('modest'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg></div>
+                    <span class="mobile-card-text">Modest Fashion</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('ethnic'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l-2 4h4l-2-4z"/><path d="M12 6v16"/><path d="M8 10h8"/><path d="M7 22h10"/></svg></div>
+                    <span class="mobile-card-text">Ethnic Traditional</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('intimate'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg></div>
+                    <span class="mobile-card-text">Intimate Wear</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('kids'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg></div>
+                    <span class="mobile-card-text">Kids & Teen</span>
+                </a>
+            </div>
+
+            <div class="mobile-grid-view" id="mobile-grid-lifestyle">
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('luxury'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/></svg></div>
+                    <span class="mobile-card-text">Luxury Accessories</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('beauty'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+                    <span class="mobile-card-text">Beauty & Cosmetics</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('tech'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
+                    <span class="mobile-card-text">Global Tech</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('travel'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M2 12h20"/><path d="M13 2l9 10-9 10"/><path d="M11 2L2 12l9 10"/></svg></div>
+                    <span class="mobile-card-text">Travel & Hospitality</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('fmcg'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+                    <span class="mobile-card-text">FMCG & Retail</span>
+                </a>
+            </div>
+
+            <div class="mobile-grid-view" id="mobile-grid-enterprise">
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('health'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                    <span class="mobile-card-text">Health & Wellness</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('realestate'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div>
+                    <span class="mobile-card-text">Real Estate</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('edtech'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                    <span class="mobile-card-text">Education & EdTech</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('b2b'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+                    <span class="mobile-card-text">B2B / Agencies</span>
+                </a>
+                <a href="#services" class="mobile-card" onclick="setActiveCategory('custom'); document.querySelector('.mobile-menu').classList.remove('active');">
+                    <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+                    <span class="mobile-card-text">Custom Solutions</span>
+                </a>
+            </div>
+
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
+                <button class="btn btn-primary" style="width: 100%; border: none;" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Book Strategy Audit</button>
+            </div>
+        </div>
     </div>
 
     <button class="sticky-mobile-cta" id="stickyMobileCta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Book Strategy Audit</button>
@@ -1037,12 +1092,11 @@
                 </div>
             </div>
 
-            <!-- FLOATING PILL BAR TABS - 3 UMBRELLAS -->
             <div class="hero-tabs-container">
                 <div class="hero-tabs-pill">
-                    <button class="tab-btn active" onclick="switchHeroTab('fashion', 0)">Fashion & Apparel</button>
-                    <button class="tab-btn" onclick="switchHeroTab('lifestyle', 5)">Lifestyle & Retail</button>
-                    <button class="tab-btn" onclick="switchHeroTab('enterprise', 10)">Professional Services</button>
+                    <button class="tab-btn active" onclick="switchHeroTab('fashion', 0)" aria-pressed="true">Fashion & Apparel</button>
+                    <button class="tab-btn" onclick="switchHeroTab('lifestyle', 5)" aria-pressed="false">Lifestyle & Retail</button>
+                    <button class="tab-btn" onclick="switchHeroTab('enterprise', 10)" aria-pressed="false">Professional Services</button>
                 </div>
             </div>
         </div>
@@ -1069,35 +1123,31 @@
             <h2>AI Visual Services for Every Brand</h2>
             <p class="subheadline">Studio-grade execution. Regional cultural intelligence baked in. Select your category to see how we solve your specific market challenges.</p>
 
-            <!-- TIER 1: UMBRELLA PILLS -->
             <div class="umbrella-tabs-container">
                 <div class="umbrella-tabs-pill">
-                    <button class="umbrella-btn active" onclick="filterByUmbrella('fashion')">Fashion & Apparel</button>
-                    <button class="umbrella-btn" onclick="filterByUmbrella('lifestyle')">Lifestyle & Retail</button>
-                    <button class="umbrella-btn" onclick="filterByUmbrella('enterprise')">Professional Services</button>
+                    <button class="umbrella-btn active" onclick="filterByUmbrella('fashion')" aria-pressed="true">Fashion & Apparel</button>
+                    <button class="umbrella-btn" onclick="filterByUmbrella('lifestyle')" aria-pressed="false">Lifestyle & Retail</button>
+                    <button class="umbrella-btn" onclick="filterByUmbrella('enterprise')" aria-pressed="false">Professional Services</button>
                 </div>
             </div>
 
-            <!-- TIER 2: SUB-CATEGORY RAIL -->
             <div class="nav-rail-container">
                 <div class="nav-rail" id="navRail"></div>
             </div>
 
-            <!-- SIDE BY SIDE LAYOUT WRAPPER -->
             <div class="services-grid-layout">
-                <!-- Left: Image Deck (Fixed 480px) -->
                 <div class="carousel-container" id="carouselContainer">
                     <div class="carousel-loader" id="carouselLoader"></div>
-                    
-                    <!-- INTERFACE ELEMENTS (Counter Removed) -->
                     <div class="carousel-dots" id="carouselDots"></div>
                     <button class="carousel-btn carousel-prev" id="prevBtn">&#10094;</button>
                     <img src="" alt="Service Image" class="carousel-slide" id="carouselImage">
                     <button class="carousel-btn carousel-next" id="nextBtn">&#10095;</button>
                 </div>
 
-                <!-- Right: Context Card (Fill Remaining) -->
-                <div class="context-card" id="contextCard"></div>
+                <div class="context-card" id="contextCard">
+                    <!-- Swipe Indicator for Mobile -->
+                    <div class="swipe-indicator">→</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1161,7 +1211,6 @@
             <h2>Invest in Content That Converts. Scale Without the Overhead.</h2>
             <p class="subheadline">Traditional shoots cost $5k–$10k per day. Our AI Studio delivers studio-grade, culturally-calibrated assets for a fraction of the cost—with no long-term lock-ins.</p>
             
-            <!-- TOP ROW: AUDIT & CATALOG SIDE-BY-SIDE (Styled as Cards) -->
             <div class="pricing-top-row">
                 <div class="plan-card">
                     <div class="plan-name">Free Cultural Strategy Audit</div>
@@ -1185,7 +1234,6 @@
                 </div>
             </div>
 
-            <!-- MIDDLE ROW: READY TO SCALE BANNER -->
             <div class="pricing-middle-row">
                 <div class="scale-banner">
                     <div class="path-title" style="margin:0; border:none; font-weight: 700; font-size: 1.1rem; color: var(--color-text-primary);">🚀 Ready To Scale? (Monthly)</div>
@@ -1198,7 +1246,6 @@
                 </div>
             </div>
 
-            <!-- BOTTOM ROW: MONTHLY PLANS -->
             <div id="pricing-plans" class="plans-grid">
                 <div class="plan-card">
                     <div class="plan-name">Starter</div>
@@ -1420,16 +1467,27 @@
 
         if(resultsSection) counterObserver.observe(resultsSection);
 
-        // --- HERO TAB SWITCHING LOGIC (Updated for 3 Umbrellas) ---
+        // --- HERO TAB SWITCHING LOGIC ---
         function switchHeroTab(umbrella, railIndex) {
             const beforeImg = document.getElementById('heroBeforeImg');
             const afterImg = document.getElementById('heroAfterImg');
             const tabs = document.querySelectorAll('.tab-btn');
             
-            tabs.forEach(tab => tab.classList.remove('active'));
-            if(umbrella === 'fashion') tabs[0].classList.add('active');
-            else if(umbrella === 'lifestyle') tabs[1].classList.add('active');
-            else tabs[2].classList.add('active');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.setAttribute('aria-pressed', 'false');
+            });
+            
+            if(umbrella === 'fashion') {
+                tabs[0].classList.add('active');
+                tabs[0].setAttribute('aria-pressed', 'true');
+            } else if(umbrella === 'lifestyle') {
+                tabs[1].classList.add('active');
+                tabs[1].setAttribute('aria-pressed', 'true');
+            } else {
+                tabs[2].classList.add('active');
+                tabs[2].setAttribute('aria-pressed', 'true');
+            }
 
             beforeImg.style.opacity = '0';
             afterImg.style.opacity = '0';
@@ -1446,18 +1504,20 @@
                     afterImg.src = 'images/enterprise-hero-after.png';
                 }
                 
+                beforeImg.onerror = function() { this.src = 'images/hero-before.png'; };
+                afterImg.onerror = function() { this.src = 'images/hero-after.png'; };
+
                 beforeImg.style.opacity = '1';
                 afterImg.style.opacity = '1';
                 
                 afterImage.style.width = '50%';
                 sliderHandle.style.left = '50%';
 
-                // Sync with Services Umbrella Pills
                 syncUmbrellaPills(umbrella);
             }, 1000);
         }
 
-        // --- SERVICES LOGIC (CAROUSEL WITH PRELOADER, SPINNER & SWIPE) ---
+        // --- SERVICES LOGIC ---
         const servicesData = [
             // FASHION & APPAREL (Indices 0-4)
             { 
@@ -1603,7 +1663,7 @@
                 badgeType: 'medium', formHeadline: 'Get Your Custom Sample' 
             },
 
-            // PROFESSIONAL SERVICES (Indices 10-15)
+            // PROFESSIONAL SERVICES (Indices 10-14)
             { 
                 id: 'health', title: 'Health & Wellness', sub: 'Pharma • Supplements • Fitness Apps • Clinics', umbrella: 'enterprise',
                 challenge: [
@@ -1694,18 +1754,13 @@
 
         function renderNavRail() {
             navRailEl.innerHTML = '';
-            
             servicesData.forEach((cat, index) => {
                 const btn = document.createElement('button');
                 btn.className = `rail-btn ${cat.id === activeCategoryId ? 'active' : ''}`;
-                
-                // Add colored dot
                 const dot = document.createElement('span');
                 dot.className = `dot-indicator dot-${cat.umbrella}`;
-                
                 btn.appendChild(dot);
                 btn.appendChild(document.createTextNode(cat.title));
-                
                 btn.onclick = () => setActiveCategory(cat.id);
                 navRailEl.appendChild(btn);
             });
@@ -1719,86 +1774,51 @@
                 'fmcg': 'fmcg-retail', 'health': 'health-wellness', 'realestate': 'real-estate',
                 'edtech': 'edtech-education', 'b2b': 'b2b-agencies', 'custom': 'custom-bespoke'
             };
-            
             const prefix = prefixMap[categoryId];
             if (!prefix) return 'images/logo.png';
-
             if (categoryId === 'custom') return `images/${prefix}.png`;
             return `images/${prefix}-${index + 1}.png`;
         }
 
-        // --- TIERED PRELOADER LOGIC ---
         function preloadImages() {
-            const loadImg = (src) => {
-                const img = new Image();
-                img.src = src;
-            };
-
-            // Tier 1: Hero + Default Category (Western) All Images
-            loadImg('images/hero-before.png');
-            loadImg('images/hero-after.png');
-            loadImg('images/western-casual-1.png');
-            loadImg('images/western-casual-2.png');
-            loadImg('images/western-casual-3.png');
-
-            // Tier 2: First Image of All Other Categories
+            const loadImg = (src) => { const img = new Image(); img.src = src; };
+            loadImg('images/hero-before.png'); loadImg('images/hero-after.png');
+            loadImg('images/western-casual-1.png'); loadImg('images/western-casual-2.png'); loadImg('images/western-casual-3.png');
             const otherCategories = ['modest', 'ethnic', 'intimate', 'kids', 'luxury', 'beauty', 'tech', 'travel', 'fmcg', 'health', 'realestate', 'edtech', 'b2b', 'custom'];
-            otherCategories.forEach(catId => {
-                const src = getImageSrc(catId, 0);
-                loadImg(src);
-            });
-
-            // Tier 3: Remaining Images of All Categories (Background)
+            otherCategories.forEach(catId => { loadImg(getImageSrc(catId, 0)); });
             setTimeout(() => {
                 servicesData.forEach(cat => {
                     if (cat.id === 'custom') return; 
-                    for(let i=1; i<3; i++) {
-                        loadImg(getImageSrc(cat.id, i));
-                    }
+                    for(let i=1; i<3; i++) { loadImg(getImageSrc(cat.id, i)); }
                 });
             }, 2000);
         }
 
-        window.addEventListener('load', () => {
-            preloadImages();
-            window.scrollTo(0,0); // Ensure page loads at top
-        });
+        window.addEventListener('load', () => { preloadImages(); window.scrollTo(0,0); });
 
-        // --- CAROUSEL UPDATE WITH SPINNER FALLBACK ---
         function updateCarousel() {
             const cat = servicesData.find(c => c.id === activeCategoryId);
             const src = getImageSrc(activeCategoryId, activeImageIndex);
             const totalImages = cat.id === 'custom' ? 1 : 3;
-            
-            // REMOVED: Image Counter Update
-            
             renderDots(totalImages);
-
             carouselLoader.classList.add('active');
             carouselImage.style.opacity = '0';
-
             const tempImg = new Image();
             tempImg.src = src;
-
             tempImg.onload = () => {
                 carouselLoader.classList.remove('active');
                 carouselImage.src = src;
                 carouselImage.alt = cat.title;
                 carouselImage.style.opacity = '1';
             };
-
             tempImg.onerror = () => {
                 carouselLoader.classList.remove('active');
+                carouselImage.src = 'images/logo.png';
+                carouselImage.alt = 'Image coming soon';
                 carouselImage.style.opacity = '1';
             };
-
-            if (activeCategoryId === 'custom') {
-                prevBtn.style.display = 'none';
-                nextBtn.style.display = 'none';
-            } else {
-                prevBtn.style.display = 'flex';
-                nextBtn.style.display = 'flex';
-            }
+            if (activeCategoryId === 'custom') { prevBtn.style.display = 'none'; nextBtn.style.display = 'none'; } 
+            else { prevBtn.style.display = 'flex'; nextBtn.style.display = 'flex'; }
         }
 
         function renderDots(total) {
@@ -1813,16 +1833,14 @@
         function nextSlide() {
             const cat = servicesData.find(c => c.id === activeCategoryId);
             if (cat.id === 'custom') return;
-            const totalImages = 3;
-            activeImageIndex = (activeImageIndex + 1) % totalImages;
+            activeImageIndex = (activeImageIndex + 1) % 3;
             updateCarousel();
         }
 
         function prevSlide() {
             const cat = servicesData.find(c => c.id === activeCategoryId);
             if (cat.id === 'custom') return;
-            const totalImages = 3;
-            activeImageIndex = (activeImageIndex - 1 + totalImages) % totalImages;
+            activeImageIndex = (activeImageIndex - 1 + 3) % 3;
             updateCarousel();
         }
 
@@ -1832,24 +1850,15 @@
         // --- SWIPE FUNCTIONALITY ---
         let touchStartX = 0;
         let touchEndX = 0;
-
-        carouselContainer.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, {passive: true});
-
-        carouselContainer.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, {passive: true});
+        carouselContainer.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+        carouselContainer.addEventListener('touchend', e => { touchEndX = e.changedTouches[0].screenX; handleSwipe(); }, {passive: true});
 
         function handleSwipe() {
+            const currentCat = servicesData.find(c => c.id === activeCategoryId);
+            if (currentCat && currentCat.id === 'custom') return;
             const threshold = 60;
-            if (touchEndX < touchStartX - threshold) {
-                nextSlide();
-            }
-            if (touchEndX > touchStartX + threshold) {
-                prevSlide();
-            }
+            if (touchEndX < touchStartX - threshold) nextSlide();
+            if (touchEndX > touchStartX + threshold) prevSlide();
         }
 
         function renderContextCard() {
@@ -1857,43 +1866,84 @@
             setTimeout(() => {
                 const cat = servicesData.find(c => c.id === activeCategoryId);
                 
-                const challengeItems = cat.challenge.map(item => `
-                    <div class="spec-item">
-                        <span class="spec-title">${item.t}</span>
-                        <p class="spec-desc">${item.d}</p>
-                    </div>
-                `).join('');
+                // Check if mobile view
+                const isMobile = window.innerWidth <= 768;
 
-                const solutionItems = cat.solution.map(item => `
-                    <div class="spec-item">
-                        <span class="spec-title">${item.t}</span>
-                        <p class="spec-desc">${item.d}</p>
-                    </div>
-                `).join('');
+                if (isMobile) {
+                    // MOBILE: Synced Carousel Layout
+                    let slidesHTML = '';
+                    for(let i=0; i<3; i++) {
+                        const challenge = cat.challenge[i];
+                        const solution = cat.solution[i];
+                        slidesHTML += `
+                            <div class="mobile-slide">
+                                <div class="slide-header slide-challenge">⚠️ The Challenge</div>
+                                <div class="slide-title">${challenge.t}</div>
+                                <div class="slide-desc">${challenge.d}</div>
+                                <div style="height: 1rem;"></div>
+                                <div class="slide-header slide-solution">✅ Our Solution</div>
+                                <div class="slide-title">${solution.t}</div>
+                                <div class="slide-desc">${solution.d}</div>
+                            </div>
+                        `;
+                    }
+                    
+                    contextCardEl.innerHTML = `
+                        <div class="card-header-center">
+                            <h3>${cat.title}</h3>
+                            <div class="card-sub">${cat.sub}</div>
+                        </div>
+                        <div class="card-content-split">
+                            ${slidesHTML}
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-badges">
+                                <span class="badge-quality">✓ Studio-Grade Realism</span>
+                                <span class="badge-cultural-critical">✓ Critical Cultural QA</span>
+                            </div>
+                            <button onclick="openDemoForm('${cat.id}', 'Get Your Custom Sample')" class="btn btn-primary">Get Your Custom Sample →</button>
+                        </div>
+                    `;
+                } else {
+                    // DESKTOP: Side-by-Side Layout
+                    const challengeItems = cat.challenge.map(item => `
+                        <div class="spec-item">
+                            <span class="spec-title">${item.t}</span>
+                            <p class="spec-desc">${item.d}</p>
+                        </div>
+                    `).join('');
 
-                contextCardEl.innerHTML = `
-                    <div class="card-header-center">
-                        <h3>${cat.title}</h3>
-                        <div class="card-sub">${cat.sub}</div>
-                    </div>
-                    <div class="card-content-split">
-                        <div class="card-column col-challenge">
-                            <h4>The Challenge</h4>
-                            ${challengeItems}
+                    const solutionItems = cat.solution.map(item => `
+                        <div class="spec-item">
+                            <span class="spec-title">${item.t}</span>
+                            <p class="spec-desc">${item.d}</p>
                         </div>
-                        <div class="card-column col-solution">
-                            <h4>Our AI Solution</h4>
-                            ${solutionItems}
+                    `).join('');
+
+                    contextCardEl.innerHTML = `
+                        <div class="card-header-center">
+                            <h3>${cat.title}</h3>
+                            <div class="card-sub">${cat.sub}</div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="card-badges">
-                            <span class="badge-quality">✓ Studio-Grade Realism</span>
-                            <span class="badge-cultural-critical">✓ Critical Cultural QA</span>
+                        <div class="card-content-split">
+                            <div class="card-column col-challenge">
+                                <h4>The Challenge</h4>
+                                ${challengeItems}
+                            </div>
+                            <div class="card-column col-solution">
+                                <h4>Our AI Solution</h4>
+                                ${solutionItems}
+                            </div>
                         </div>
-                        <button onclick="openDemoForm('${cat.id}', 'Get Your Custom Sample')" class="btn btn-primary">Get Your Custom Sample →</button>
-                    </div>
-                `;
+                        <div class="card-footer">
+                            <div class="card-badges">
+                                <span class="badge-quality">✓ Studio-Grade Realism</span>
+                                <span class="badge-cultural-critical">✓ Critical Cultural QA</span>
+                            </div>
+                            <button onclick="openDemoForm('${cat.id}', 'Get Your Custom Sample')" class="btn btn-primary">Get Your Custom Sample →</button>
+                        </div>
+                    `;
+                }
                 contextCardEl.classList.remove('fade-out');
             }, 1000);
         }
@@ -1902,38 +1952,23 @@
             if (id === activeCategoryId) return;
             activeCategoryId = id;
             activeImageIndex = 0;
-            
-            // SYNC UMBRELLA HIGHLIGHT
             const selectedCat = servicesData.find(c => c.id === id);
-            if(selectedCat) {
-                syncUmbrellaPills(selectedCat.umbrella);
-            }
-
+            if(selectedCat) syncUmbrellaPills(selectedCat.umbrella);
             renderNavRail();
             updateCarousel();
             renderContextCard();
         }
 
-        // --- UMBRELLA FILTER LOGIC ---
         function filterByUmbrella(umbrella) {
-            // 1. Update Umbrella Pills UI
             syncUmbrellaPills(umbrella);
-            
-            // 2. Update Hero Tabs UI & Images
             switchHeroTab(umbrella, 0); 
-            
-            // 3. Scroll Rail to first item of this umbrella
             const firstItemOfUmbrella = servicesData.find(item => item.umbrella === umbrella);
             if(firstItemOfUmbrella) {
                 setActiveCategory(firstItemOfUmbrella.id);
-                
-                // Find the button in the rail and scroll to it
                 setTimeout(() => {
                     const railButtons = document.querySelectorAll('.rail-btn');
                     const index = servicesData.findIndex(item => item.id === firstItemOfUmbrella.id);
-                    if(railButtons[index]) {
-                        railButtons[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    }
+                    if(railButtons[index]) railButtons[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }, 100);
             }
         }
@@ -1942,10 +1977,21 @@
             const pills = document.querySelectorAll('.umbrella-btn');
             pills.forEach(pill => {
                 pill.classList.remove('active');
+                pill.setAttribute('aria-pressed', 'false');
                 if(pill.textContent.toLowerCase().includes(umbrella === 'fashion' ? 'fashion' : umbrella === 'lifestyle' ? 'lifestyle' : 'professional')) {
                     pill.classList.add('active');
+                    pill.setAttribute('aria-pressed', 'true');
                 }
             });
+        }
+
+        function switchMobileTab(umbrella) {
+            const tabs = document.querySelectorAll('.mobile-tab-btn');
+            tabs.forEach(tab => { tab.classList.remove('active'); tab.setAttribute('aria-pressed', 'false'); });
+            const clickedTab = Array.from(tabs).find(t => t.textContent.toLowerCase().includes(umbrella === 'fashion' ? 'fashion' : umbrella === 'lifestyle' ? 'lifestyle' : 'enterprise'));
+            if(clickedTab) { clickedTab.classList.add('active'); clickedTab.setAttribute('aria-pressed', 'true'); }
+            document.querySelectorAll('.mobile-grid-view').forEach(grid => grid.classList.remove('active'));
+            document.getElementById(`mobile-grid-${umbrella}`).classList.add('active');
         }
 
         function openDemoForm(categoryId, headline) {
@@ -1969,14 +2015,11 @@
         updateCarousel();
         renderContextCard();
 
-        // --- AUTO UPDATE FOOTER YEAR ---
         document.addEventListener('DOMContentLoaded', () => {
             const footerBottom = document.querySelector('.footer-bottom');
-            if(footerBottom) {
-                footerBottom.innerHTML = `© ${new Date().getFullYear()} AZ Designs. All Rights Reserved.`;
-            }
+            if(footerBottom) footerBottom.innerHTML = `© ${new Date().getFullYear()} AZ Designs. All Rights Reserved.`;
         });
     </script>
 </body>
 </html>
-
+```her
