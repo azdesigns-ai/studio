@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,8 +47,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
-        body { font-family: var(--font-body); background-color: var(--color-bg-deep); color: var(--color-text-primary); line-height: 1.6; overflow-x: hidden; }
-        h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 600; line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.02em; }
+        body { font-family: var(--font-body); background-color: var(--color-bg-deep); color: var(--color-text-primary); line-height: 1.6; overflow-x: hidden; }        h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 600; line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.02em; }
         p { font-weight: 300; color: var(--color-text-secondary); }
         a { text-decoration: none; color: inherit; transition: color var(--transition-fast); }
         .container { width: 92%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
@@ -98,8 +96,7 @@
             z-index: 1001; 
         }
         .nav-item:hover .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-        
-        .mega-column { display: flex; flex-direction: column; gap: 1rem; }
+                .mega-column { display: flex; flex-direction: column; gap: 1rem; }
         .mega-col-title {
             font-family: var(--font-heading);
             font-size: 0.75rem;
@@ -148,8 +145,7 @@
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
         .hamburger span { width: 24px; height: 2px; background: var(--color-text-primary); transition: var(--transition-fast); border-radius: 2px; }
         
-        /* MOBILE MENU WITH TABS */
-        .mobile-menu { 
+        /* MOBILE MENU WITH TABS */        .mobile-menu { 
             position: fixed; 
             top: 0; 
             right: -100%; 
@@ -198,8 +194,7 @@
             color: var(--color-accent-teal);
             border-bottom-color: var(--color-accent-teal);
             background: rgba(0, 212, 170, 0.05);
-        }
-        
+        }        
         .mobile-content {
             flex-grow: 1;
             overflow-y: auto;
@@ -248,11 +243,29 @@
         .mobile-card-text {
             font-family: var(--font-heading);
             font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--color-text-primary);
+            font-weight: 500;            color: var(--color-text-primary);
         }
 
-        .sticky-mobile-cta { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--color-accent-teal); color: var(--color-bg-deep); padding: 12px 24px; border-radius: 50px; font-weight: 700; box-shadow: 0 4px 20px rgba(0, 212, 170, 0.4); z-index: 998; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); font-family: var(--font-heading); border: none; cursor: pointer; display: none !important; }
+        .sticky-mobile-cta { 
+            position: fixed; 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(100px); 
+            background: var(--color-accent-teal); 
+            color: var(--color-bg-deep); 
+            padding: 10px 20px; /* Compact */
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 0.9rem;
+            box-shadow: 0 4px 20px rgba(0, 212, 170, 0.4); 
+            z-index: 998; 
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            font-family: var(--font-heading); 
+            border: none; 
+            cursor: pointer; 
+            display: none !important; 
+            white-space: nowrap;
+        }
         @media (max-width: 768px) { .sticky-mobile-cta { display: block !important; } .sticky-mobile-cta.visible { transform: translateX(-50%) translateY(0); } }
 
         .bg-mesh { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: radial-gradient(circle at 20% 10%, rgba(108, 92, 231, 0.15) 0%, transparent 40%), radial-gradient(circle at 80% 40%, rgba(0, 212, 170, 0.08) 0%, transparent 40%); pointer-events: none; }
@@ -279,8 +292,7 @@
             overflow: hidden;
             box-shadow: var(--shadow-premium);
             height: 600px;
-        }
-        
+        }        
         .comparison-container { 
             position: relative; 
             width: 100%; 
@@ -329,7 +341,7 @@
             overflow-x: auto;
             white-space: nowrap;
             scrollbar-width: none;
-            max-width: 90vw;
+            max-width: 90vw;            scroll-behavior: smooth;
         }
         .hero-tabs-pill::-webkit-scrollbar { display: none; }
         .tab-btn {
@@ -378,8 +390,7 @@
         .trust-note { text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); font-family: var(--font-mono); opacity: 0.8; letter-spacing: 0.02em; }
 
         /* Services */
-        .services h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
-        .services p.subheadline { text-align: center; margin-bottom: 2rem; font-size: 1.1rem; }
+        .services h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }        .services p.subheadline { text-align: center; margin-bottom: 2rem; font-size: 1.1rem; }
         
         .umbrella-tabs-container {
             display: flex;
@@ -399,15 +410,16 @@
             white-space: nowrap;
             scrollbar-width: none;
             max-width: 90vw;
+            scroll-behavior: smooth;
         }
         .umbrella-tabs-pill::-webkit-scrollbar { display: none; }
         .umbrella-btn {
             background: transparent;
             border: none;
             color: var(--color-text-secondary);
-            padding: 10px 20px;
+            padding: 10px 20px; /* Match Hero Tabs */
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.85rem; /* Match Hero Tabs */
             font-family: var(--font-heading);
             font-weight: 600;
             cursor: pointer;
@@ -427,8 +439,7 @@
             margin: 0 auto 2rem auto;
             padding-bottom: 1rem; 
             position: relative; 
-            z-index: 10; 
-            background: transparent; 
+            z-index: 10;             background: transparent; 
             overflow-x: auto;
             scrollbar-width: none;
             -ms-overflow-style: none;
@@ -477,8 +488,7 @@
         }
 
         /* Carousel */
-        .carousel-container { 
-            position: relative; 
+        .carousel-container {             position: relative; 
             width: 480px;
             height: 600px;
             border-radius: var(--border-radius); 
@@ -527,8 +537,7 @@
             border: none; 
             width: 48px; 
             height: 48px; 
-            border-radius: 50%; 
-            cursor: pointer; 
+            border-radius: 50%;             cursor: pointer; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
@@ -577,8 +586,7 @@
         }
         .context-card::-webkit-scrollbar { width: 6px; }
         .context-card::-webkit-scrollbar-track { background: transparent; }
-        .context-card::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 20px; }
-        .context-card.fade-out { opacity: 0; transform: translateY(10px); }
+        .context-card::-webkit-scrollbar-thumb { background-color: var(--color-border); border-radius: 20px; }        .context-card.fade-out { opacity: 0; transform: translateY(10px); }
         
         .card-header-center { text-align: center; margin-bottom: 2rem; }
         .card-header-center h3 { font-size: 1.75rem; color: var(--color-text-primary); margin-bottom: 0.25rem; }
@@ -589,7 +597,16 @@
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
             flex-grow: 1;
+            /* Desktop Horizontal Scroll Fix */
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 1rem;
         }
+        .card-column { 
+            min-width: 100%; /* Ensure full width on scroll */
+            scroll-snap-align: start;
+        }
+        
         .card-column h4 { 
             font-size: 0.75rem; 
             text-transform: uppercase; 
@@ -618,8 +635,7 @@
             gap: 1rem;
         }
         .card-badges { display: flex; gap: 0.75rem; }
-        .badge-quality, .badge-cultural-critical { 
-            display: inline-block; 
+        .badge-quality, .badge-cultural-critical {             display: inline-block; 
             padding: 4px 10px; 
             border-radius: 50px; 
             font-size: 0.7rem; 
@@ -668,8 +684,7 @@
         }
         .plan-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
         .plan-card.popular { border: 1px solid var(--color-accent-violet); box-shadow: 0 8px 32px rgba(108,92,231,0.15), inset 0 0 0 1px rgba(108,92,231,0.2); position: relative; transform: scale(1.02); z-index: 10; }
-        .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--color-accent-violet); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; font-family: var(--font-heading); }
-        .plan-name { font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--color-text-primary); font-weight: 500; }
+        .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--color-accent-violet); color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; font-family: var(--font-heading); }        .plan-name { font-size: 1.1rem; margin-bottom: 0.25rem; color: var(--color-text-primary); font-weight: 500; }
         .plan-price { font-size: 2.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--color-text-primary); font-family: var(--font-heading); letter-spacing: -0.02em; }
         .plan-price span { font-size: 1rem; color: var(--color-text-secondary); font-weight: 400; }
         .plan-features { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
@@ -694,8 +709,32 @@
         .contact { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 4rem 2rem; margin-top: 2rem; text-align: center; backdrop-filter: blur(16px); box-shadow: var(--shadow-premium); }
         .contact h2 { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 1rem; transition: color 0.3s; }
         .contact p.subheadline { margin-bottom: 3rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .concierge-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 3rem 2rem; max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
-        .concierge-option { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 12px; transition: all 0.3s ease; text-decoration: none; color: var(--color-text-primary); border: 1px solid transparent; }
+        .concierge-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid var(--color-border); 
+            border-radius: var(--border-radius); 
+            padding: 2rem; /* Compact Padding */
+            max-width: 400px; /* Compact Width */
+            margin: 0 auto; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 1rem; 
+            align-items: center; /* Center Align */
+            text-align: center;
+        }
+        .concierge-option { 
+            display: flex; 
+            align-items: center; 
+            gap: 1rem; 
+            padding: 1rem 1.5rem; 
+            border-radius: 12px; 
+            transition: all 0.3s ease; 
+            text-decoration: none; 
+            color: var(--color-text-primary); 
+            border: 1px solid transparent; 
+            width: 100%;            justify-content: center;
+        }
         .concierge-option:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--color-border); transform: translateY(-2px); }
         .concierge-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: var(--color-accent-teal); }
         .concierge-text { text-align: left; }
@@ -743,8 +782,7 @@
             .sticky-mobile-cta { display: block !important; }
             .hero { padding: 120px 0 40px; }
             .hero h1 { margin-bottom: 1rem; }
-            .hero p.subheadline { margin-bottom: 1.5rem; font-size: 1rem; }
-            .trust-bar { margin-bottom: 1.5rem; }
+            .hero p.subheadline { margin-bottom: 1.5rem; font-size: 1rem; }            .trust-bar { margin-bottom: 1.5rem; }
             
             .hero-visual { height: auto; aspect-ratio: 4 / 5; }
             .comp-img img { object-position: center top; }
@@ -759,43 +797,41 @@
             .services-grid-layout { display: flex; flex-direction: column; gap: 2rem; }
             .carousel-container { width: 100%; height: 400px; }
             
-            /* MOBILE CARD LAYOUT - SYNCED CAROUSEL */
+            /* MOBILE CARD LAYOUT - COMPACT */
             .context-card { 
                 height: auto; 
-                min-height: 400px; 
-                padding: 1.5rem; 
-                overflow: visible; /* Allow peek */
+                min-height: 350px; /* Reduced Height */
+                padding: 1rem; /* Reduced Padding */
+                overflow: visible;
             }
             .card-content-split {
                 display: flex;
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
-                gap: 1rem;
+                gap: 0.75rem; /* Reduced Gap */
                 padding-bottom: 1rem;
-                /* Hide scrollbar */
                 scrollbar-width: none; 
                 -ms-overflow-style: none;
             }
             .card-content-split::-webkit-scrollbar { display: none; }
             
             .mobile-slide {
-                min-width: 85%; /* Peek effect */
+                min-width: 85%; 
                 scroll-snap-align: center;
                 background: rgba(255,255,255,0.03);
                 border: 1px solid var(--color-border);
                 border-radius: 12px;
-                padding: 1.5rem;
+                padding: 1rem; /* Reduced Padding */
                 display: flex;
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.75rem; /* Reduced Gap */
             }
             
             .slide-header {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
                 text-transform: uppercase;
-                letter-spacing: 0.1em;
-                font-weight: 700;
-                margin-bottom: 0.5rem;
+                letter-spacing: 0.05em;
+                font-weight: 700;                margin-bottom: 0.25rem;
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
@@ -803,10 +839,9 @@
             .slide-challenge { color: var(--color-accent-violet); }
             .slide-solution { color: var(--color-accent-teal); }
             
-            .slide-title { font-size: 0.9rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.25rem; }
-            .slide-desc { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.4; }
+            .slide-title { font-size: 0.85rem; font-weight: 600; color: var(--color-text-primary); margin-bottom: 0.15rem; line-height: 1.3; }
+            .slide-desc { font-size: 0.8rem; color: var(--color-text-secondary); line-height: 1.4; }
 
-            /* Fading Arrow Indicator */
             .swipe-indicator {
                 position: absolute;
                 right: 10px;
@@ -821,9 +856,10 @@
             }
             @keyframes fadeOut { 0% { opacity: 0.5; } 80% { opacity: 0.5; } 100% { opacity: 0; } }
 
-            .card-column { display: none; } /* Hide desktop columns */
+            .card-column { display: none; } 
             .card-header-center { margin-bottom: 1rem; }
             .card-header-center h3 { font-size: 1.4rem; }
+            .card-sub { font-size: 0.8rem; }
             
             .nav-rail-container { margin-bottom: 1.5rem; padding-bottom: 1rem; }
             .rail-btn { padding: 8px 16px; font-size: 0.8rem; }
@@ -844,15 +880,14 @@
             .plans-grid { gap: 1rem; margin-bottom: 2rem; }
             .plan-card { padding: 1.5rem; }
             .plan-price { font-size: 2rem; margin-bottom: 1rem; }
-            .plan-features li { padding: 0.5rem 0; }
-            .includes-list { padding: 1.5rem; }
+            .plan-features li { padding: 0.5rem 0; }            .includes-list { padding: 1.5rem; }
             .quality h2 { margin-bottom: 0.5rem; }
             .trust-pillars { gap: 1rem; margin: 2rem 0; }
             .pillar { padding: 1.5rem; }
             .contact { padding: 2rem 1rem; margin-top: 1rem; }
             .contact h2 { margin-bottom: 0.5rem; }
             .contact p.subheadline { margin-bottom: 1.5rem; }
-            .concierge-card { padding: 2rem 1.5rem; }
+            .concierge-card { padding: 1.5rem; max-width: 100%; }
             footer { padding: 2rem 0 1rem; margin-top: 2rem; }
             .plan-card.popular { transform: scale(1); }
             .brand-name { font-size: 1.1rem; }
@@ -894,8 +929,7 @@
                                 <svg viewBox="0 0 24 24"><path d="M20.38 3.4a1.6 1.6 0 0 0-1.6-1.6H5.22a1.6 1.6 0 0 0-1.6 1.6v1.6h16.76V3.4zM3.62 7h16.76v13.6a1.6 1.6 0 0 1-1.6 1.6H5.22a1.6 1.6 0 0 1-1.6-1.6V7z"/></svg>
                                 <span class="mega-card-title">Western Casual</span>
                             </a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('modest')">
-                                <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg>
+                            <a href="#services" class="mega-card" onclick="setActiveCategory('modest')">                                <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg>
                                 <span class="mega-card-title">Modest Fashion</span>
                             </a>
                             <a href="#services" class="mega-card" onclick="setActiveCategory('ethnic')">
@@ -944,8 +978,7 @@
                             </a>
                             <a href="#services" class="mega-card" onclick="setActiveCategory('realestate')">
                                 <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg>
-                                <span class="mega-card-title">Real Estate</span>
-                            </a>
+                                <span class="mega-card-title">Real Estate</span>                            </a>
                             <a href="#services" class="mega-card" onclick="setActiveCategory('edtech')">
                                 <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                                 <span class="mega-card-title">Education & EdTech</span>
@@ -994,8 +1027,7 @@
                 </a>
                 <a href="#services" class="mobile-card" onclick="setActiveCategory('modest'); document.querySelector('.mobile-menu').classList.remove('active');">
                     <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg></div>
-                    <span class="mobile-card-text">Modest Fashion</span>
-                </a>
+                    <span class="mobile-card-text">Modest Fashion</span>                </a>
                 <a href="#services" class="mobile-card" onclick="setActiveCategory('ethnic'); document.querySelector('.mobile-menu').classList.remove('active');">
                     <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l-2 4h4l-2-4z"/><path d="M12 6v16"/><path d="M8 10h8"/><path d="M7 22h10"/></svg></div>
                     <span class="mobile-card-text">Ethnic Traditional</span>
@@ -1044,8 +1076,7 @@
                 </a>
                 <a href="#services" class="mobile-card" onclick="setActiveCategory('edtech'); document.querySelector('.mobile-menu').classList.remove('active');">
                     <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-                    <span class="mobile-card-text">Education & EdTech</span>
-                </a>
+                    <span class="mobile-card-text">Education & EdTech</span>                </a>
                 <a href="#services" class="mobile-card" onclick="setActiveCategory('b2b'); document.querySelector('.mobile-menu').classList.remove('active');">
                     <div class="mobile-card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
                     <span class="mobile-card-text">B2B / Agencies</span>
@@ -1057,12 +1088,12 @@
             </div>
 
             <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
-                <button class="btn btn-primary" style="width: 100%; border: none;" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Book Strategy Audit</button>
+                <button class="btn btn-primary" style="width: 100%; border: none;" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Get Sample</button>
             </div>
         </div>
     </div>
 
-    <button class="sticky-mobile-cta" id="stickyMobileCta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📅 Book Strategy Audit</button>
+    <button class="sticky-mobile-cta" id="stickyMobileCta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">📥 Get Sample</button>
     <div class="toast" id="toast"><span style="color: var(--color-accent-teal);">✓</span> Handle Copied to Clipboard!</div>
 
     <!-- Hero -->
@@ -1094,8 +1125,7 @@
 
             <div class="hero-tabs-container">
                 <div class="hero-tabs-pill">
-                    <button class="tab-btn active" onclick="switchHeroTab('fashion', 0)" aria-pressed="true">Fashion & Apparel</button>
-                    <button class="tab-btn" onclick="switchHeroTab('lifestyle', 5)" aria-pressed="false">Lifestyle & Retail</button>
+                    <button class="tab-btn active" onclick="switchHeroTab('fashion', 0)" aria-pressed="true">Fashion & Apparel</button>                    <button class="tab-btn" onclick="switchHeroTab('lifestyle', 5)" aria-pressed="false">Lifestyle & Retail</button>
                     <button class="tab-btn" onclick="switchHeroTab('enterprise', 10)" aria-pressed="false">Professional Services</button>
                 </div>
             </div>
@@ -1144,8 +1174,7 @@
                     <button class="carousel-btn carousel-next" id="nextBtn">&#10095;</button>
                 </div>
 
-                <div class="context-card" id="contextCard">
-                    <!-- Swipe Indicator for Mobile -->
+                <div class="context-card" id="contextCard">                    <!-- Swipe Indicator for Mobile -->
                     <div class="swipe-indicator">→</div>
                 </div>
             </div>
@@ -1194,8 +1223,7 @@
                     <div class="case-detail">
                         <span class="case-stat">54K+ Profile Visits</span>
                         <span class="case-context">Driven by external traffic</span>
-                    </div>
-                    <div class="case-detail">
+                    </div>                    <div class="case-detail">
                         <span class="case-stat">93.3% Non-Follower Views</span>
                         <span class="case-context">Massive new audience acquisition</span>
                     </div>
@@ -1245,7 +1273,6 @@
                     <button class="btn btn-secondary" onclick="document.getElementById('pricing-plans').scrollIntoView({behavior: 'smooth'})">View Monthly Plans ↓</button>
                 </div>
             </div>
-
             <div id="pricing-plans" class="plans-grid">
                 <div class="plan-card">
                     <div class="plan-name">Starter</div>
@@ -1294,8 +1321,7 @@
                     <div class="inc-item"><span class="inc-check">✓</span> Human-in-the-Loop QA Safety</div>
                     <div class="inc-item"><span class="inc-check">✓</span> Data Privacy Focused Security</div>
                 </div>
-            </div>
-        </div>
+            </div>        </div>
     </section>
 
     <!-- Quality & Trust -->
@@ -1344,8 +1370,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Footer -->    <footer>
         <div class="container footer-inner">
             <div class="footer-brand-wrapper">
                 <img src="images/logo.png" alt="AZ Designs Logo" class="footer-logo-img">
@@ -1394,8 +1419,7 @@
                 ? `<span style="color: #ff4757;">⚠</span> ${message}` 
                 : `<span style="color: var(--color-accent-teal);">✓</span> ${message}`;
             toast.style.borderColor = isError ? '#ff4757' : 'var(--color-accent-teal)';
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 4000);
+            toast.classList.add('show');            setTimeout(() => toast.classList.remove('show'), 4000);
         }
 
         // Slider Logic
@@ -1444,8 +1468,7 @@
                         const target = parseFloat(counter.getAttribute('data-target'));
                         const duration = 2000;
                         const startTime = performance.now();
-                        
-                        function update(currentTime) {
+                                                function update(currentTime) {
                             const elapsed = currentTime - startTime;
                             const progress = Math.min(elapsed / duration, 1);
                             const easeOut = 1 - Math.pow(1 - progress, 3);
@@ -1494,8 +1517,7 @@
 
             setTimeout(() => {
                 if (umbrella === 'fashion') {
-                    beforeImg.src = 'images/hero-before.png';
-                    afterImg.src = 'images/hero-after.png';
+                    beforeImg.src = 'images/hero-before.png';                    afterImg.src = 'images/hero-after.png';
                 } else if (umbrella === 'lifestyle') {
                     beforeImg.src = 'images/lifestyle-hero-before.png'; 
                     afterImg.src = 'images/lifestyle-hero-after.png';
@@ -1544,8 +1566,7 @@
                 solution: [
                     { t: 'Region-Specific Styling', d: 'Auto-adjusts styling for GCC, SEA, and other key regions.' },
                     { t: 'Rapid Deployment', d: '48-hour turnaround for seasonal collections; zero travel.' },
-                    { t: 'Hyper-Real Textures', d: 'Advanced rendering for chiffon, silk, and jersey.' }
-                ],
+                    { t: 'Hyper-Real Textures', d: 'Advanced rendering for chiffon, silk, and jersey.' }                ],
                 badgeType: 'critical', formHeadline: 'Get Your Custom Sample' 
             },
             { 
@@ -1594,8 +1615,7 @@
             // LIFESTYLE & RETAIL (Indices 5-9)
             { 
                 id: 'luxury', title: 'Luxury Accessories', sub: 'Timepieces • Fine Jewelry • Designer Bags • Eyewear', umbrella: 'lifestyle',
-                challenge: [
-                    { t: 'Craftsmanship Story', d: 'Standard photos fail to convey the weight of premium goods.' },
+                challenge: [                    { t: 'Craftsmanship Story', d: 'Standard photos fail to convey the weight of premium goods.' },
                     { t: 'Global Aspirations', d: 'Luxury means different things in Paris, Dubai, and Tokyo.' },
                     { t: 'Reflection Control', d: 'Jewelry and watches are difficult to light without glare.' }
                 ],
@@ -1644,8 +1664,7 @@
                 solution: [
                     { t: 'Region-Specific Staging', d: 'Auto-adjusts room decor and dining scenes for GCC, EU, or Asian markets.' },
                     { t: 'Demographic Targeting', d: 'Generates diverse guest avatars that reflect your target traveler profile.' },
-                    { t: 'Context-Aware Lighting', d: 'Matches local time-of-day and seasonal lighting for authentic vibes.' }
-                ],
+                    { t: 'Context-Aware Lighting', d: 'Matches local time-of-day and seasonal lighting for authentic vibes.' }                ],
                 badgeType: 'high', formHeadline: 'Get Your Custom Sample' 
             },
             { 
@@ -1694,8 +1713,7 @@
             },
             { 
                 id: 'edtech', title: 'Education & EdTech', sub: 'Online Courses • K-12 Materials • University Marketing', umbrella: 'enterprise',
-                challenge: [
-                    { t: 'Student Relatability', d: 'Course materials featuring students from specific regions increase engagement.' },
+                challenge: [                    { t: 'Student Relatability', d: 'Course materials featuring students from specific regions increase engagement.' },
                     { t: 'Cultural Classroom Norms', d: 'Depicting appropriate teacher-student interactions per culture.' },
                     { t: 'Inclusive Representation', d: 'Ensuring diverse gender and ethnic representation in learning materials.' }
                 ],
@@ -1744,8 +1762,7 @@
         const carouselLoader = document.getElementById('carouselLoader');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const carouselContainer = document.getElementById('carouselContainer');
-        const carouselDots = document.getElementById('carouselDots');
+        const carouselContainer = document.getElementById('carouselContainer');        const carouselDots = document.getElementById('carouselDots');
 
         function getBadgeHTML(type) {
             const labels = { 'high': '<span class="badge-cultural-high">High</span>', 'critical': '<span class="badge-cultural-critical">Critical</span>', 'medium': '<span class="badge-cultural-medium">Medium</span>', 'bespoke': '<span class="badge-cultural-bespoke">Bespoke</span>' };
@@ -1795,7 +1812,6 @@
         }
 
         window.addEventListener('load', () => { preloadImages(); window.scrollTo(0,0); });
-
         function updateCarousel() {
             const cat = servicesData.find(c => c.id === activeCategoryId);
             const src = getImageSrc(activeCategoryId, activeImageIndex);
@@ -1844,8 +1860,7 @@
             updateCarousel();
         }
 
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);        prevBtn.addEventListener('click', prevSlide);
 
         // --- SWIPE FUNCTIONALITY ---
         let touchStartX = 0;
@@ -1880,7 +1895,7 @@
                                 <div class="slide-header slide-challenge">⚠️ The Challenge</div>
                                 <div class="slide-title">${challenge.t}</div>
                                 <div class="slide-desc">${challenge.d}</div>
-                                <div style="height: 1rem;"></div>
+                                <div style="height: 0.5rem;"></div>
                                 <div class="slide-header slide-solution">✅ Our Solution</div>
                                 <div class="slide-title">${solution.t}</div>
                                 <div class="slide-desc">${solution.d}</div>
@@ -1894,8 +1909,7 @@
                             <div class="card-sub">${cat.sub}</div>
                         </div>
                         <div class="card-content-split">
-                            ${slidesHTML}
-                        </div>
+                            ${slidesHTML}                        </div>
                         <div class="card-footer">
                             <div class="card-badges">
                                 <span class="badge-quality">✓ Studio-Grade Realism</span>
@@ -1944,8 +1958,7 @@
                         </div>
                     `;
                 }
-                contextCardEl.classList.remove('fade-out');
-            }, 1000);
+                contextCardEl.classList.remove('fade-out');            }, 1000);
         }
 
         function setActiveCategory(id) {
@@ -1994,8 +2007,7 @@
             document.getElementById(`mobile-grid-${umbrella}`).classList.add('active');
         }
 
-        function openDemoForm(categoryId, headline) {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        function openDemoForm(categoryId, headline) {            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             const contactHeadline = document.querySelector('#contact h2');
             if(contactHeadline) contactHeadline.innerText = headline;
         }
@@ -2021,5 +2033,4 @@
         });
     </script>
 </body>
-</html>
-```her
+    </html>
