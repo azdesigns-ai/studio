@@ -88,7 +88,8 @@
             --transition-fast: 0.2s ease;
             --shadow-premium: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px var(--color-border);
             --border-radius: 16px;
-            --section-padding: clamp(60px, 8vw, 110px);
+            /* UPDATED: Reduced max section padding to 80px */
+            --section-padding: clamp(45px, 5vw, 80px);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -125,15 +126,25 @@
         .nav-item { font-weight: 500; cursor: pointer; font-size: 0.9rem; transition: color 0.2s; position: relative; font-family: var(--font-body); }
         .nav-item:hover { color: var(--color-accent-teal); }
         
+        /* UPDATED: Desktop Mega Menu - Centered, Fixed, Scrollable */
         .mega-menu { 
-            position: absolute; top: 100%; left: 0; transform: translateY(10px); 
-            width: max-content; min-width: 1200px; max-width: 98vw; 
+            position: fixed; 
+            top: 80px; left: 50%; 
+            transform: translateX(-50%) translateY(10px); 
+            width: min(98vw, 1200px); 
+            max-height: calc(100vh - 90px); 
+            overflow-y: auto;
             background: var(--color-bg-card-solid); border: 1px solid var(--color-border); 
             border-radius: 16px; padding: 2rem; display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; 
             box-shadow: var(--shadow-premium); backdrop-filter: blur(24px); 
             opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1001; 
+            scrollbar-width: thin;
         }
-        .nav-item:hover .mega-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .mega-menu::-webkit-scrollbar { width: 6px; }
+        .mega-menu::-webkit-scrollbar-track { background: transparent; }
+        .mega-menu::-webkit-scrollbar-thumb { background: var(--color-accent-teal); border-radius: 4px; }
+        .nav-item:hover .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        
         .mega-column { display: flex; flex-direction: column; gap: 0.5rem; }
         .mega-col-title { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700; color: var(--color-accent-teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--color-border); }
         .mega-card { display: flex; align-items: center; gap: 8px; padding: 0.5rem; background: transparent; border-radius: 6px; text-decoration: none; transition: all 0.2s ease; cursor: pointer; }
@@ -233,7 +244,7 @@
 
         .how-it-works h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .how-it-works p.subheadline { text-align: center; margin-bottom: 4rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
         .process-step { 
             background: var(--color-bg-card-solid); backdrop-filter: blur(16px); border-radius: var(--border-radius); 
             padding: 2.5rem; border: 1px solid var(--color-border); transition: all 0.2s ease; position: relative; 
@@ -243,7 +254,7 @@
         .step-number { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 700; color: rgba(255,255,255,0.05); position: absolute; top: -10px; right: 20px; line-height: 1; pointer-events: none; }
         .process-step h3 { font-size: 1.35rem; color: var(--color-text-primary); margin-bottom: 1.5rem; font-weight: 600; }
         .step-text { font-size: 0.95rem; line-height: 1.6; color: var(--color-text-secondary); font-weight: 300; }
-        .trust-note { text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); font-family: var(--font-mono); opacity: 0.8; letter-spacing: 0.02em; }
+        .trust-note { text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); font-family: var(--font-mono); opacity: 0.8; letter-spacing: 0.02em; margin-bottom: 0; }
 
         .services h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .services p.subheadline { text-align: center; margin-bottom: 2rem; font-size: 1.1rem; }
@@ -278,11 +289,17 @@
 
         .context-card { 
             background: var(--color-bg-card-solid); backdrop-filter: blur(16px); border: 1px solid var(--color-border); 
-            border-radius: var(--border-radius); padding: 0; height: auto; min-height: 500px; 
+            border-radius: var(--border-radius); padding: 0; height: auto; min-height: 400px; 
             overflow: hidden; transition: opacity 0.2s ease, transform 0.2s ease; opacity: 1; transform: translateY(0); 
             position: relative; z-index: 5; display: flex; flex-direction: column; flex-grow: 1; 
             box-shadow: var(--shadow-premium); max-width: 600px; 
         }
+        /* UPDATED: Desktop Card Constraints for Internal Scroll */
+        @media (min-width: 901px) {
+            .context-card { height: 580px; }
+            .card-scroll-area { max-height: 320px; overflow-y: auto; }
+        }
+        
         .context-card.fade-out { opacity: 0; transform: translateY(10px); }
         
         .card-header-top { 
@@ -339,7 +356,7 @@
 
         .results h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .results p.subheadline { text-align: center; margin-bottom: 3rem; font-size: 1.1rem; }
-        .results-grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+        .results-grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
         .metric-badge { background: var(--color-bg-card-solid); border: 1px solid var(--color-border); padding: 2.5rem; border-radius: var(--border-radius); text-align: center; transition: all 0.2s ease; backdrop-filter: blur(16px); box-shadow: var(--shadow-premium); }
         .metric-badge:hover { transform: translateY(-4px); border-color: var(--color-accent-teal); box-shadow: 0 8px 32px 0 rgba(0, 212, 170, 0.15); }
         .metric-value { font-size: 3rem; font-family: var(--font-heading); font-weight: 700; color: var(--color-text-primary); margin-bottom: 0.75rem; line-height: 1; letter-spacing: -0.02em; }
@@ -357,11 +374,18 @@
         .pricing p.subheadline { text-align: center; margin-bottom: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto; white-space: pre-line; }
         .pricing-top-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; }
         .pricing-middle-row { margin-bottom: 4rem; display: flex; justify-content: center; }
+        
+        /* UPDATED: Scale Banner Centered on Desktop */
         .scale-banner { background: var(--color-bg-card-solid); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 1.5rem 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; backdrop-filter: blur(16px); box-shadow: var(--shadow-premium); max-width: 800px; width: 100%; text-align: left; }
+        @media (min-width: 769px) {
+            .scale-banner { text-align: center; align-items: center; }
+            .scale-banner ul { justify-content: center; }
+            .scale-banner .btn-secondary { margin: 0 auto; display: block; }
+        }
         .scale-banner ul { list-style: none; display: flex; gap: 2rem; flex-wrap: wrap; }
         .scale-banner li { font-size: 0.9rem; color: var(--color-text-secondary); padding-left: 1.2rem; position: relative; }
         .scale-banner li::before { content: '•'; color: var(--color-accent-teal); position: absolute; left: 0; }
-        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; max-width: 1100px; margin-left: auto; margin-right: auto; }
+        .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; max-width: 1100px; margin-left: auto; margin-right: auto; }
         .plan-card { background: var(--color-bg-card-solid); backdrop-filter: blur(16px); padding: 2.5rem 2rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); display: flex; flex-direction: column; transition: all 0.2s ease; box-shadow: var(--shadow-premium); height: 100%; }
         .plan-card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-4px); }
         .plan-card.popular { border: 1px solid var(--color-accent-gold); box-shadow: 0 8px 32px rgba(201, 169, 97, 0.15), inset 0 0 0 1px rgba(201, 169, 97, 0.2); position: relative; transform: scale(1.02); z-index: 10; }
@@ -379,7 +403,7 @@
         .inc-check { color: var(--color-accent-teal); }
 
         .quality h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
-        .trust-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 4rem 0; }
+        .trust-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
         .pillar { background: var(--color-bg-card-solid); backdrop-filter: blur(16px); padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); transition: all 0.2s ease; text-align: left; box-shadow: var(--shadow-premium); }
         .pillar:hover { border-color: var(--color-accent-teal); transform: translateY(-4px); box-shadow: 0 8px 32px 0 rgba(0, 212, 170, 0.15); }
         .pillar-title { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--color-text-primary); font-weight: 600; font-family: var(--font-heading); }
@@ -415,7 +439,7 @@
         .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--color-bg-card-solid); border: 1px solid var(--color-accent-teal); color: var(--color-text-primary); padding: 12px 24px; border-radius: 50px; font-family: var(--font-heading); font-weight: 600; z-index: 2000; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 4px 20px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 8px; }
         .toast.show { transform: translateX(-50%) translateY(0); }
 
-        footer { background: #05080C; padding: 3rem 0 2rem; margin-top: 4rem; border-top: 1px solid var(--color-border); position: relative; z-index: 2; overflow: hidden; }
+        footer { background: #05080C; padding: 3rem 0 2rem; margin-top: 3rem; border-top: 1px solid var(--color-border); position: relative; z-index: 2; overflow: hidden; }
         .footer-inner { text-align: center; position: relative; z-index: 2; }
         .footer-brand-wrapper { display: inline-flex; align-items: center; gap: 15px; margin-bottom: 1.5rem; }
         .footer-logo-img { height: 40px; width: auto; object-fit: contain; }
@@ -443,8 +467,6 @@
             .nav-links, .desktop-cta { display: none; }
             .hamburger { display: flex; }
             .pricing-top-row { grid-template-columns: 1fr; }
-            .scale-banner { flex-direction: column; text-align: center; align-items: center; }
-            .scale-banner ul { flex-direction: column; gap: 0.5rem; }
             .process-steps { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.4rem; }
             .hero { padding: 120px 0 40px; }
@@ -479,7 +501,6 @@
             .pillar { padding: 1.5rem; }
             .contact { padding: 2rem 1rem; margin-top: 1rem; }
             .contact h2 { margin-bottom: 0.5rem; }
-            footer { padding: 2rem 0 1rem; margin-top: 2rem; }
             .plan-card.popular { transform: scale(1); }
             .brand-name { font-size: 1.1rem; }
             .brand-tagline { font-size: 0.55rem; }
@@ -513,43 +534,47 @@
                     <div class="mega-menu">
                         <div class="mega-column">
                             <div class="mega-col-title">📁 Fashion & Apparel</div>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('contemporary')"><svg viewBox="0 0 24 24"><path d="M20.38 3.4a1.6 1.6 0 0 0-1.6-1.6H5.22a1.6 1.6 0 0 0-1.6 1.6v1.6h16.76V3.4zM3.62 7h16.76v13.6a1.6 1.6 0 0 1-1.6 1.6H5.22a1.6 1.6 0 0 1-1.6-1.6V7z"/></svg><span class="mega-card-title">Contemporary Wear</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('modest')"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg><span class="mega-card-title">Modest & Traditional</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('youth')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg><span class="mega-card-title">Youth & Kids</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('intimate')"><svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg><span class="mega-card-title">Intimate Categories</span></a>
+                            <!-- UPDATED: Correct ID linking for subcategories -->
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('contemporary')"><svg viewBox="0 0 24 24"><path d="M20.38 3.4a1.6 1.6 0 0 0-1.6-1.6H5.22a1.6 1.6 0 0 0-1.6 1.6v1.6h16.76V3.4zM3.62 7h16.76v13.6a1.6 1.6 0 0 1-1.6 1.6H5.22a1.6 1.6 0 0 1-1.6-1.6V7z"/></svg><span class="mega-card-title">Contemporary Wear</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('modest')"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg><span class="mega-card-title">Modest & Traditional</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('youth')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg><span class="mega-card-title">Youth & Kids</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('intimate')"><svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg><span class="mega-card-title">Intimate Categories</span></a>
                         </div>
                         <div class="mega-column">
                             <div class="mega-col-title">📁 Beauty & Wellness</div>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('beauty')"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg><span class="mega-card-title">Beauty Brands</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('wellness')"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="mega-card-title">Wellness Brands</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('clinics')"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="mega-card-title">Aesthetic Clinics</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('beauty')"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg><span class="mega-card-title">Beauty Brands</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('wellness')"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="mega-card-title">Wellness Brands</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('clinics')"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="mega-card-title">Aesthetic Clinics</span></a>
                         </div>
                         <div class="mega-column">
                             <div class="mega-col-title">📁 Luxury & Consumer Brands</div>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('luxury')"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/></svg><span class="mega-card-title">Luxury Goods</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('consumer')"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="mega-card-title">Consumer Products</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('luxury')"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/></svg><span class="mega-card-title">Luxury Goods</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('consumer')"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="mega-card-title">Consumer Products</span></a>
                         </div>
                         <div class="mega-column">
                             <div class="mega-col-title">📁 Hospitality & Spaces</div>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('hospitality')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Hotels & Resorts</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('restaurants')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Restaurants & Cafés</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('tourism')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Tourism & Destinations</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('interiors')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Interior Design</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('architecture')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Architectural Spaces</span></a>
+                            <!-- UPDATED: All items link to 'hospitality' (single card) -->
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('hospitality')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Hotels & Resorts</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('hospitality')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Restaurants & Cafés</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('hospitality')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Tourism & Destinations</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('hospitality')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Interior Design</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('hospitality')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Architectural Spaces</span></a>
                         </div>
                         <div class="mega-column">
                             <div class="mega-col-title">📁 Real Estate</div>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('residential')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Residential Projects</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('commercial')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Commercial Projects</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('visualization')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Property Visualization</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('campaigns')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Real Estate Campaigns</span></a>
+                            <!-- UPDATED: All items link to 'realestate' (single card) -->
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('realestate')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Residential Projects</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('realestate')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Commercial Projects</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('realestate')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Property Visualization</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('realestate')"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg><span class="mega-card-title">Real Estate Campaigns</span></a>
                         </div>
                         <div class="mega-column">
                             <div class="mega-col-title">📁 Agency & Enterprise</div>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('whitelabel')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="mega-card-title">White-Label Production</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('partnerships')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="mega-card-title">Creative Partnerships</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('multibrand')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="mega-card-title">Multi-Brand Campaigns</span></a>
-                            <a href="#services" class="mega-card" onclick="setActiveCategory('enterprise')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="mega-card-title">Enterprise Content Systems</span></a>
+                            <!-- UPDATED: All items link to 'agency' (single card) -->
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('agency')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="mega-card-title">White-Label Production</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('agency')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="mega-card-title">Creative Partnerships</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('agency')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="mega-card-title">Multi-Brand Campaigns</span></a>
+                            <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('agency')"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="mega-card-title">Enterprise Content Systems</span></a>
                         </div>
                     </div>
                 </div>
@@ -591,33 +616,37 @@
             </div>
             <div class="mobile-content">
                 <div class="mobile-grid-view active" id="mobile-grid-fashion">
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('contemporary'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M20.38 3.4a1.6 1.6 0 0 0-1.6-1.6H5.22a1.6 1.6 0 0 0-1.6 1.6v1.6h16.76V3.4zM3.62 7h16.76v13.6a1.6 1.6 0 0 1-1.6 1.6H5.22a1.6 1.6 0 0 1-1.6-1.6V7z"/></svg></div><span class="mobile-card-text">Contemporary Wear</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('modest'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg></div><span class="mobile-card-text">Modest & Traditional</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('youth'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg></div><span class="mobile-card-text">Youth & Kids</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('intimate'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg></div><span class="mobile-card-text">Intimate Categories</span></a>
+                    <!-- UPDATED: navigateToService for fashion -->
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('contemporary')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M20.38 3.4a1.6 1.6 0 0 0-1.6-1.6H5.22a1.6 1.6 0 0 0-1.6 1.6v1.6h16.76V3.4zM3.62 7h16.76v13.6a1.6 1.6 0 0 1-1.6 1.6H5.22a1.6 1.6 0 0 1-1.6-1.6V7z"/></svg></div><span class="mobile-card-text">Contemporary Wear</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('modest')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7v13h14V9a7 7 0 0 0-7-7z"/><path d="M9 9h6"/></svg></div><span class="mobile-card-text">Modest & Traditional</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('youth')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"/></svg></div><span class="mobile-card-text">Youth & Kids</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('intimate')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg></div><span class="mobile-card-text">Intimate Categories</span></a>
                 </div>
                 <div class="mobile-grid-view" id="mobile-grid-beauty">
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('beauty'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div><span class="mobile-card-text">Beauty Brands</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('wellness'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="mobile-card-text">Wellness Brands</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('clinics'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="mobile-card-text">Aesthetic Clinics</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('beauty')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div><span class="mobile-card-text">Beauty Brands</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('wellness')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="mobile-card-text">Wellness Brands</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('clinics')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span class="mobile-card-text">Aesthetic Clinics</span></a>
                 </div>
                 <div class="mobile-grid-view" id="mobile-grid-luxury">
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('luxury'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/></svg></div><span class="mobile-card-text">Luxury Goods</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('consumer'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><span class="mobile-card-text">Consumer Products</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('luxury')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/></svg></div><span class="mobile-card-text">Luxury Goods</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('consumer')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><span class="mobile-card-text">Consumer Products</span></a>
                 </div>
                 <div class="mobile-grid-view" id="mobile-grid-hospitality">
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('hospitality'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Hotels & Resorts</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('restaurants'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Restaurants & Cafés</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('tourism'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Tourism & Destinations</span></a>
+                    <!-- UPDATED: All link to hospitality -->
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('hospitality')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Hotels & Resorts</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('hospitality')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Restaurants & Cafés</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('hospitality')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Tourism & Destinations</span></a>
                 </div>
                 <div class="mobile-grid-view" id="mobile-grid-realestate">
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('residential'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Residential Projects</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('commercial'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Commercial Projects</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('visualization'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Property Visualization</span></a>
+                    <!-- UPDATED: All link to realestate -->
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('realestate')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Residential Projects</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('realestate')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Commercial Projects</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('realestate')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M17 21v-8.5a1.5 1.5 0 0 0-3 0V21"/></svg></div><span class="mobile-card-text">Property Visualization</span></a>
                 </div>
                 <div class="mobile-grid-view" id="mobile-grid-agency">
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('whitelabel'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><span class="mobile-card-text">White-Label</span></a>
-                    <a href="#services" class="mobile-card" onclick="setActiveCategory('enterprise'); document.querySelector('.mobile-menu').classList.remove('active');"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><span class="mobile-card-text">Enterprise</span></a>
+                    <!-- UPDATED: All link to agency -->
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('agency')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><span class="mobile-card-text">White-Label</span></a>
+                    <a href="javascript:void(0)" class="mobile-card" onclick="navigateToService('agency')"><div class="mobile-card-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><span class="mobile-card-text">Enterprise</span></a>
                 </div>
                 
                 <div class="mobile-footer-actions">
@@ -729,6 +758,24 @@
                 <div class="metric-badge"><div class="metric-value"><span class="counter" data-target="90.6">0</span>%</div><div class="metric-label">New Audience Reach (Non-Followers)</div><div class="metric-desc">Driven by culturally relevant content that unlocks pure organic discovery</div></div>
             </div>
             <div class="results-grid-container">
+                <!-- UPDATED: Case Study 2 Structure -->
+                <div class="case-study">
+                    <h4>💎 Case Study 2: Luxury Jewelry Brand (300+ SKUs)</h4>
+                    <div class="case-detail"><span class="case-stat">The Challenge</span><span class="case-context">A luxury jewelry house needed to scale SKU-level imagery without compromising consistency, lighting, or brand perception.</span></div>
+                    <div class="case-detail"><span class="case-stat">The Solution</span><span class="case-context">We built a structured AI production pipeline with controlled lighting systems, multi-angle generation, and rigorous visual QA aligned to luxury standards.</span></div>
+                    <div class="case-detail"><span class="case-stat">The Results</span><span class="case-context">300 SKUs scaled efficiently across 6 months • 7-day production cycles vs. 3-week traditional timelines • ~67% reduction in cost per SKU ($40 vs. $120) • +24% increase in average order value</span></div>
+                    <div class="case-detail"><span class="case-stat">Impact</span><span class="case-context">Every product became sellable. Nothing left unseen. A complete shift from selective showcasing to full catalog visibility.</span></div>
+                    <span class="case-source">Outcome: Full catalog visibility unlocked the long-tail market.</span>
+                </div>
+                <!-- UPDATED: Case Study 3 Structure -->
+                <div class="case-study">
+                    <h4>🏢 Case Study 3: Real Estate Developer (50 Units)</h4>
+                    <div class="case-detail"><span class="case-stat">The Challenge</span><span class="case-context">A property developer needed pre-construction marketing assets that could sell space before it physically existed.</span></div>
+                    <div class="case-detail"><span class="case-stat">The Solution</span><span class="case-context">We created culturally aligned AI staging systems designed to reflect buyer psychology across regional markets and interior preferences.</span></div>
+                    <div class="case-detail"><span class="case-stat">The Results</span><span class="case-context">40% faster sales velocity • $200K+ saved in staging costs • Marketing readiness achieved before construction completion</span></div>
+                    <div class="case-detail"><span class="case-stat">Impact</span><span class="case-context">Buyers didn't view properties. They stepped into them emotionally. Units transitioned from abstract plans to lived-in experiences—before completion.</span></div>
+                    <span class="case-source">Outcome: Pre-sales velocity exceeded traditional construction-phase marketing.</span>
+                </div>
                 <div class="case-study">
                     <h4>📍 Case Study 1: Modest Fashion Brand (Middle East)</h4>
                     <div class="case-detail"><span class="case-stat">The Challenge</span><span class="case-context">A fast-scaling abaya brand needed content that could match regional taste, scale production, and reduce dependency on traditional shoots.</span></div>
@@ -736,20 +783,6 @@
                     <div class="case-detail"><span class="case-stat">The Results</span><span class="case-context">1.35M organic views in 90 days • 548K accounts reached • 91% non-follower discovery • 2,645 new followers from a single Reel</span></div>
                     <div class="case-detail"><span class="case-stat">Impact</span><span class="case-context">~$12.5K/month production cost reduction vs. traditional shoot cycles • 6 weeks → 48 hours production speed • 8 outfit variations per campaign</span></div>
                     <span class="case-source">Outcome: Content that didn't just perform—it resonated. Customers saw themselves in the product instantly.</span>
-                </div>
-                <div class="case-study">
-                    <h4>💎 Case Study 2: Luxury Jewelry Brand (300+ SKUs)</h4>
-                    <div class="case-detail"><span class="case-stat">The Challenge</span><span class="case-context">A luxury jewelry house needed to scale SKU-level imagery without compromising consistency, lighting, or brand perception.</span></div>
-                    <div class="case-detail"><span class="case-stat">The Solution</span><span class="case-context">We built a structured AI production pipeline with controlled lighting systems, multi-angle generation, and rigorous visual QA aligned to luxury standards.</span></div>
-                    <div class="case-detail"><span class="case-stat">The Results</span><span class="case-context">300 SKUs scaled efficiently across 6 months • 7-day production cycles vs. 3-week traditional timelines • ~67% reduction in cost per SKU ($40 vs. $120) • +24% increase in average order value</span></div>
-                    <span class="case-source">Outcome: Every product became sellable. Nothing left unseen. A complete shift from selective showcasing to full catalog visibility.</span>
-                </div>
-                <div class="case-study">
-                    <h4>🏢 Case Study 3: Real Estate Developer (50 Units)</h4>
-                    <div class="case-detail"><span class="case-stat">The Challenge</span><span class="case-context">A property developer needed pre-construction marketing assets that could sell space before it physically existed.</span></div>
-                    <div class="case-detail"><span class="case-stat">The Solution</span><span class="case-context">We created culturally aligned AI staging systems designed to reflect buyer psychology across regional markets and interior preferences.</span></div>
-                    <div class="case-detail"><span class="case-stat">The Results</span><span class="case-context">40% faster sales velocity • $200K+ saved in staging costs • Marketing readiness achieved before construction completion</span></div>
-                    <span class="case-source">Outcome: Buyers didn't view properties. They stepped into them emotionally. Units transitioned from abstract plans to lived-in experiences—before completion.</span>
                 </div>
             </div>
         </div>
@@ -773,7 +806,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                         <li>Regional fit assessment (where you'll see highest ROI)</li>
                         <li><strong>No credit card required</strong></li>
                     </ul>
-                    <button class="btn btn-primary" style="width:100%" onclick="openDemoForm('audit', 'Start Your Free Cultural Sample')">Request Free Sample →</button>
+                    <button class="btn btn-primary" style="width:100%" onclick="navigateToService('contemporary')">Request Free Sample →</button>
                 </div>
                 <div class="plan-card" style="border-color: var(--color-accent-orange);">
                     <div class="plan-name" style="color: var(--color-accent-orange);">📦 Catalog Pro (One-Time)</div>
@@ -792,6 +825,11 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 <div class="scale-banner">
                     <div class="path-title" style="margin:0; border:none; font-weight: 700; font-size: 1.1rem; color: var(--color-text-primary);">🚀 Monthly Plans</div>
                     <div style="font-size: 0.9rem; color: var(--color-text-secondary);">3-month minimum commitment (cancel anytime after). Includes dedicated support, revisions, and coverage across 50+ regions.</div>
+                    <ul>
+                        <li>Starter, Growth, and Enterprise Tiers</li>
+                        <li>Flexible Regional Adaptation Packs</li>
+                        <li>Priority Support SLAs</li>
+                    </ul>
                     <button class="btn btn-secondary" onclick="document.getElementById('pricing-plans').scrollIntoView({behavior: 'smooth'})">View Plans ↓</button>
                 </div>
             </div>
@@ -926,7 +964,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                     </div>
                     <p class="contact-card-desc">Tell us about your project, timeline, and budget. We'll get back to you within 24 hours.</p>
                     
-                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/hello@azdesigns.tech" method="POST" novalidate>
+                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/ajax/7008440357ee9d2485e82ffed201138a" method="POST" novalidate>
                         <!-- FORM SECURITY: Hardened with CAPTCHA, redirect, and honeypot -->
                         <input type="hidden" name="_subject" value="New Inquiry from AZ Designs Website">
                         <input type="hidden" name="_autoresponse" value="Thanks for reaching out! We'll reply within 24 hours.">
@@ -975,6 +1013,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 1. Initialize Intersection Observer
             const observer = new IntersectionObserver((entries) => { 
                 entries.forEach(entry => { 
                     if (entry.isIntersecting) {
@@ -1003,6 +1042,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 });
             }
 
+            // 2. Mobile Menu Logic & Outside Click
             const hamburger = document.querySelector('.hamburger');
             const mobileMenu = document.querySelector('.mobile-menu');
             const mobileServicesView = document.getElementById('mobileServicesView');
@@ -1013,6 +1053,15 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             window.showMobileServices = function() { mobileServicesView.classList.add('active'); };
             window.hideMobileServices = function() { mobileServicesView.classList.remove('active'); };
 
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                const menu = document.querySelector('.mobile-menu');
+                const isHamburger = e.target.closest('.hamburger');
+                if (menu.classList.contains('active') && !menu.contains(e.target) && !isHamburger) {
+                    menu.classList.remove('active');
+                }
+            });
+
             window.showToast = function(message) {
                 const toast = document.getElementById('toast');
                 toast.innerHTML = `<span style="color: var(--color-accent-teal);">✓</span> ${message}`;
@@ -1020,6 +1069,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 setTimeout(() => toast.classList.remove('show'), 4000);
             }
 
+            // 3. Hero Slideshow & Swipe
             const slideshowContainer = document.getElementById('heroSlideshow');
             const slides = slideshowContainer.querySelectorAll('.slideshow-slide');
             const dotsContainer = document.getElementById('heroSlideshowDots');
@@ -1055,10 +1105,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             slideshowContainer.addEventListener('mouseenter', () => clearInterval(slideshowInterval));
             slideshowContainer.addEventListener('mouseleave', resetAutoplay);
 
-            slideshowContainer.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-
+            slideshowContainer.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
             slideshowContainer.addEventListener('touchend', (e) => {
                 const touchEndX = e.changedTouches[0].screenX;
                 const deltaX = touchEndX - touchStartX;
@@ -1068,6 +1115,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
 
             resetAutoplay();
 
+            // 4. Ticker
             const tickerData = ["CONTRACT SIGNED: Dubai Luxury Watch Brand (GCC)", "NEW PARTNERSHIP: Jakarta Modest Fashion (SEA)", "ACTIVE CAMPAIGN: Parisian Beauty House (EU)", "RENEWAL: Tokyo Tech Startup (East Asia)", "CONTRACT SIGNED: NYC Activewear (NA)", "PROJECT COMPLETE: Mumbai Ethnic Wear (South Asia)"];
             const tickerTrack = document.getElementById('tickerTrack');
             [...tickerData, ...tickerData].forEach(item => {
@@ -1076,6 +1124,19 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 tickerTrack.appendChild(div);
             });
 
+            // 5. Unified Navigation Function
+            window.navigateToService = function(id) {
+                setActiveCategory(id);
+                const menu = document.querySelector('.mobile-menu');
+                if (menu && menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                }
+                setTimeout(() => {
+                    document.getElementById('services').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            };
+
+            // 6. Services Data & Logic
             const servicesData = [
                 { id: 'contemporary', title: 'Contemporary Wear', group: 'fashion', subTags: 'Womenswear • Menswear • Streetwear • Activewear • Denim & Casual', useThisIf: "You're a fashion brand launching seasonal collections across multiple regions and trend cycles.", challenges: ['Traditional shoots cost $5k–$20k/day', 'Trend cycles move faster than production timelines', 'Regional styling requirements multiply production costs'], deliverables: ['20–100 campaign-ready visuals monthly', 'Short-form Reels optimized for ads and social', 'Region-specific styling variants per collection', '48-hour turnaround production'], differences: ['No model sourcing, travel, or reshoot delays', 'Human QA for fabric realism and skin accuracy', 'Infinite model diversity from one campaign', 'Built-in regional styling intelligence'], results: ['30–40% faster launches', '2–3x more SKU coverage', 'Lower production costs at scale', 'Higher engagement on localized campaigns'], badges: ['✓ Studio-Grade Realism', '✓ Regional Styling Intelligence'] },
                 { id: 'modest', title: 'Modest & Traditional', group: 'fashion', subTags: 'Abayas & Hijabs • Kaftans & Tunics • Sarees & Lehengas • Kurtas & Sherwanis', useThisIf: "You serve GCC, South Asian, SEA, or Muslim-majority markets where cultural presentation directly impacts trust.", challenges: ['One incorrect styling cue can damage brand trust', 'Regional modest aesthetics vary dramatically by market', 'Seasonal demand spikes overwhelm traditional production'], deliverables: ['Region-specific modest styling variants', 'Luxury fabric rendering for layered garments and embroidery', 'GCC, Turkish, Moroccan, and South Asian presentation styles', 'Fast-turnaround seasonal campaign production'], differences: ['Every visual reviewed by cultural specialists', 'Styling calibrated per market, not generalized globally', 'Built-in modesty compliance across campaigns', 'Human QA eliminates unrealistic AI artifacts'], results: ['Stronger regional campaign approval rates', 'Higher engagement across culturally aligned audiences', 'Faster Ramadan and Eid campaign launches', 'Reduced cultural misrepresentation risk'], badges: ['✓ Critical Cultural QA', '✓ Regional Modesty Intelligence'] },
@@ -1086,8 +1147,11 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 { id: 'clinics', title: 'Aesthetic Clinics', group: 'beauty', subTags: 'MedSpas • Cosmetic Clinics', useThisIf: "You need medically responsible visual marketing that builds trust while remaining aspirational.", challenges: ['Extreme before/after visuals create compliance risk', 'Beauty expectations differ across cultures and demographics', 'Medical aesthetics require expert-reviewed credibility'], deliverables: ['Conservative enhancement simulations', 'Consultation-focused visual campaigns', 'Localized beauty presentation styles', 'Professionally reviewed before/after imagery'], differences: ['Built around ethical transformation standards', 'Cultural beauty mapping for localized trust', 'Human QA and medical-review workflows', 'Realistic enhancement representation without fantasy edits'], results: ['Higher consultation confidence', 'Reduced regulatory and compliance risk', 'Stronger trust across patient demographics', 'Premium clinic positioning'], badges: ['✓ Medically Responsible Visuals', '✓ Professional QA Pipeline'] },
                 { id: 'luxury', title: 'Luxury Goods', group: 'luxury', subTags: 'Jewelry • Watches • Designer Bags • Eyewear', useThisIf: "You sell premium products where craftsmanship and presentation justify luxury pricing.", challenges: ['Standard product photography fails to communicate material quality', 'Jewelry lighting requires extreme precision', 'Luxury aesthetics differ heavily across global markets'], deliverables: ['Ultra-high-resolution luxury product visuals', 'Macro craftsmanship detail rendering', 'Regional luxury styling variants', 'Editorial and campaign-ready luxury assets'], differences: ['Physics-based lighting for realistic reflections and sparkle', 'Material-depth rendering for leather, stone, and metal', 'GCC and EU luxury styling calibration built in', 'Human QA for premium realism standards'], results: ['Higher perceived product value', 'Stronger luxury positioning', 'Better conversion on premium collections', 'Improved engagement across regional audiences'], badges: ['✓ Ultra-HD Craftsmanship Detail', '✓ Premium Lighting Simulation'] },
                 { id: 'consumer', title: 'Consumer Products', group: 'luxury', subTags: 'Food & Beverage • Personal Care • Packaged Goods', useThisIf: "You need retail-ready visuals designed for shelf visibility, trust, and consumer engagement.", challenges: ['Certification labels often disappear in standard photography', 'White-background imagery lowers emotional engagement', 'Retail buyers need real-world shelf visualization'], deliverables: ['Contextual lifestyle product campaigns', 'Shelf-placement visualization', 'Smart certification emphasis for regulated markets', 'Region-specific household and kitchen environments'], differences: ['Built for retail and distributor presentation', 'Conversion-focused contextual storytelling', 'Region-aware family and lifestyle environments', 'Human QA for packaging clarity and realism'], results: ['Higher retail engagement', 'Better shelf-positioning confidence', 'Stronger visibility of certifications and packaging', 'Improved emotional connection with products'], badges: ['✓ Retail-Ready Visualization', '✓ Contextual Lifestyle Storytelling'] },
-                { id: 'hospitality', title: 'Hospitality & Spaces', group: 'hospitality', subTags: 'Hotels & Resorts • Restaurants & Cafés • Tourism & Destinations • Interior Design • Architectural Spaces', useThisIf: "You market spaces requiring emotional connection, premium presentation, and lifestyle-driven storytelling.", challenges: ['Empty environments feel cold and uninviting online', 'Different guest demographics expect different experiences', 'Amenities often remain invisible in standard photography'], deliverables: ['Luxury virtual staging and guest visualization', 'Lifestyle scenes across multiple demographics', 'Amenity-focused hospitality campaigns', 'Region-aware interior styling systems'], differences: ['Guest personas integrated naturally into spaces', 'Hospitality styling calibrated per market', 'Lifestyle storytelling instead of static interiors', 'Faster production than traditional staging workflows'], results: ['Higher booking confidence', 'Faster inquiry and occupancy rates', 'Stronger emotional engagement online', 'Better visibility of premium amenities'], badges: ['✓ Luxury Virtual Staging', '✓ Experience-Driven Storytelling'] },
+                // UPDATED: Hospitality & Spaces (Single Category)
+                { id: 'hospitality', title: 'Hospitality & Spaces', group: 'hospitality', subTags: 'Hotels & Resorts • Restaurants & Cafés • Tourism • Interior Design • Architecture', useThisIf: "You market spaces requiring emotional connection, premium presentation, and lifestyle-driven storytelling.", challenges: ['Empty environments feel cold and uninviting online', 'Different guest demographics expect different experiences', 'Amenities often remain invisible in standard photography'], deliverables: ['Luxury virtual staging and guest visualization', 'Lifestyle scenes across multiple demographics', 'Amenity-focused hospitality campaigns', 'Region-aware interior styling systems'], differences: ['Guest personas integrated naturally into spaces', 'Hospitality styling calibrated per market', 'Lifestyle storytelling instead of static interiors', 'Faster production than traditional staging workflows'], results: ['Higher booking confidence', 'Faster inquiry and occupancy rates', 'Stronger emotional engagement online', 'Better visibility of premium amenities'], badges: ['✓ Luxury Virtual Staging', '✓ Experience-Driven Storytelling'] },
+                // UPDATED: Real Estate (Single Category)
                 { id: 'realestate', title: 'Real Estate', group: 'realestate', subTags: 'Residential Projects • Commercial Projects • Property Visualization • Real Estate Campaigns', useThisIf: "You're a developer, broker, or property studio marketing projects across multiple buyer demographics.", challenges: ['Empty homes feel smaller and emotionally disconnected', 'Traditional staging is expensive and slow', 'International buyers expect regionally familiar interiors'], deliverables: ['Virtual staging with regional decor styles', 'Multiple buyer demographic variants per property', 'GCC, EU, and minimalist interior styling systems', '24–72 hour turnaround delivery'], differences: ['Same property marketed multiple ways instantly', 'Buyer-focused emotional visualization', 'Faster and more scalable than traditional staging', 'Designed for international market appeal'], results: ['Faster sales cycles', 'More qualified buyer inquiries', 'Stronger emotional engagement online', 'Higher perceived property value'], badges: ['✓ Buyer-Focused Staging', '✓ Region-Aware Interior Styling'] },
+                // UPDATED: Agency & Enterprise (Single Category)
                 { id: 'agency', title: 'Agency & Enterprise', group: 'agency', subTags: 'White-Label Production • Creative Partnerships • Multi-Brand Campaigns • Enterprise Content Systems', useThisIf: "You manage large-scale campaigns requiring fast production across multiple brands, markets, and timelines.", challenges: ['Pitch work competes with active client delivery', 'Multi-market localization slows production cycles', 'Freelancer scaling creates inconsistent quality'], deliverables: ['High-volume campaign asset production', 'Regional localization across global markets', 'Enterprise-ready QA systems', 'Fast-turnaround production support'], differences: ['Centralized aesthetic quality control', 'Global brand consistency maintained automatically', 'Massive scale without headcount expansion', 'Faster pitch-to-delivery workflows'], results: ['Faster campaign deployment', 'Reduced production bottlenecks', 'Consistent global creative quality', 'Increased operational scalability'], badges: ['✓ Enterprise Production Scaling', '✓ Centralized Global QA'] }
             ];
 
@@ -1107,6 +1171,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 if(!navRailEl) return;
                 navRailEl.innerHTML = '';
                 const filtered = servicesData.filter(c => c.group === currentGroup);
+                // Hide nav rail for single-category umbrellas
                 navRailEl.style.display = ['hospitality','realestate','agency'].includes(currentGroup) ? 'none' : 'flex';
                 filtered.forEach(c => {
                     const btn = document.createElement('button');
@@ -1118,7 +1183,10 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             }
 
             function getImageSrc(id, idx) {
-                const m = { contemporary:'western-casual', modest:'modest-fashion', youth:'kids-teen', intimate:'intimate-wear', luxury:'luxury-accessories', beauty:'beauty-cosmetics', wellness:'wellness-brands', clinics:'aesthetic-clinics', consumer:'fmcg-retail', hospitality:'travel-hospitality', realestate:'real-estate', agency:'b2b-agencies' };
+                // UPDATED: wellness and clinics now separate
+                const m = { contemporary:'western-casual', modest:'modest-fashion', youth:'kids-teen', intimate:'intimate-wear', 
+                luxury:'luxury-accessories', beauty:'beauty-cosmetics', wellness:'wellness-brands', clinics:'aesthetic-clinics', 
+                consumer:'fmcg-retail', hospitality:'travel-hospitality', realestate:'real-estate', agency:'b2b-agencies' };
                 const p = m[id] || 'logo'; return p==='logo' ? 'images/logo.webp' : `images/${p}-${idx+1}.webp`;
             }
             window.addEventListener('load', () => {
@@ -1129,11 +1197,27 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
 
             function updateCarousel() {
                 const c = servicesData.find(x => x.id === activeCategoryId);
-                carouselDots.innerHTML = ''; for(let i=0;i<3;i++) carouselDots.innerHTML += `<div class="dot ${i===activeImageIndex?'active':''}"></div>`;
+                const src = getImageSrc(activeCategoryId, activeImageIndex);
+                
+                carouselDots.innerHTML = ''; 
+                for(let i=0;i<3;i++) carouselDots.innerHTML += `<div class="dot ${i===activeImageIndex?'active':''}"></div>`;
                 carouselLoader.classList.add('active'); carouselImage.style.opacity = '0';
-                const temp = new Image(); temp.src = getImageSrc(activeCategoryId, activeImageIndex);
-                temp.onload = () => { carouselLoader.classList.remove('active'); carouselImage.src = temp.src; carouselImage.alt = c.title; carouselImage.style.opacity = '1'; };
-                temp.onerror = () => { carouselLoader.classList.remove('active'); carouselImage.src = 'images/logo.webp'; carouselImage.style.opacity = '1'; };
+
+                const temp = new Image();
+                temp.src = src;
+                temp.onload = () => { 
+                    carouselLoader.classList.remove('active'); 
+                    carouselImage.src = temp.src; 
+                    carouselImage.alt = c.title; 
+                    carouselImage.style.opacity = '1'; 
+                };
+                // Debug log for image failures
+                temp.onerror = () => { 
+                    console.error('❌ Image failed to load:', src); 
+                    carouselLoader.classList.remove('active'); 
+                    carouselImage.src = 'images/logo.webp'; 
+                    carouselImage.style.opacity = '1'; 
+                };
             }
             function nextImg() { activeImageIndex = (activeImageIndex + 1) % 3; updateCarousel(); }
             function prevImg() { activeImageIndex = (activeImageIndex + 2) % 3; updateCarousel(); }
@@ -1160,7 +1244,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                     </div>
                     <div class="card-footer-fixed">
                         <div class="card-badges">${c.badges.map(b => `<span class="badge-quality">${b}</span>`).join('')}</div>
-                        <button onclick="openDemoForm('${c.id}', 'Get Your Custom Sample')" class="btn btn-primary">Get Your Custom Sample →</button>
+                        <button onclick="navigateToService('${c.id}')" class="btn btn-primary">Get Your Custom Sample →</button>
                     </div>
                 `;
                 void contextCardEl.offsetWidth; contextCardEl.classList.remove('fade-out');
@@ -1170,6 +1254,10 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             function setActiveCategory(id) {
                 if (id === activeCategoryId) return;
                 activeCategoryId = id; activeImageIndex = 0;
+                // Determine group
+                const item = servicesData.find(i => i.id === id);
+                if(item) currentGroup = item.group;
+                
                 renderNavRail(); updateCarousel(); renderContextCard();
                 setTimeout(() => { const b = navRailEl.querySelector('.rail-btn.active'); b && b.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'}); }, 100);
             }
@@ -1205,10 +1293,6 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 document.getElementById(`mobile-grid-${umb}`).classList.add('active');
             }
 
-            window.openDemoForm = function(_, h) {
-                document.getElementById('contact').scrollIntoView({behavior:'smooth'});
-                const head = document.querySelector('#contact h2'); if(head) head.innerText = h;
-            }
             window.selectPlan = function(p) {
                 document.getElementById('contact').scrollIntoView({behavior:'smooth'});
                 const head = document.querySelector('#contact h2'); if(head) head.innerText = `Let's Discuss ${p}`;
@@ -1255,6 +1339,7 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 });
             }
 
+            // Initial Render
             renderNavRail(); updateCarousel(); renderContextCard();
             document.querySelector('.footer-bottom').innerText = `© ${new Date().getFullYear()} AZ Designs. All Rights Reserved.`;
         });
