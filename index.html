@@ -126,17 +126,12 @@
         .nav-item:hover { color: var(--color-accent-teal); }
         
         .mega-menu { 
-            position: fixed; 
-            top: 80px; left: 50%; 
-            transform: translateX(-50%) translateY(10px); 
-            width: min(98vw, 1200px); 
-            max-height: calc(100vh - 90px); 
-            overflow-y: auto;
+            position: fixed; top: 105px; left: 50%; transform: translateX(-50%) translateY(10px); 
+            width: min(98vw, 1200px); max-height: calc(100vh - 100px); overflow-y: auto;
             background: var(--color-bg-card-solid); border: 1px solid var(--color-border); 
             border-radius: 16px; padding: 2rem; display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; 
             box-shadow: var(--shadow-premium); backdrop-filter: blur(24px); 
-            opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1001; 
-            scrollbar-width: thin;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1001; scrollbar-width: thin;
         }
         .mega-menu::-webkit-scrollbar { width: 6px; }
         .mega-menu::-webkit-scrollbar-track { background: transparent; }
@@ -203,16 +198,16 @@
         }
 
         .bg-mesh { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background: radial-gradient(circle at 20% 10%, rgba(0, 212, 170, 0.08) 0%, transparent 40%), radial-gradient(circle at 80% 40%, rgba(201, 169, 97, 0.05) 0%, transparent 40%); pointer-events: none; }
-        section { padding: var(--section-padding) 0; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; position: relative; z-index: 2; will-change: opacity, transform; content-visibility: auto; contain-intrinsic-size: 0 1000px; }
+        section { padding: var(--section-padding) 0; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; position: relative; z-index: 2; }
         section.visible { opacity: 1; transform: translateY(0); }
 
         .hero { padding: 160px 0 60px; text-align: center; position: relative; }
-        .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; font-weight: 500; margin-bottom: 2rem; border: 1px solid rgba(0, 212, 170, 0.2); font-family: var(--font-mono); letter-spacing: 0.02em; }
         .hero h1 { font-size: clamp(2.8rem, 6vw, 5rem); margin-bottom: 1.5rem; background: linear-gradient(to right, var(--color-text-primary), var(--color-text-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p.subheadline { font-size: clamp(1.05rem, 2vw, 1.25rem); max-width: 800px; margin: 0 auto 2.5rem; font-weight: 300; }
         .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
-        .trust-bar { color: var(--color-text-secondary); font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.8; margin-bottom: 2rem; }
         
+        .trust-bar { color: var(--color-text-secondary); font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.8; margin-bottom: 2rem; text-align: center; }
+
         .hero-visual { 
             max-width: 1000px; margin: 0 auto 2rem auto; 
             width: 100%; aspect-ratio: 16 / 9; 
@@ -225,27 +220,59 @@
         .slideshow-slide.active { opacity: 1; z-index: 2; }
         .slideshow-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        /* NEW: Hero Slideshow Arrows */
-        .slideshow-arrow {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.5); color: #fff; border: none; width: 48px; height: 48px;
-            border-radius: 50%; cursor: pointer; z-index: 20; font-size: 1.5rem;
-            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-        }
-        .slideshow-arrow:hover { background: var(--color-accent-teal); color: var(--color-bg-deep); transform: translateY(-50%) scale(1.1); }
-        .slideshow-prev { left: 15px; }
-        .slideshow-next { right: 15px; }
-        
         .slideshow-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
         .slideshow-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: all 0.3s ease; cursor: pointer; }
         .slideshow-dot.active { background: var(--color-accent-teal); transform: scale(1.2); box-shadow: 0 0 8px rgba(0, 212, 170, 0.4); }
+
+        /* Desktop-Only Navigation Arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 120px;
+            padding: 0;
+            transition: all 0.2s ease;
+        }
+        .nav-arrow svg {
+            width: 28px;
+            height: 28px;
+            stroke: #ffffff;
+            stroke-width: 2;
+            fill: none;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        .nav-arrow:hover svg {
+            stroke: var(--color-accent-teal);
+            filter: drop-shadow(0 0 8px rgba(0, 212, 170, 0.4));
+        }
+        .nav-arrow:active svg {
+            transform: scale(0.9);
+        }
+        .arrow-prev { left: 0; }
+        .arrow-prev:hover { transform: translateY(-50%) translateX(-4px); }
+        .arrow-next { right: 0; }
+        .arrow-next:hover { transform: translateY(-50%) translateX(4px); }
+        
+        /* Hide arrows on smaller screens */
+        @media (max-width: 900px) {
+            .nav-arrow { display: none !important; }
+        }
 
         .pill-container { 
             background: rgba(21, 30, 45, 0.8); backdrop-filter: blur(12px); border: 1px solid var(--color-border); 
             border-radius: 50px; padding: 6px; display: flex; gap: 0.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.3); 
             overflow-x: auto; white-space: nowrap; scrollbar-width: none; scroll-behavior: smooth; 
             justify-content: center; width: fit-content; margin: 0 auto; max-width: 90vw; 
-            -webkit-overflow-scrolling: touch;
         }
         .pill-container::-webkit-scrollbar { display: none; }
         .pill-btn { background: transparent; border: none; color: var(--color-text-secondary); padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-family: var(--font-heading); font-weight: 600; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
@@ -289,10 +316,6 @@
         .carousel-loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid var(--color-accent-teal); border-radius: 50%; animation: spin 1s linear infinite; z-index: 5; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .carousel-loader.active { opacity: 1; }
         @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: transparent; color: #fff; border: none; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: all 0.2s ease; font-size: 1.5rem; outline: none; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .carousel-btn:hover { background: rgba(0,0,0,0.3); transform: translateY(-50%) scale(1.1); }
-        .carousel-prev { left: 15px; }
-        .carousel-next { right: 15px; }
         .carousel-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; pointer-events: none; }
         .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: all 0.3s ease; }
         .dot.active { background: var(--color-accent-teal); transform: scale(1.2); box-shadow: 0 0 8px rgba(0, 212, 170, 0.4); }
@@ -304,64 +327,35 @@
             position: relative; z-index: 5; display: flex; flex-direction: column; flex-grow: 1; 
             box-shadow: var(--shadow-premium); max-width: 600px; 
         }
+        
         @media (min-width: 901px) {
-            .context-card { height: 580px; }
-            .card-scroll-area { max-height: 320px; overflow-y: auto; }
+            .services-grid-layout { justify-content: center; gap: 2rem; }
+            .carousel-container { width: 480px; height: 600px; flex: 0 0 480px; max-width: none; aspect-ratio: auto; }
+            .context-card { width: 600px; height: 600px; flex: 0 0 600px; max-width: none; min-height: auto; }
+            .card-scroll-area { max-height: 305px; overflow-y: auto; }
         }
         
         .context-card.fade-out { opacity: 0; transform: translateY(10px); }
         
-        .card-header-top { 
-            padding: 2rem 2rem 1rem; border-bottom: 1px solid var(--color-border); flex-shrink: 0; 
-            text-align: center; 
-        }
-        .card-header-top h3 { 
-            font-size: 1.75rem; color: var(--color-text-primary); margin-bottom: 0.5rem; 
-            font-weight: 700; font-family: var(--font-heading); text-align: center; 
-        }
-        .card-header-top .card-dot-list { 
-            font-size: 0.85rem; color: var(--color-text-secondary); font-family: var(--font-mono); 
-            margin-bottom: 1rem; text-align: center; 
-        }
-        .use-this-if { 
-            font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; 
-            background: rgba(108, 92, 231, 0.05); padding: 0.75rem 1rem; border-radius: 8px; 
-            border-left: 3px solid var(--color-accent-violet); text-align: center; 
-        }
+        .card-header-top { padding: 2rem 2rem 1rem; border-bottom: 1px solid var(--color-border); flex-shrink: 0; text-align: center; }
+        .card-header-top h3 { font-size: 1.75rem; color: var(--color-text-primary); margin-bottom: 0.5rem; font-weight: 700; font-family: var(--font-heading); text-align: center; }
+        .card-header-top .card-dot-list { font-size: 0.85rem; color: var(--color-text-secondary); font-family: var(--font-mono); margin-bottom: 1rem; text-align: center; }
+        .use-this-if { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; background: rgba(108, 92, 231, 0.05); padding: 0.75rem 1rem; border-radius: 8px; border-left: 3px solid var(--color-accent-violet); text-align: center; }
         .use-this-if strong { color: var(--color-text-primary); display: block; margin-bottom: 0.25rem; font-family: var(--font-heading); }
 
-        .card-scroll-area { 
-            flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding: 1.5rem 2rem; 
-            scrollbar-width: thin; scrollbar-color: var(--color-accent-teal) transparent; 
-        }
+        .card-scroll-area { flex-grow: 1; overflow-y: auto; overflow-x: hidden; padding: 1.5rem 2rem; scrollbar-width: thin; scrollbar-color: var(--color-accent-teal) transparent; }
         .card-scroll-area::-webkit-scrollbar { width: 5px; }
         .card-scroll-area::-webkit-scrollbar-track { background: transparent; }
         .card-scroll-area::-webkit-scrollbar-thumb { background: var(--color-accent-teal); border-radius: 5px; }
         .section-block { margin-bottom: 1.75rem; }
-        .section-title { 
-            font-size: 0.75rem; font-weight: 700; color: var(--color-accent-teal); 
-            text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; 
-            font-family: var(--font-heading); 
-        }
+        .section-title { font-size: 0.75rem; font-weight: 700; color: var(--color-accent-teal); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; font-family: var(--font-heading); }
         .section-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-        .section-list li { 
-            font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; 
-            padding-left: 1.4rem; position: relative; font-weight: 300; 
-        }
+        .section-list li { font-size: 0.9rem; color: var(--color-text-secondary); line-height: 1.5; padding-left: 1.4rem; position: relative; font-weight: 300; }
         .section-list li::before { content: '→'; color: var(--color-accent-teal); position: absolute; left: 0; font-weight: 600; }
 
-        .card-footer-fixed { 
-            padding: 1.25rem 2rem; border-top: 1px solid var(--color-border); 
-            flex-shrink: 0; background: rgba(15, 20, 28, 0.5); 
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; 
-        }
+        .card-footer-fixed { padding: 1.25rem 2rem; border-top: 1px solid var(--color-border); flex-shrink: 0; background: rgba(15, 20, 28, 0.5); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
         .card-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .badge-quality { 
-            display: inline-block; padding: 5px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 600; 
-            font-family: var(--font-mono); background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); 
-            border: 1px solid rgba(0, 212, 170, 0.2); 
-        }
-        .peek-indicator { display: none; }
+        .badge-quality { display: inline-block; padding: 5px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 600; font-family: var(--font-mono); background: rgba(0, 212, 170, 0.1); color: var(--color-accent-teal); border: 1px solid rgba(0, 212, 170, 0.2); }
 
         .results h2 { text-align: center; font-size: clamp(2.2rem, 3.5vw, 3.2rem); margin-bottom: 1rem; }
         .results p.subheadline { text-align: center; margin-bottom: 3rem; font-size: 1.1rem; }
@@ -384,10 +378,7 @@
         .pricing-top-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; }
         .pricing-middle-row { margin-bottom: 4rem; display: flex; justify-content: center; }
         .scale-banner { background: var(--color-bg-card-solid); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 1.5rem 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; backdrop-filter: blur(16px); box-shadow: var(--shadow-premium); max-width: 800px; width: 100%; text-align: left; }
-        @media (min-width: 769px) {
-            .scale-banner { text-align: center; align-items: center; }
-            .scale-banner .btn-secondary { margin: 0 auto; display: block; }
-        }
+        @media (min-width: 769px) { .scale-banner { text-align: center; align-items: center; } .scale-banner .btn-secondary { margin: 0 auto; display: block; } }
         .scale-banner ul { list-style: none; display: flex; gap: 2rem; flex-wrap: wrap; }
         .scale-banner li { font-size: 0.9rem; color: var(--color-text-secondary); padding-left: 1.2rem; position: relative; }
         .scale-banner li::before { content: '•'; color: var(--color-accent-teal); position: absolute; left: 0; }
@@ -413,8 +404,6 @@
         .pillar { background: var(--color-bg-card-solid); backdrop-filter: blur(16px); padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); transition: all 0.2s ease; text-align: left; box-shadow: var(--shadow-premium); }
         .pillar:hover { border-color: var(--color-accent-teal); transform: translateY(-4px); box-shadow: 0 8px 32px 0 rgba(0, 212, 170, 0.15); }
         .pillar-title { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--color-text-primary); font-weight: 600; font-family: var(--font-heading); }
-        .security-badges { text-align: center; color: var(--color-text-secondary); font-size: 0.8rem; gap: 1rem; display: flex; justify-content: center; flex-wrap: wrap; font-family: var(--font-mono); opacity: 0.8; }
-        .security-badges span { display: inline-flex; align-items: center; gap: 0.5rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 4px; }
 
         .contact { background: var(--color-bg-card-solid); border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: 4rem 2rem; margin-top: 2rem; backdrop-filter: blur(16px); box-shadow: var(--shadow-premium); }
         .contact h2 { text-align: center; font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 1rem; font-family: var(--font-heading); }
@@ -454,6 +443,9 @@
         .footer-brand-tagline { font-family: var(--font-mono); font-size: 0.6rem; color: var(--color-accent-teal); text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.9; }
         .footer-bottom { border-top: 1px solid var(--color-border); padding-top: 2rem; text-align: center; font-size: 0.75rem; color: var(--color-text-secondary); font-family: var(--font-mono); opacity: 0.6; margin-top: 2rem; }
 
+        .security-badges { text-align: center; color: var(--color-text-secondary); font-size: 0.8rem; gap: 1rem; display: flex; justify-content: center; flex-wrap: wrap; font-family: var(--font-mono); opacity: 0.8; margin-bottom: 1.5rem; }
+        .security-badges span { display: inline-flex; align-items: center; gap: 0.5rem; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 4px; }
+
         .live-ticker-wrapper { background: rgba(0, 212, 170, 0.05); border-bottom: 1px solid rgba(0, 212, 170, 0.1); overflow: hidden; white-space: nowrap; height: 36px; display: flex; align-items: center; position: relative; }
         .ticker-track { display: inline-block; animation: ticker 45s linear infinite; will-change: transform; }
         .ticker-item { display: inline-flex; align-items: center; margin-right: 3rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-secondary); }
@@ -468,7 +460,6 @@
             .carousel-container { width: 100%; max-width: 100%; height: auto; aspect-ratio: 4/5; max-height: 600px; }
             .context-card { height: auto; min-height: 400px; max-width: 100%; }
             .card-scroll-area { max-height: 400px; }
-            .slideshow-arrow { display: none; }
         }
         @media (max-width: 768px) {
             .nav-links, .desktop-cta { display: none; }
@@ -479,16 +470,12 @@
             .hero { padding: 120px 0 40px; }
             .hero h1 { margin-bottom: 1rem; }
             .hero p.subheadline { margin-bottom: 1.5rem; font-size: 1rem; }
-            .trust-bar { margin-bottom: 1.5rem; }
             .how-it-works h2 { margin-bottom: 0.5rem; }
             .how-it-works p.subheadline { margin-bottom: 2rem; font-size: 1rem; }
             .process-steps { gap: 1rem; margin-bottom: 2rem; }
             .process-step { padding: 1.5rem; }
             .services h2 { margin-bottom: 0.5rem; }
             .services p.subheadline { margin-bottom: 1.5rem; }
-            .carousel-btn { width: 40px; height: 40px; font-size: 1.2rem; }
-            .carousel-prev { left: 10px; }
-            .carousel-next { right: 10px; }
             .results h2 { margin-bottom: 0.5rem; }
             .results p.subheadline { margin-bottom: 1.5rem; }
             .results-grid-container { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -553,7 +540,7 @@
                             <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('clinics')"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="mega-card-title">Aesthetic Clinics</span></a>
                         </div>
                         <div class="mega-column">
-                            <div class="mega-col-title">📁 Luxury & Consumer Brands</div>
+                            <div class="mega-col-title">📁 Luxury & Consumer</div>
                             <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('luxury')"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/></svg><span class="mega-card-title">Luxury Goods</span></a>
                             <a href="javascript:void(0)" class="mega-card" onclick="navigateToService('consumer')"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="mega-card-title">Consumer Products</span></a>
                         </div>
@@ -661,40 +648,42 @@
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <div class="badge">✓ 3x Faster Than Traditional Shoots • ✓ 92% First-Pass Approval • ✓ $5K–$20K Shoot → $1.5K–$7.5K/month</div>
-            <h1>Studio-Grade Product Visuals.<br>Culturally Perfect for Every Market.</h1>
-            <p class="subheadline">Studio-realistic AI product visuals that are culturally accurate and market-aware—delivering higher performance than traditional production at a fraction of the cost, without shoots, travel, models, or reshoots.</p>
+            <h1>Studio-Grade Product Visuals.<br>Culturally Calibrated for Global Markets.</h1>
+            <p class="subheadline">Hyper-real AI creative designed for modern brands — combining cultural accuracy, production efficiency, and studio-level realism at global scale.</p>
             <div class="hero-ctas">
                 <a href="#how-it-works" class="btn btn-primary">See How It Works →</a>
             </div>
-            <div class="trust-bar">✓ 48-Hour Turnaround • ✓ Human Cultural Review (50+ Advisors) • ✓ GDPR Compliant & Secure</div>
+            <div class="trust-bar">Studio-Grade Quality • Culturally Calibrated • Brand-Safe Delivery</div>
             
             <div class="hero-visual">
                 <div class="slideshow-container" id="heroSlideshow">
-                    <!-- UPDATED: Hero Slideshow Arrows -->
-                    <button class="slideshow-arrow slideshow-prev" id="heroPrevBtn">&#10094;</button>
-                    <button class="slideshow-arrow slideshow-next" id="heroNextBtn">&#10095;</button>
-
+                    <button class="nav-arrow arrow-prev" id="heroPrevBtn" aria-label="Previous Slide">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button class="nav-arrow arrow-next" id="heroNextBtn" aria-label="Next Slide">
+                        <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+                    </button>
+                    
                     <div class="slideshow-slide active"><img src="images/hero-1.webp" alt="Showcase 1" loading="eager" fetchpriority="high"></div>
-                    <div class="slideshow-slide"><img src="images/hero-2.webp" alt="Showcase 2" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-3.webp" alt="Showcase 3" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-4.webp" alt="Showcase 4" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-5.webp" alt="Showcase 5" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-6.webp" alt="Showcase 6" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-7.webp" alt="Showcase 7" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-8.webp" alt="Showcase 8" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-9.webp" alt="Showcase 9" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-10.webp" alt="Showcase 10" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-11.webp" alt="Showcase 11" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-12.webp" alt="Showcase 12" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-13.webp" alt="Showcase 13" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-14.webp" alt="Showcase 14" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-15.webp" alt="Showcase 15" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-16.webp" alt="Showcase 16" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-17.webp" alt="Showcase 17" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-18.webp" alt="Showcase 18" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-19.webp" alt="Showcase 19" loading="lazy" decoding="async"></div>
-                    <div class="slideshow-slide"><img src="images/hero-20.webp" alt="Showcase 20" loading="lazy" decoding="async"></div>
+                    <div class="slideshow-slide"><img src="images/hero-2.webp" alt="Showcase 2" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-3.webp" alt="Showcase 3" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-4.webp" alt="Showcase 4" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-5.webp" alt="Showcase 5" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-6.webp" alt="Showcase 6" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-7.webp" alt="Showcase 7" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-8.webp" alt="Showcase 8" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-9.webp" alt="Showcase 9" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-10.webp" alt="Showcase 10" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-11.webp" alt="Showcase 11" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-12.webp" alt="Showcase 12" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-13.webp" alt="Showcase 13" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-14.webp" alt="Showcase 14" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-15.webp" alt="Showcase 15" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-16.webp" alt="Showcase 16" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-17.webp" alt="Showcase 17" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-18.webp" alt="Showcase 18" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-19.webp" alt="Showcase 19" loading="lazy"></div>
+                    <div class="slideshow-slide"><img src="images/hero-20.webp" alt="Showcase 20" loading="lazy"></div>
                     <div class="slideshow-dots" id="heroSlideshowDots"></div>
                 </div>
             </div>
@@ -704,15 +693,31 @@
     <!-- How It Works -->
     <section class="how-it-works" id="how-it-works">
         <div class="container">
-            <h2>Global Vision × Cultural Intelligence =<br>Unstoppable Growth</h2>
-            <p class="subheadline">You provide the brand and products—we handle cultural intelligence, AI-driven production, and professional quality control. The result is high-performing content designed not just to look exceptional, but to convert across every market.</p>
+            <h2>Global Vision × Cultural Intelligence = Scalable Impact</h2>
+            <p class="subheadline">You provide the brand and products. We handle cultural intelligence, AI-driven production, and rigorous quality control.<br><br>The result is high-performing visual content engineered to align with regional context, brand consistency, and commercial performance.</p>
             <div class="process-steps">
-                <div class="process-step"><div class="step-number">01</div><h3>Brand & Market Audit</h3><p class="step-text">We understand your business, target regions (GCC, EU, SEA, or multi-market), products, and key challenges—whether it's slow production, limited model diversity, or cultural misalignment. <strong>Output:</strong> a clear strategy defining what "culturally calibrated" means for your brand.</p></div>
-                <div class="process-step"><div class="step-number">02</div><h3>Regional Culture Mapping</h3><p class="step-text">Our stylists, researchers, and regional experts build a market-specific cultural framework covering modesty norms, representation standards, color preferences, poses, and ad compliance. <strong>Output:</strong> a living playbook that guides every visual decision.</p></div>
-                <div class="process-step"><div class="step-number">03</div><h3>AI Generation + Human Refinement</h3><p class="step-text">We generate high-volume visual variations using AI trained on 100K+ studio shoots, then refine each output through expert review. Fashion, skin tone, and cultural specialists ensure realism, accuracy, and brand safety. <strong>Output:</strong> studio-grade assets with zero uncanny results.</p></div>
-                <div class="process-step"><div class="step-number">04</div><h3>Delivery</h3><p class="step-text">Your assets are delivered ready for use across Instagram Reels (AI-animated + edited), paid ads, e-commerce listings, and brand campaigns—fully aligned with your creative direction and market needs.</p></div>
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <h3>Brand & Market Audit</h3>
+                    <p class="step-text">We analyze your brand, products, and target regions to uncover cultural gaps, production limitations, and creative opportunities.<br><br><strong>Outcome:</strong> Market-specific visual strategy.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <h3>Regional Culture Mapping</h3>
+                    <p class="step-text">Our regional experts define styling, representation, poses, color preferences, and cultural expectations for every target market.<br><br><strong>Outcome:</strong> A culturally calibrated creative framework.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <h3>AI Generation + Human Refinement</h3>
+                    <p class="step-text">We generate hyper-real visuals at scale, then refine every asset through expert human review for realism, accuracy, and brand safety.<br><br><strong>Outcome:</strong> Studio-grade, campaign-ready visuals.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <h3>Delivery</h3>
+                    <p class="step-text">Final assets are optimized for Reels, paid ads, e-commerce, and brand campaigns — aligned to your market and creative direction.<br><br><strong>Outcome:</strong> Ready-to-launch creative assets.</p>
+                </div>
             </div>
-            <div class="trust-note">✓ 92% of client images approve on first pass (vs. 60–70% industry standard) • ✓ Every asset reviewed by human cultural advisors • ✓ Optimized for viral reach across regions</div>
+            <div class="trust-note">Human + AI workflow • Zero cultural misalignment reported • Ready-to-deploy formats</div>
         </div>
     </section>
 
@@ -736,17 +741,18 @@
             </div>
             <div class="services-grid-layout">
                 <div class="carousel-container" id="carouselContainer">
+                    <button class="nav-arrow arrow-prev" id="prevBtn" aria-label="Previous Image">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button class="nav-arrow arrow-next" id="nextBtn" aria-label="Next Image">
+                        <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+                    </button>
+                    
                     <div class="carousel-loader" id="carouselLoader"></div>
                     <div class="carousel-dots" id="carouselDots"></div>
-                    <button class="carousel-btn carousel-prev" id="prevBtn">&#10094;</button>
                     <img src="" alt="Service Image" class="carousel-slide" id="carouselImage">
-                    <button class="carousel-btn carousel-next" id="nextBtn">&#10095;</button>
                 </div>
-                <div class="context-card" id="contextCard">
-                    <div class="peek-indicator">
-                        <div class="peek-arrow">→</div>
-                    </div>
-                </div>
+                <div class="context-card" id="contextCard"></div>
             </div>
         </div>
     </section>
@@ -761,31 +767,25 @@
                 <div class="metric-badge"><div class="metric-value"><span class="counter" data-target="90.6">0</span>%</div><div class="metric-label">New Audience Reach (Non-Followers)</div><div class="metric-desc">Driven by culturally relevant content that unlocks pure organic discovery</div></div>
             </div>
             <div class="results-grid-container">
-                <!-- UPDATED: Case Study 1 (Now First) -->
                 <div class="case-study">
                     <h4>📍 Case Study 1: Modest Fashion Brand (Middle East)</h4>
                     <div class="case-detail"><span class="case-stat">The Challenge</span><span class="case-context">A fast-scaling abaya brand needed content that could match regional taste, scale production, and reduce dependency on traditional shoots.</span></div>
                     <div class="case-detail"><span class="case-stat">The Solution</span><span class="case-context">We redefined their visual system using culturally calibrated AI production—built specifically for GCC modest fashion standards, styling accuracy, and multi-variant storytelling.</span></div>
                     <div class="case-detail"><span class="case-stat">The Results</span><span class="case-context">1.35M organic views in 90 days • 548K accounts reached • 91% non-follower discovery • 2,645 new followers from a single Reel</span></div>
-                    <div class="case-detail"><span class="case-stat">Impact</span><span class="case-context">~$12.5K/month production cost reduction vs. traditional shoot cycles • 6 weeks → 48 hours production speed • 8 outfit variations per campaign</span></div>
                     <span class="case-source">Outcome: Content that didn't just perform—it resonated. Customers saw themselves in the product instantly.</span>
                 </div>
-                <!-- UPDATED: Case Study 2 (Now Middle) -->
                 <div class="case-study">
                     <h4>💎 Case Study 2: Luxury Jewelry Brand (300+ SKUs)</h4>
                     <div class="case-detail"><span class="case-stat">The Challenge</span><span class="case-context">A luxury jewelry house needed to scale SKU-level imagery without compromising consistency, lighting, or brand perception.</span></div>
                     <div class="case-detail"><span class="case-stat">The Solution</span><span class="case-context">We built a structured AI production pipeline with controlled lighting systems, multi-angle generation, and rigorous visual QA aligned to luxury standards.</span></div>
                     <div class="case-detail"><span class="case-stat">The Results</span><span class="case-context">300 SKUs scaled efficiently across 6 months • 7-day production cycles vs. 3-week traditional timelines • ~67% reduction in cost per SKU ($40 vs. $120) • +24% increase in average order value</span></div>
-                    <div class="case-detail"><span class="case-stat">Impact</span><span class="case-context">Every product became sellable. Nothing left unseen. A complete shift from selective showcasing to full catalog visibility.</span></div>
                     <span class="case-source">Outcome: Full catalog visibility unlocked the long-tail market.</span>
                 </div>
-                <!-- UPDATED: Case Study 3 (Now Last) -->
                 <div class="case-study">
                     <h4>🏢 Case Study 3: Real Estate Developer (50 Units)</h4>
                     <div class="case-detail"><span class="case-stat">The Challenge</span><span class="case-context">A property developer needed pre-construction marketing assets that could sell space before it physically existed.</span></div>
                     <div class="case-detail"><span class="case-stat">The Solution</span><span class="case-context">We created culturally aligned AI staging systems designed to reflect buyer psychology across regional markets and interior preferences.</span></div>
                     <div class="case-detail"><span class="case-stat">The Results</span><span class="case-context">40% faster sales velocity • $200K+ saved in staging costs • Marketing readiness achieved before construction completion</span></div>
-                    <div class="case-detail"><span class="case-stat">Impact</span><span class="case-context">Buyers didn't view properties. They stepped into them emotionally. Units transitioned from abstract plans to lived-in experiences—before completion.</span></div>
                     <span class="case-source">Outcome: Pre-sales velocity exceeded traditional construction-phase marketing.</span>
                 </div>
             </div>
@@ -795,22 +795,19 @@
     <!-- Pricing -->
     <section class="pricing" id="pricing">
         <div class="container">
-            <h2>Invest in Content That Converts. Scale Without the Overhead.</h2>
-            <p class="subheadline">Traditional photoshoots cost $5K–$20K, deliver ~20 assets, and take 4–6 weeks from planning to final output.
+            <h2>Invest in Content That Converts</h2>
+            <p class="subheadline">Traditional photoshoots typically require $5K–$20K, produce around ~20 assets, and take 4–6 weeks from planning to final delivery.
 
-Starter Plan: $1,500/month
-Includes 8 images + 4 videos, with culturally adapted regional variations and fast, AI-driven production—no shoots, models, or logistics required.</p>
+Replace traditional shoots with a faster, more scalable visual production system designed for modern brands.</p>
             <div class="pricing-top-row">
                 <div class="plan-card">
                     <div class="plan-name">🎯 START HERE (Free)</div>
                     <div class="plan-price" style="font-size: 1.8rem;">$0<span>/sample</span></div>
                     <ul class="plan-features">
-                        <li>30-min strategy call with a cultural advisor</li>
-                        <li>1 custom demo asset (your product, your target regions)</li>
-                        <li>Regional fit assessment (where you'll see highest ROI)</li>
-                        <li><strong>No credit card required</strong></li>
+                        <li>30-min strategy session</li>
+                        <li>1 custom demo asset (your product)</li>
+                        <li>No credit card required</li>
                     </ul>
-                    <!-- UPDATED: Linked to openSampleRequest -->
                     <button class="btn btn-primary" style="width:100%" onclick="openSampleRequest('general')">Request Free Sample →</button>
                 </div>
                 <div class="plan-card" style="border-color: var(--color-accent-orange);">
@@ -821,7 +818,6 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                         <li>15–20 product variants</li>
                         <li>3 angles per product</li>
                         <li>Consistent lighting + studio backgrounds</li>
-                        <li>7-day production cycle</li>
                     </ul>
                     <button class="btn btn-catalog" style="width:100%" onclick="selectPlan('Catalog Pro')">Inquire About Catalog Pro</button>
                 </div>
@@ -830,7 +826,6 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 <div class="scale-banner">
                     <div class="path-title" style="margin:0; border:none; font-weight: 700; font-size: 1.1rem; color: var(--color-text-primary);">🚀 Monthly Plans</div>
                     <div style="font-size: 0.9rem; color: var(--color-text-secondary);">3-month minimum commitment (cancel anytime after). Includes dedicated support, revisions, and coverage across 50+ regions.</div>
-                    <!-- UPDATED: Bullet list removed -->
                     <button class="btn btn-secondary" onclick="document.getElementById('pricing-plans').scrollIntoView({behavior: 'smooth'})">View Plans ↓</button>
                 </div>
             </div>
@@ -863,26 +858,28 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 </div>
                 <div class="plan-card">
                     <div class="plan-name">🏢 Enterprise</div>
-                    <div class="plan-price">Custom<span>/mo</span></div>
-                    <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1.5rem; font-style: italic;">Best for: agencies, large brands, white-label production</p>
+                    <div class="plan-price" style="font-size: 2rem; line-height: 1.2; margin-bottom: 1rem;">Custom<br><span style="font-size: 0.9rem; font-weight: 400;"></span></div>
+                    <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-bottom: 1rem; font-style: italic;"></p>
+                    <p style="font-size: 0.9rem; color: var(--color-text-primary); margin-bottom: 1.5rem; font-weight: 400;">We build a dedicated production system aligned to your brand structure, regional markets, and content demands.</p>
                     <ul class="plan-features">
-                        <li><strong>Unlimited</strong> asset generation (within scope)</li>
-                        <li>Custom cultural rule systems</li>
-                        <li>2 regional adaptation packs per quarter</li>
-                        <li>24/7 priority support</li>
-                        <li>Quarterly strategy sessions</li>
+                        <li><strong>Includes:</strong></li>
+                        <li>Fully customized AI + cultural workflow</li>
+                        <li>Market-specific creative systems</li>
+                        <li>Dedicated priority team & delivery pipeline</li>
+                        <li>Ongoing strategic optimization</li>
+                        <li>Executive-level quarterly reviews</li>
                     </ul>
-                    <button class="btn btn-secondary" style="width:100%" onclick="selectPlan('Enterprise')">Inquire About Enterprise</button>
+                    <button class="btn btn-secondary" style="width:100%" onclick="selectPlan('Enterprise')">Request Enterprise Partnership</button>
                 </div>
             </div>
             <div class="includes-list">
                 <h4>✅ All Plans Include:</h4>
                 <div class="inc-grid">
-                    <div class="inc-item"><span class="inc-check">✓</span> Studio-grade realism QA (human-reviewed output)</div>
-                    <div class="inc-item"><span class="inc-check">✓</span> Cultural compliance across 50+ regions</div>
-                    <div class="inc-item"><span class="inc-check">✓</span> Commercial usage license (ads, e-commerce, print)</div>
-                    <div class="inc-item"><span class="inc-check">✓</span> Secure, GDPR-compliant storage</div>
-                    <div class="inc-item"><span class="inc-check">✓</span> Revision system within scope</div>
+                    <div class="inc-item">• Human-reviewed, studio-grade visual output</div>
+                    <div class="inc-item">• Market-specific cultural accuracy across 50+ regions</div>
+                    <div class="inc-item">• Full commercial usage licensing included</div>
+                    <div class="inc-item">• Secure, compliant creative asset management</div>
+                    <div class="inc-item">• Structured refinement process within project scope</div>
                 </div>
             </div>
         </div>
@@ -895,30 +892,29 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             <div class="trust-pillars">
                 <div class="pillar">
                     <div class="pillar-title">✓ Studio-Grade Realism</div>
-                    <p>Not generic AI output. Our models are trained on 100K+ real studio shoots, with validation for fabric behavior, skin tones, and lighting accuracy by professional stylists. <strong>Result:</strong> 92% first-pass approval (vs. 60–70% industry standard).</p>
+                    <p>Trained on 100K+ real studio references with validation for fabric behavior, skin tones, and lighting by professional stylists.<br><br>Achieving 92% first-pass approval (vs. 60–70% industry benchmark).</p>
                 </div>
                 <div class="pillar">
                     <div class="pillar-title">✓ Cultural Intelligence (50+ Regions)</div>
-                    <p>Every asset is reviewed through real regional expertise—not assumptions. Stylists and cultural advisors ensure accuracy in posing, color systems, modesty standards, and market expectations. <strong>Result:</strong> Zero reported cultural misalignment across client deployments.</p>
+                    <p>Each asset is reviewed by regional experts to ensure accuracy in posing, color, modesty, and market expectations.<br><br>Zero reported cultural misalignment across deployments.</p>
                 </div>
                 <div class="pillar">
                     <div class="pillar-title">✓ Speed & Scale</div>
-                    <p>From concept to output in hours, not weeks. Generate 100+ market-specific variants from a single product direction—adapted across regions, models, and styling systems. <strong>Result:</strong> Brands scale from a few annual shoots to continuous content production.</p>
+                    <p>Generate 100+ market-adapted variations from a single product direction across regions and styles.<br><br>Enabling continuous content production instead of traditional shoot cycles.</p>
                 </div>
                 <div class="pillar">
                     <div class="pillar-title">✓ Brand Safety by Design</div>
-                    <p>Nothing is published without human oversight. AI generates variations, experts curate selections, and cultural reviewers validate final output. <strong>Result:</strong> Consistent, controlled, brand-safe visuals with no "AI artifacts".</p>
+                    <p>Structured pipeline: AI generation → curated selection → human + cultural validation before delivery.<br><br>Delivering consistent, brand-safe visuals free of AI artifacts.</p>
                 </div>
                 <div class="pillar">
                     <div class="pillar-title">✓ Data Privacy & Security</div>
-                    <p>Fully GDPR-compliant infrastructure with encrypted transfer and storage. Client data is never used for model training and is protected under strict access control. <strong>Result:</strong> Enterprise-grade confidentiality and trust.</p>
+                    <p>Enterprise-grade infrastructure with encrypted storage and controlled access. Client data is never used for model training.<br><br>Ensuring strict confidentiality across all projects.</p>
                 </div>
                 <div class="pillar">
                     <div class="pillar-title">✓ Commercial Flexibility</div>
-                    <p>Use your assets freely across ads, e-commerce, print, and large-scale campaigns with full commercial rights—no hidden limitations or recurring usage fees. <strong>Result:</strong> Full ownership and unrestricted deployment.</p>
+                    <p>Full usage rights for ads, e-commerce, print, and global campaigns with no hidden restrictions or recurring licensing fees.<br><br>Complete ownership and deployment freedom.</p>
                 </div>
             </div>
-            <div class="security-badges"><span>🔒 GDPR-Compliant Infrastructure</span><span>🔐 Encrypted Data Handling</span><span>🌍 50+ Regional Market Coverage</span><span>📊 Full Commercial Usage Rights</span></div>
         </div>
     </section>
 
@@ -1007,6 +1003,12 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                     <span class="footer-brand-tagline">Next-Gen AI Creative Studio</span>
                 </div>
             </div>
+            <div class="security-badges">
+                <span>🔒 GDPR-Compliant</span>
+                <span>🔐 Encrypted Storage</span>
+                <span>🌍 50+ Regional Coverage</span>
+                <span>📊 Full Commercial Rights</span>
+            </div>
             <div class="footer-bottom">© 2026 AZ Designs. All Rights Reserved.</div>
         </div>
     </footer>
@@ -1023,14 +1025,13 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             }, { threshold: 0.1 });
             document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-            let countersStarted = false;
             function startCounters() {
-                if(countersStarted) return;
-                countersStarted = true;
                 document.querySelectorAll('.counter').forEach(counter => {
+                    counter.innerText = '0';
                     const target = parseFloat(counter.getAttribute('data-target'));
                     const duration = 2000;
                     const startTime = performance.now();
+
                     function update(currentTime) {
                         const progress = Math.min((currentTime - startTime) / duration, 1);
                         counter.innerText = (target * (1 - Math.pow(1 - progress, 3))).toFixed(1);
@@ -1051,7 +1052,6 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             window.showMobileServices = function() { mobileServicesView.classList.add('active'); };
             window.hideMobileServices = function() { mobileServicesView.classList.remove('active'); };
 
-            // Outside click to close mobile menu
             document.addEventListener('click', (e) => {
                 const menu = document.querySelector('.mobile-menu');
                 const isHamburger = e.target.closest('.hamburger');
@@ -1071,8 +1071,6 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             const slideshowContainer = document.getElementById('heroSlideshow');
             const slides = slideshowContainer.querySelectorAll('.slideshow-slide');
             const dotsContainer = document.getElementById('heroSlideshowDots');
-            const heroPrevBtn = document.getElementById('heroPrevBtn');
-            const heroNextBtn = document.getElementById('heroNextBtn');
             let currentSlide = 0;
             let slideshowInterval;
             let touchStartX = 0;
@@ -1087,19 +1085,20 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             function goToSlide(index) {
                 slides[currentSlide].classList.remove('active');
                 dotsContainer.children[currentSlide].classList.remove('active');
-                currentSlide = (index + slides.length) % slides.length; // Handle negative wrap-around
+                currentSlide = (index + slides.length) % slides.length;
                 slides[currentSlide].classList.add('active');
                 dotsContainer.children[currentSlide].classList.add('active');
                 resetAutoplay();
             }
 
-            heroPrevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
-            heroNextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
-
             function resetAutoplay() {
                 clearInterval(slideshowInterval);
                 slideshowInterval = setInterval(() => goToSlide(currentSlide + 1), 3000);
             }
+
+            // Hero arrow navigation
+            document.getElementById('heroPrevBtn')?.addEventListener('click', () => goToSlide(currentSlide - 1));
+            document.getElementById('heroNextBtn')?.addEventListener('click', () => goToSlide(currentSlide + 1));
 
             slideshowContainer.addEventListener('mouseenter', () => clearInterval(slideshowInterval));
             slideshowContainer.addEventListener('mouseleave', resetAutoplay);
@@ -1121,23 +1120,15 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 tickerTrack.appendChild(div);
             });
 
-            // Sample Request Logic
             window.openSampleRequest = function(id) {
                 const servicesData = [
-                    { id: 'contemporary', title: 'Contemporary Wear' },
-                    { id: 'modest', title: 'Modest & Traditional' },
-                    { id: 'beauty', title: 'Beauty Brands' },
-                    { id: 'wellness', title: 'Wellness Brands' },
-                    { id: 'clinics', title: 'Aesthetic Clinics' },
-                    { id: 'luxury', title: 'Luxury Goods' },
-                    { id: 'consumer', title: 'Consumer Products' },
-                    { id: 'hospitality', title: 'Hospitality & Spaces' },
-                    { id: 'realestate', title: 'Real Estate' },
-                    { id: 'agency', title: 'Agency & Enterprise' },
-                    { id: 'youth', title: 'Youth & Kids' },
-                    { id: 'intimate', title: 'Intimate Categories' }
+                    { id: 'contemporary', title: 'Contemporary Wear' }, { id: 'modest', title: 'Modest & Traditional' },
+                    { id: 'beauty', title: 'Beauty Brands' }, { id: 'wellness', title: 'Wellness Brands' },
+                    { id: 'clinics', title: 'Aesthetic Clinics' }, { id: 'luxury', title: 'Luxury Goods' },
+                    { id: 'consumer', title: 'Consumer Products' }, { id: 'hospitality', title: 'Hospitality & Spaces' },
+                    { id: 'realestate', title: 'Real Estate' }, { id: 'agency', title: 'Agency & Enterprise' },
+                    { id: 'youth', title: 'Youth & Kids' }, { id: 'intimate', title: 'Intimate Categories' }
                 ];
-                
                 const service = servicesData.find(s => s.id === id);
                 const heading = document.getElementById('contactHeading');
                 const textarea = document.getElementById('contactMessage');
@@ -1149,24 +1140,19 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                     heading.innerText = `Get Custom Sample: ${service.title}`;
                     textarea.value = `Hi AZ Designs, I'd like to see a custom sample for "${service.title}". I want to see how this visual style performs in my target regions.`;
                 }
-
-                // Scroll and close menu
                 const menu = document.querySelector('.mobile-menu');
                 if (menu && menu.classList.contains('active')) menu.classList.remove('active');
-                
-                setTimeout(() => {
-                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+                setTimeout(() => { document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
             };
 
             // Services Navigation Logic
             const servicesData = [
                 { id: 'contemporary', title: 'Contemporary Wear', group: 'fashion', subTags: 'Womenswear • Menswear • Streetwear • Activewear • Denim & Casual', useThisIf: "You're a fashion brand launching seasonal collections across multiple regions and trend cycles.", challenges: ['Traditional shoots cost $5k–$20k/day', 'Trend cycles move faster than production timelines', 'Regional styling requirements multiply production costs'], deliverables: ['20–100 campaign-ready visuals monthly', 'Short-form Reels optimized for ads and social', 'Region-specific styling variants per collection', '48-hour turnaround production'], differences: ['No model sourcing, travel, or reshoot delays', 'Human QA for fabric realism and skin accuracy', 'Infinite model diversity from one campaign', 'Built-in regional styling intelligence'], results: ['30–40% faster launches', '2–3x more SKU coverage', 'Lower production costs at scale', 'Higher engagement on localized campaigns'], badges: ['✓ Studio-Grade Realism', '✓ Regional Styling Intelligence'] },
-                { id: 'modest', title: 'Modest & Traditional', group: 'fashion', subTags: 'Abayas & Hijabs • Kaftans & Tunics • Sarees & Lehengas • Kurtas & Sherwanis', useThisIf: "You serve GCC, South Asian, SEA, or Muslim-majority markets where cultural presentation directly impacts trust.", challenges: ['One incorrect styling cue can damage brand trust', 'Regional modest aesthetics vary dramatically by market', 'Seasonal demand spikes overwhelm traditional production'], deliverables: ['Region-specific modest styling variants', 'Luxury fabric rendering for layered garments and embroidery', 'GCC, Turkish, Moroccan, and South Asian presentation styles', 'Fast-turnaround seasonal campaign production'], differences: ['Every visual reviewed by cultural specialists', 'Styling calibrated per market, not generalized globally', 'Built-in modesty compliance across campaigns', 'Human QA eliminates unrealistic AI artifacts'], results: ['Stronger regional campaign approval rates', 'Higher engagement across culturally aligned audiences', 'Faster Ramadan and Eid campaign launches', 'Reduced cultural misrepresentation risk'], badges: ['✓ Critical Cultural QA', '✓ Regional Modesty Intelligence'] },
+                { id: 'modest', title: 'Modest & Traditional', group: 'fashion', subTags: 'Abayas & Hijabs • Kaftans & Tunics • Sarees & Lehengas • Kurtas', useThisIf: "You serve GCC, South Asian, SEA, or Muslim-majority markets where cultural presentation directly impacts trust.", challenges: ['One incorrect styling cue can damage brand trust', 'Regional modest aesthetics vary dramatically by market', 'Seasonal demand spikes overwhelm traditional production'], deliverables: ['Region-specific modest styling variants', 'Luxury fabric rendering for layered garments and embroidery', 'GCC, Turkish, Moroccan, and South Asian presentation styles', 'Fast-turnaround seasonal campaign production'], differences: ['Every visual reviewed by cultural specialists', 'Styling calibrated per market, not generalized globally', 'Built-in modesty compliance across campaigns', 'Human QA eliminates unrealistic AI artifacts'], results: ['Stronger regional campaign approval rates', 'Higher engagement across culturally aligned audiences', 'Faster Ramadan and Eid campaign launches', 'Reduced cultural misrepresentation risk'], badges: ['✓ Critical Cultural QA', '✓ Regional Modesty Intelligence'] },
                 { id: 'youth', title: 'Youth & Kids', group: 'fashion', subTags: 'Kidswear • Teen Fashion • School Wear', useThisIf: "You need scalable childrenswear campaigns with ethical production and dynamic lifestyle visuals.", challenges: ['Traditional child-model production creates legal and consent risks', 'Static studio shots fail to show movement and durability', 'Parents increasingly prioritize ethical production standards'], deliverables: ['Ethical AI-generated youth fashion campaigns', 'Dynamic movement and activity-focused scenes', 'Seasonal eCommerce and social-ready visuals', 'Diverse age and demographic representation'], differences: ['Zero minors involved in production', 'Realistic motion rendering for active lifestyle imagery', 'Transparent and traceable creative pipeline', 'Fast-turnaround campaign scalability'], results: ['Higher trust from parents and retailers', 'Stronger engagement on lifestyle campaigns', 'Faster seasonal collection launches', 'Reduced legal and operational risk'], badges: ['✓ Ethical AI Production', '✓ Dynamic Lifestyle Realism'] },
                 { id: 'intimate', title: 'Intimate Categories', group: 'fashion', subTags: 'Lingerie • Shapewear • Sleepwear • Swimwear', useThisIf: "You need premium intimate apparel campaigns that remain platform-safe, inclusive, and conversion-focused.", challenges: ['Social platforms heavily restrict intimate apparel creative', 'Customers struggle to visualize fit across body types', 'Privacy concerns reduce personalization trust'], deliverables: ['Platform-compliant campaign imagery', 'Fit visualization across diverse body types', 'Inclusive size representation campaigns', 'Editorial and eCommerce-ready visuals'], differences: ['Artistic styling optimized for ad approval', 'Morphological fit mapping for realistic garment behavior', 'Privacy-first production workflows', 'Human QA for anatomy and fabric realism'], results: ['Lower fit-related return rates', 'Higher conversion across extended sizing', 'Improved ad approval performance', 'Stronger trust through inclusive representation'], badges: ['✓ Platform-Safe Creative', '✓ Inclusive Fit Visualization'] },
                 { id: 'beauty', title: 'Beauty Brands', group: 'beauty', subTags: 'Skincare • Haircare • Cosmetics • Fragrance', useThisIf: "You sell beauty or cosmetic products requiring accurate shade, texture, and skin-tone representation.", challenges: ['Customers struggle to find accurate shade matches online', 'Inconsistent lighting destroys color accuracy', 'Most beauty campaigns still underrepresent skin diversity'], deliverables: ['Product application visuals across diverse skin tones', 'Undertone-accurate rendering and lighting consistency', 'Before/after skincare campaigns', 'Region-specific beauty styling aesthetics'], differences: ['Standardized lighting for true product accuracy', 'Consistent models across all variants', 'Human QA for realistic makeup texture and finish', 'Built around undertone precision, not generic diversity'], results: ['Higher conversion on shade-match products', 'Reduced returns from color mismatch', 'Stronger engagement on inclusive campaigns', 'Increased trust across diverse audiences'], badges: ['✓ Clinical Lighting Accuracy', '✓ Inclusive Shade Precision'] },
-                { id: 'wellness', title: 'Wellness Brands', group: 'beauty', subTags: 'Supplements • Nutraceuticals • Fitness Studios • Wellness Products', useThisIf: "You need wellness campaigns balancing authenticity, inclusivity, and aspirational branding.", challenges: ['Over-retouched wellness imagery creates distrust', 'Regional modesty standards vary heavily by market', 'Most brands fail to represent real body diversity'], deliverables: ['Authentic wellness and active lifestyle campaigns', 'Region-adapted styling for global audiences', 'Inclusive representation across body types', 'Social and ad-ready content production'], differences: ['Natural body realism without exaggerated editing', 'Coverage and styling adjusted regionally', 'Lifestyle-focused storytelling instead of generic fitness visuals', 'Human QA optimized for wellness authenticity'], results: ['Higher engagement with Gen Z audiences', 'Increased conversion on inclusive campaigns', 'Better performance in GCC and SEA markets', 'Stronger authenticity-driven brand trust'], badges: ['✓ Authentic Body Representation', '✓ Regional Wellness Styling'] },
+                { id: 'wellness', title: 'Wellness Brands', group: 'beauty', subTags: 'Supplements • Nutraceuticals • Fitness• Wellness Products', useThisIf: "You need wellness campaigns balancing authenticity, inclusivity, and aspirational branding.", challenges: ['Over-retouched wellness imagery creates distrust', 'Regional modesty standards vary heavily by market', 'Most brands fail to represent real body diversity'], deliverables: ['Authentic wellness and active lifestyle campaigns', 'Region-adapted styling for global audiences', 'Inclusive representation across body types', 'Social and ad-ready content production'], differences: ['Natural body realism without exaggerated editing', 'Coverage and styling adjusted regionally', 'Lifestyle-focused storytelling instead of generic fitness visuals', 'Human QA optimized for wellness authenticity'], results: ['Higher engagement with Gen Z audiences', 'Increased conversion on inclusive campaigns', 'Better performance in GCC and SEA markets', 'Stronger authenticity-driven brand trust'], badges: ['✓ Authentic Body Representation', '✓ Regional Wellness Styling'] },
                 { id: 'clinics', title: 'Aesthetic Clinics', group: 'beauty', subTags: 'MedSpas • Cosmetic Clinics', useThisIf: "You need medically responsible visual marketing that builds trust while remaining aspirational.", challenges: ['Extreme before/after visuals create compliance risk', 'Beauty expectations differ across cultures and demographics', 'Medical aesthetics require expert-reviewed credibility'], deliverables: ['Conservative enhancement simulations', 'Consultation-focused visual campaigns', 'Localized beauty presentation styles', 'Professionally reviewed before/after imagery'], differences: ['Built around ethical transformation standards', 'Cultural beauty mapping for localized trust', 'Human QA and medical-review workflows', 'Realistic enhancement representation without fantasy edits'], results: ['Higher consultation confidence', 'Reduced regulatory and compliance risk', 'Stronger trust across patient demographics', 'Premium clinic positioning'], badges: ['✓ Medically Responsible Visuals', '✓ Professional QA Pipeline'] },
                 { id: 'luxury', title: 'Luxury Goods', group: 'luxury', subTags: 'Jewelry • Watches • Designer Bags • Eyewear', useThisIf: "You sell premium products where craftsmanship and presentation justify luxury pricing.", challenges: ['Standard product photography fails to communicate material quality', 'Jewelry lighting requires extreme precision', 'Luxury aesthetics differ heavily across global markets'], deliverables: ['Ultra-high-resolution luxury product visuals', 'Macro craftsmanship detail rendering', 'Regional luxury styling variants', 'Editorial and campaign-ready luxury assets'], differences: ['Physics-based lighting for realistic reflections and sparkle', 'Material-depth rendering for leather, stone, and metal', 'GCC and EU luxury styling calibration built in', 'Human QA for premium realism standards'], results: ['Higher perceived product value', 'Stronger luxury positioning', 'Better conversion on premium collections', 'Improved engagement across regional audiences'], badges: ['✓ Ultra-HD Craftsmanship Detail', '✓ Premium Lighting Simulation'] },
                 { id: 'consumer', title: 'Consumer Products', group: 'luxury', subTags: 'Food & Beverage • Personal Care • Packaged Goods', useThisIf: "You need retail-ready visuals designed for shelf visibility, trust, and consumer engagement.", challenges: ['Certification labels often disappear in standard photography', 'White-background imagery lowers emotional engagement', 'Retail buyers need real-world shelf visualization'], deliverables: ['Contextual lifestyle product campaigns', 'Shelf-placement visualization', 'Smart certification emphasis for regulated markets', 'Region-specific household and kitchen environments'], differences: ['Built for retail and distributor presentation', 'Conversion-focused contextual storytelling', 'Region-aware family and lifestyle environments', 'Human QA for packaging clarity and realism'], results: ['Higher retail engagement', 'Better shelf-positioning confidence', 'Stronger visibility of certifications and packaging', 'Improved emotional connection with products'], badges: ['✓ Retail-Ready Visualization', '✓ Contextual Lifestyle Storytelling'] },
@@ -1182,35 +1168,20 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             const contextCardEl = document.getElementById('contextCard');
             const carouselImage = document.getElementById('carouselImage');
             const carouselLoader = document.getElementById('carouselLoader');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
             const carouselContainer = document.getElementById('carouselContainer');
             const carouselDots = document.getElementById('carouselDots');
 
-            // Pill Sync Helper
             function syncUmbrellaPill(group) {
                 currentGroup = group;
                 const textMap = { 'fashion': 'fashion', 'beauty': 'beauty', 'luxury': 'luxury', 'hospitality': 'hospitality', 'realestate': 'real estate', 'agency': 'agency' };
                 const searchKey = textMap[group] || group;
-                
-                document.querySelectorAll('.umbrella-btn').forEach(p => { 
-                    p.classList.remove('active'); 
-                    p.setAttribute('aria-pressed','false'); 
-                });
-                
+                document.querySelectorAll('.umbrella-btn').forEach(p => { p.classList.remove('active'); p.setAttribute('aria-pressed','false'); });
                 const pills = document.querySelectorAll('.umbrella-btn');
                 let activatedPill = null;
                 pills.forEach(p => {
-                    if(p.textContent.toLowerCase().includes(searchKey)) {
-                        p.classList.add('active'); 
-                        p.setAttribute('aria-pressed','true');
-                        activatedPill = p;
-                    }
+                    if(p.textContent.toLowerCase().includes(searchKey)) { p.classList.add('active'); p.setAttribute('aria-pressed','true'); activatedPill = p; }
                 });
-                
-                if(activatedPill) {
-                    activatedPill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                }
+                if(activatedPill) activatedPill.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
 
             function renderNavRail() {
@@ -1243,88 +1214,63 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
             function updateCarousel() {
                 const c = servicesData.find(x => x.id === activeCategoryId);
                 const src = getImageSrc(activeCategoryId, activeImageIndex);
-                
                 carouselDots.innerHTML = ''; 
                 for(let i=0;i<3;i++) carouselDots.innerHTML += `<div class="dot ${i===activeImageIndex?'active':''}"></div>`;
                 carouselLoader.classList.add('active'); carouselImage.style.opacity = '0';
-
-                const temp = new Image();
-                temp.src = src;
-                temp.onload = () => { 
-                    carouselLoader.classList.remove('active'); 
-                    carouselImage.src = temp.src; 
-                    carouselImage.alt = c.title; 
-                    carouselImage.style.opacity = '1'; 
-                };
-                temp.onerror = () => { 
-                    carouselLoader.classList.remove('active'); 
-                    carouselImage.src = 'images/logo.webp'; 
-                    carouselImage.style.opacity = '1'; 
-                };
+                const temp = new Image(); temp.src = src;
+                temp.onload = () => { carouselLoader.classList.remove('active'); carouselImage.src = temp.src; carouselImage.alt = c.title; carouselImage.style.opacity = '1'; };
+                temp.onerror = () => { carouselLoader.classList.remove('active'); carouselImage.src = 'images/logo.webp'; carouselImage.style.opacity = '1'; };
             }
             function nextImg() { activeImageIndex = (activeImageIndex + 1) % 3; updateCarousel(); }
             function prevImg() { activeImageIndex = (activeImageIndex + 2) % 3; updateCarousel(); }
-            nextBtn.onclick = nextImg; prevBtn.onclick = prevImg;
+            
+            // Carousel arrow navigation
+            document.getElementById('prevBtn')?.addEventListener('click', prevImg);
+            document.getElementById('nextBtn')?.addEventListener('click', nextImg);
+
             let swipeStartX = 0;
-            carouselContainer.ontouchstart = e => swipeStartX = e.changedTouches[0].screenX;
-            carouselContainer.ontouchend = e => { const d = e.changedTouches[0].screenX - swipeStartX; if(d<-60) nextImg(); if(d>60) prevImg(); };
+            carouselContainer.addEventListener('touchstart', (e) => { swipeStartX = e.changedTouches[0].screenX; }, { passive: true });
+            carouselContainer.addEventListener('touchend', (e) => { 
+                const d = e.changedTouches[0].screenX - swipeStartX; 
+                if(d<-60) nextImg(); if(d>60) prevImg(); 
+            }, { passive: true });
 
             function renderContextCard() {
                 contextCardEl.classList.add('fade-out');
                 const c = servicesData.find(x => x.id === activeCategoryId);
                 const list = items => items.map(i => `<li>${i}</li>`).join('');
                 contextCardEl.innerHTML = `
-                    <div class="card-header-top">
-                        <h3>${c.title}</h3>
-                        <div class="card-dot-list">${c.subTags}</div>
-                        <div class="use-this-if"><strong>USE THIS IF:</strong> ${c.useThisIf}</div>
-                    </div>
+                    <div class="card-header-top"><h3>${c.title}</h3><div class="card-dot-list">${c.subTags}</div><div class="use-this-if"><strong>USE THIS IF:</strong> ${c.useThisIf}</div></div>
                     <div class="card-scroll-area">
                         <div class="section-block"><div class="section-title">THE CHALLENGE</div><ul class="section-list">${list(c.challenges)}</ul></div>
                         <div class="section-block"><div class="section-title">WHAT WE DELIVER</div><ul class="section-list">${list(c.deliverables)}</ul></div>
                         <div class="section-block"><div class="section-title">WHY IT'S DIFFERENT</div><ul class="section-list">${list(c.differences)}</ul></div>
                         <div class="section-block"><div class="section-title">EXPECTED RESULTS</div><ul class="section-list">${list(c.results)}</ul></div>
                     </div>
-                    <div class="card-footer-fixed">
-                        <div class="card-badges">${c.badges.map(b => `<span class="badge-quality">${b}</span>`).join('')}</div>
-                        <button onclick="openSampleRequest('${c.id}')" class="btn btn-primary">Get Your Custom Sample →</button>
-                    </div>
-                `;
+                    <div class="card-footer-fixed"><div class="card-badges">${c.badges.map(b => `<span class="badge-quality">${b}</span>`).join('')}</div><button onclick="openSampleRequest('${c.id}')" class="btn btn-primary">Get Your Custom Sample →</button></div>`;
                 void contextCardEl.offsetWidth; contextCardEl.classList.remove('fade-out');
                 contextCardEl.querySelector('.card-scroll-area').scrollTop = 0;
             }
 
             function setActiveCategory(id) {
                 if (id === activeCategoryId) return;
-                activeCategoryId = id; 
-                activeImageIndex = 0;
-                
-                // Update Group
+                activeCategoryId = id; activeImageIndex = 0;
                 const item = servicesData.find(i => i.id === id);
                 if(item) currentGroup = item.group;
-                
-                syncUmbrellaPill(currentGroup);
-                renderNavRail(); 
-                updateCarousel(); 
-                renderContextCard();
+                syncUmbrellaPill(currentGroup); renderNavRail(); updateCarousel(); renderContextCard();
+                if (!['hospitality', 'realestate', 'agency'].includes(currentGroup)) {
+                    setTimeout(() => { const b = navRailEl.querySelector('.rail-btn.active'); b && b.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'}); }, 100);
+                }
             }
 
             window.navigateToService = function(id) {
                 setActiveCategory(id);
                 const menu = document.querySelector('.mobile-menu');
-                if (menu && menu.classList.contains('active')) {
-                    menu.classList.remove('active');
-                }
-                setTimeout(() => {
-                    document.getElementById('services').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
+                if (menu && menu.classList.contains('active')) menu.classList.remove('active');
+                setTimeout(() => { document.getElementById('services').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
             };
 
-            function filterByUmbrella(group) {
-                syncUmbrellaPill(group);
-                const first = servicesData.find(i => i.group === group);
-                if(first) { setActiveCategory(first.id); }
-            }
+            function filterByUmbrella(group) { syncUmbrellaPill(group); const first = servicesData.find(i => i.group === group); if(first) setActiveCategory(first.id); }
             window.filterByUmbrella = filterByUmbrella;
 
             window.switchMobileTab = function(umb) {
@@ -1352,24 +1298,15 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
                 contactForm.addEventListener('submit', async (e) => {
                     e.preventDefault();
                     if (formError) { formError.style.display = 'none'; formError.textContent = ''; }
-                    
                     const required = contactForm.querySelectorAll('[required]');
                     let valid = true;
-                    required.forEach(field => {
-                        if (!field.value.trim()) { valid = false; field.style.borderColor = '#ff6b6b'; setTimeout(() => field.style.borderColor = '', 2000); }
-                    });
+                    required.forEach(field => { if (!field.value.trim()) { valid = false; field.style.borderColor = '#ff6b6b'; setTimeout(() => field.style.borderColor = '', 2000); } });
                     if (!valid) { showToast('Please fill in all required fields'); return; }
-
                     if (btnText && btnLoading) { btnText.style.display = 'none'; btnLoading.style.display = 'inline'; }
                     if (submitBtn) submitBtn.disabled = true;
-
                     try {
                         const formData = new FormData(contactForm);
-                        const response = await fetch(contactForm.action, {
-                            method: 'POST',
-                            headers: { 'Accept': 'application/json' },
-                            body: formData
-                        });
+                        const response = await fetch(contactForm.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: formData });
                         const result = await response.json();
                         if (result.success) { showToast('Message Sent! We will reply shortly.'); contactForm.reset(); }
                         else throw new Error(result.message || 'Submission failed');
@@ -1392,4 +1329,3 @@ Includes 8 images + 4 videos, with culturally adapted regional variations and fa
 
 </body>
 </html>
-
